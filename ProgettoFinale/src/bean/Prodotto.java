@@ -21,13 +21,13 @@ public class Prodotto {
 	
 	private String immagineSec;
 	
-	private String idCategoria; //FK
+	private int idCategoria; //FK
 	
 	public Prodotto() {}
 
 	public Prodotto(int idProdotto, String descrizione, String marca, String codiceEAN, double prezzoUni,
 			int disponibilita, String linkProduttore, double costoSped, int tempoConsegna, String immaginePrimaria,
-			String immagineSec, String idCategoria) {
+			String immagineSec, int idCategoria) {
 		this.idProdotto = idProdotto;
 		this.descrizione = descrizione;
 		this.marca = marca;
@@ -130,11 +130,11 @@ public class Prodotto {
 		this.immagineSec = immagineSec;
 	}
 
-	public String getIdCategoria() {
+	public int getIdCategoria() {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(String idCategoria) {
+	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 
