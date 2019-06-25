@@ -21,6 +21,7 @@ public class Cliente {
 	private Admin admin; 
 	private Affidabile affidabile;
 
+	
 	public Cliente() {
 	}
 
