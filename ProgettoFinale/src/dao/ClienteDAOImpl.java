@@ -15,6 +15,7 @@ import bean.Affidabile;
 import bean.Attivo;
 import bean.Cliente;
 import bean.Ordine;
+import bean.OrdineMapper;
 import bean.Tipologia;
 
 
@@ -164,19 +165,3 @@ class ClienteMapper implements RowMapper<Cliente>{
 	}
 }
 
-class OrdineMapper implements RowMapper<Ordine> {
-
-	@Override
-	public Ordine mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Ordine o = new Ordine();
-
-		o.setCodOrdine(rs.getString("codOrdine"));
-		o.setUsOrdine(rs.getString("usOrdine"));
-		o.setDataOrdine(rs.getDate("dataOrdine"));
-		o.setPrezzoFinale(rs.getDouble("prezzoFinale"));
-		o.setIdIndOrd(rs.getString("idIndOrd"));
-		o.setIdModPag(rs.getString("idModPag"));
-
-		return o;
-	}
-}

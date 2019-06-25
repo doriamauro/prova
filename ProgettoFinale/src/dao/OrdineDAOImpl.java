@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import bean.ModPagamento;
 import bean.Ordine;
+import bean.OrdineMapper;
 
 @Repository
 public class OrdineDAOImpl implements OrdineDAO {
@@ -57,23 +58,5 @@ public class OrdineDAOImpl implements OrdineDAO {
 
 	}
 	
-
-}
-class OrdineMapper implements RowMapper<Ordine>{
-
-	@Override
-	public Ordine mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Ordine ordine = new Ordine();
-		
-		ordine.setCodOrdine(rs.getString("codordine"));
-		ordine.setUsOrdine(rs.getString("usordine"));
-		ordine.setDataOrdine(rs.getDate("dataordine"));
-		ordine.setPrezzoFinale(rs.getDouble("prezzofinale"));
-		ordine.setIdIndOrd(rs.getString("idindord"));
-		ordine.setIdModPag(rs.getString("idmodpag"));
-		
-		return ordine;
-
-	}
 
 }
