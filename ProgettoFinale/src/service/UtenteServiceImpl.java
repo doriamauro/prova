@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import bean.Affidabile;
 import bean.Cliente;
 import dao.UtenteDAO;
-
+//
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UtenteServiceImpl implements UtenteService {
