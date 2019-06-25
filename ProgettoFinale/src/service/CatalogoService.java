@@ -1,5 +1,7 @@
 package service;
 
+import bean.Prodotto;
+
 public interface CatalogoService {
 	
 	public void creaCategoria(Categoria c);
