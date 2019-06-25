@@ -22,6 +22,7 @@ public class Cliente {
 	private Affidabile affidabile;
 
 	
+	
 	public Cliente() {
 	}
 
