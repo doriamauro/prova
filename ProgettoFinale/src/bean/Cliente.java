@@ -23,7 +23,7 @@ public class Cliente {
 
 
 	//prova Maurof
->>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
+//>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
 	public Cliente() {
 	}
 
