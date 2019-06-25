@@ -2,21 +2,21 @@ package bean;
 
 public class Categoria {
 	
-	private String idCategoria;
+	private int idCategoria;
 	private String nomeCategoria;
 	
 	public Categoria() {}
 
-	public Categoria(String idCategoria, String nomeCategoria) {
+	public Categoria(int idCategoria, String nomeCategoria) {
 		this.idCategoria = idCategoria;
 		this.nomeCategoria = nomeCategoria;
 	}
 
-	public String getIdCategoria() {
+	public int getIdCategoria() {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(String idCategoria) {
+	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 
