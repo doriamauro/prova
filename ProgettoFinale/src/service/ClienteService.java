@@ -8,7 +8,7 @@ import exception.ClienteException;
 
 public interface ClienteService {
 	// ciao
-	
+	//
 	public void registraCliente(Cliente c) throws ClienteException;
 	public void checkCredenziali(String username, String password) throws ClienteException;
 	public Cliente getCliente (String username);
