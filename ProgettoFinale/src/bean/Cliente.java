@@ -1,63 +1,51 @@
 package bean;
 
 public class Cliente {
-
+	
 	private String username; 
-	private String password; 
-	private String ragioneSociale;
+	private String nome;
+	private String cognome;
 	private Tipologia tipologia;
 	private String partitaIva;
 	private String codiceFiscale;
-	private String nazione; 
+	private String cellulare; 
+	private String telefonoFisso; 
+	private String email;
+	private String password; 
+	private Attivo attivo; 
+	private Admin admin; 
+	private Affidabile affidabile;
 	private String via; 
 	private String cap; 
 	private String comune; 
 	private String provincia; 
-	private String telefonoFisso; 
-	private String cellulare; 
-	private String email;
-	private String indirizzoDiSpedizione; 
-	private Attivo attivo; 
-	private Admin admin; 
-	private Affidabile affidabile;
+	private String nazione; 
 	
+	public Cliente() {}
 
-//ffdssfd
-	//prova Maurof
-//>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
-
-//ffdssfd
-
-//ffdssfd
-
-//ffdssfd
-	//prova Maurof
-//>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
-	public Cliente() {
-	}
-
-	public Cliente(String username, String password, String email, String codiceFiscale, String partitaIva,
-			Tipologia tipologia, String ragioneSociale, String cellulare, String telefonoFisso,
-			String indirizzoDiSpedizione, String nazione, String via, String cap, String comune, String provincia,
-			Attivo attivo, Admin admin, Affidabile affidabile) {
+	public Cliente(String username, String nome, String cognome, Tipologia tipologia, String partitaIva,
+			String codiceFiscale, String cellulare, String telefonoFisso, String email, String password, Attivo attivo,
+			Admin admin, Affidabile affidabile, String via, String cap, String comune, String provincia,
+			String nazione) {
+		super();
 		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.codiceFiscale = codiceFiscale;
-		this.partitaIva = partitaIva;
+		this.nome = nome;
+		this.cognome = cognome;
 		this.tipologia = tipologia;
-		this.ragioneSociale = ragioneSociale;
+		this.partitaIva = partitaIva;
+		this.codiceFiscale = codiceFiscale;
 		this.cellulare = cellulare;
 		this.telefonoFisso = telefonoFisso;
-		this.indirizzoDiSpedizione = indirizzoDiSpedizione;
-		this.nazione = nazione;
+		this.email = email;
+		this.password = password;
+		this.attivo = attivo;
+		this.admin = admin;
+		this.affidabile = affidabile;
 		this.via = via;
 		this.cap = cap;
 		this.comune = comune;
 		this.provincia = provincia;
-		this.attivo = attivo;
-		this.admin = admin;
-		this.affidabile = affidabile;
+		this.nazione = nazione;
 	}
 
 	public String getUsername() {
@@ -68,36 +56,20 @@ public class Cliente {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCognome() {
+		return cognome;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-
-	public void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
-	}
-
-	public String getPartitaIva() {
-		return partitaIva;
-	}
-
-	public void setPartitaIva(String partitaIva) {
-		this.partitaIva = partitaIva;
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
 
 	public Tipologia getTipologia() {
@@ -108,12 +80,20 @@ public class Cliente {
 		this.tipologia = tipologia;
 	}
 
-	public String getRagioneSociale() {
-		return ragioneSociale;
+	public String getPartitaIva() {
+		return partitaIva;
 	}
 
-	public void setRagioneSociale(String ragioneSociale) {
-		this.ragioneSociale = ragioneSociale;
+	public void setPartitaIva(String partitaIva) {
+		this.partitaIva = partitaIva;
+	}
+
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
 
 	public String getCellulare() {
@@ -132,20 +112,44 @@ public class Cliente {
 		this.telefonoFisso = telefonoFisso;
 	}
 
-	public String getIndirizzoDiSpedizione() {
-		return indirizzoDiSpedizione;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setIndirizzoDiSpedizione(String indirizzoDiSpedizione) {
-		this.indirizzoDiSpedizione = indirizzoDiSpedizione;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getNazione() {
-		return nazione;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setNazione(String nazione) {
-		this.nazione = nazione;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Attivo getAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(Attivo attivo) {
+		this.attivo = attivo;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public Affidabile getAffidabile() {
+		return affidabile;
+	}
+
+	public void setAffidabile(Affidabile affidabile) {
+		this.affidabile = affidabile;
 	}
 
 	public String getVia() {
@@ -180,64 +184,21 @@ public class Cliente {
 		this.provincia = provincia;
 	}
 
-	public Attivo getAttivo() {
-		return attivo;
+	public String getNazione() {
+		return nazione;
 	}
 
-	public void setAttivo(Attivo attivo) {
-		this.attivo = attivo;
-	}
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-	public Affidabile getAffidabile() {
-		return affidabile;
-	}
-
-	public void setAffidabile(Affidabile affidabile) {
-		this.affidabile = affidabile;
+	public void setNazione(String nazione) {
+		this.nazione = nazione;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [username=" + username + ", password=" + password + ", email=" + email + ", codiceFiscale="
-				+ codiceFiscale + ", partitaIva=" + partitaIva + ", tipologia=" + tipologia + ", ragioneSociale="
-				+ ragioneSociale + ", cellulare=" + cellulare + ", telefonoFisso=" + telefonoFisso
-				+ ", indirizzoDiSpedizione=" + indirizzoDiSpedizione + ", nazione=" + nazione + ", via=" + via
-				+ ", cap=" + cap + ", comune=" + comune + ", provincia=" + provincia + ", attivo=" + attivo + ", admin="
-				+ admin + ", affidabile=" + affidabile + "]";
+		return "Cliente [username=" + username + ", nome=" + nome + ", cognome=" + cognome + ", tipologia=" + tipologia
+				+ ", partitaIva=" + partitaIva + ", codiceFiscale=" + codiceFiscale + ", cellulare=" + cellulare
+				+ ", telefonoFisso=" + telefonoFisso + ", email=" + email + ", password=" + password + ", attivo="
+				+ attivo + ", admin=" + admin + ", affidabile=" + affidabile + ", via=" + via + ", cap=" + cap
+				+ ", comune=" + comune + ", provincia=" + provincia + ", nazione=" + nazione + "]";
 	}
 
-
 }
-
-enum Tipologia {
-
-	PRIVATO,AZIENDA;
-
-}
-
-enum Admin {
-	NO,SI;
-
-}
-
-enum Affidabile {
-	NO,SI;
-
-}
-
-enum Attivo {
-	NO,SI;
-
-}
-
-
-
-
