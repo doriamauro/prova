@@ -1,8 +1,8 @@
 package dao;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +14,7 @@ import bean.Admin;
 import bean.Affidabile;
 import bean.Attivo;
 import bean.Cliente;
+import bean.Ordine;
 import bean.Tipologia;
 
 
@@ -59,7 +60,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public void update(Cliente c) {
-
+// ciao
 		template.update("update cliente set nome = ?, cognome = ?,  "
 				+ " tipologia = ?, "
 				+ " partitaIva = ?, "
@@ -96,63 +97,86 @@ public class ClienteDAOImpl implements ClienteDAO {
 				c.getUsername());
 	}
 
-	class ClienteMapper implements RowMapper<Cliente>{
-
-		@Override
-		public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-			Cliente c = new Cliente();
-			c.setUsername(rs.getString("username"));
-			c.setNome(rs.getString("nome"));
-			c.setCognome(rs.getString("cognome"));
-
-			int tipologia = rs.getInt("tipologia");
-			if (tipologia == 0) {
-				c.setTipologia(Tipologia.PRIVATO);
-			}
-			else {
-				c.setTipologia(Tipologia.AZIENDA);
-			}
-
-			c.setPartitaIva(rs.getString("partitaIva"));
-			c.setCodiceFiscale(rs.getString("codiceFiscale"));
-			c.setCellulare(rs.getString("cellulare"));
-			c.setTelefonoFisso(rs.getString("telefonoFisso"));
-			c.setEmail(rs.getString("email"));
-			c.setPassword(rs.getString("password"));
-
-			int attivo = rs.getInt("attivo");
-			if (attivo == 0) {
-				c.setAttivo(Attivo.NO);
-			}
-			else {
-				c.setAttivo(Attivo.SI);
-			}
-
-			int admin = rs.getInt("admin");
-			if (admin == 0) {
-				c.setAdmin(Admin.NO);
-			}
-			else {
-				c.setAdmin(Admin.SI);
-			}
-
-			int affidabile = rs.getInt("affidabile");
-			if (affidabile == 0) {
-				c.setAffidabile(Affidabile.NO);
-			}
-			else {
-				c.setAffidabile(Affidabile.SI);
-			}
-
-			c.setVia(rs.getString("via"));
-			c.setCap(rs.getString("cap"));
-			c.setComune(rs.getString("comune"));
-			c.setProvincia(rs.getString("provincia"));
-			c.setNazione(rs.getString("nazione"));			
-
-			return c;
-		}
+	@Override
+	public List<Ordine> selectAll(String username) {
+		return template.query("select o.* from cliente c, ordine o where c.username = o.usOrdine and c.username = ?", 
+				new OrdineMapper(), username);
 	}
 
+}
+
+class ClienteMapper implements RowMapper<Cliente>{
+
+	@Override
+	public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+		Cliente c = new Cliente();
+		c.setUsername(rs.getString("username"));
+		c.setNome(rs.getString("nome"));
+		c.setCognome(rs.getString("cognome"));
+
+		int tipologia = rs.getInt("tipologia");
+		if (tipologia == 0) {
+			c.setTipologia(Tipologia.PRIVATO);
+		}
+		else {
+			c.setTipologia(Tipologia.AZIENDA);
+		}
+
+		c.setPartitaIva(rs.getString("partitaIva"));
+		c.setCodiceFiscale(rs.getString("codiceFiscale"));
+		c.setCellulare(rs.getString("cellulare"));
+		c.setTelefonoFisso(rs.getString("telefonoFisso"));
+		c.setEmail(rs.getString("email"));
+		c.setPassword(rs.getString("password"));
+
+		int attivo = rs.getInt("attivo");
+		if (attivo == 0) {
+			c.setAttivo(Attivo.NO);
+		}
+		else {
+			c.setAttivo(Attivo.SI);
+		}
+
+		int admin = rs.getInt("admin");
+		if (admin == 0) {
+			c.setAdmin(Admin.NO);
+		}
+		else {
+			c.setAdmin(Admin.SI);
+		}
+
+		int affidabile = rs.getInt("affidabile");
+		if (affidabile == 0) {
+			c.setAffidabile(Affidabile.NO);
+		}
+		else {
+			c.setAffidabile(Affidabile.SI);
+		}
+
+		c.setVia(rs.getString("via"));
+		c.setCap(rs.getString("cap"));
+		c.setComune(rs.getString("comune"));
+		c.setProvincia(rs.getString("provincia"));
+		c.setNazione(rs.getString("nazione"));			
+
+		return c;
+	}
+}
+
+class OrdineMapper implements RowMapper<Ordine> {
+
+	@Override
+	public Ordine mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Ordine o = new Ordine();
+
+		o.setCodOrdine(rs.getString("codOrdine"));
+		o.setUsOrdine(rs.getString("usOrdine"));
+		o.setDataOrdine(rs.getDate("dataOrdine"));
+		o.setPrezzoFinale(rs.getDouble("prezzoFinale"));
+		o.setIdIndOrd(rs.getString("idIndOrd"));
+		o.setIdModPag(rs.getString("idModPag"));
+
+		return o;
+	}
 }
