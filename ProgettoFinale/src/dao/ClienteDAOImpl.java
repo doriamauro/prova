@@ -112,7 +112,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	// da provare
 	public List<Ordine> selectAll(String username) {
-		return template.query("select o.* from cliente c, ordine o where c.username = o.usOrdine and c.username = ?", 
+		return template.query("select o.* from cliente c, ordine o where c.username = ? and c.username = o.usOrdine", 
 				new OrdineMapper(), username);
 	}
 
