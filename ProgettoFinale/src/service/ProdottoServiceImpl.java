@@ -2,25 +2,34 @@ package service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import bean.Categoria;
 import bean.Prodotto;
+import dao.CategoriaDAO;
 import dao.ProdottoDAO;
 import exception.ProdottoNonTrovatoException;
 
+@Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ProdottoServiceImpl implements ProdottoService {
 
+	@Autowired
 	private ProdottoDAO dao;
+	@Autowired
+	private CategoriaDAO daoCat;
 	
 	@Override
 	public List<Categoria> getCategorie() {
-		// TODO Auto-generated method stub
-		return null;
+		return daoCat.selectAllCategorie();
 	}
 
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAllProdotti();
 	}
 
 	@Override
@@ -30,20 +39,18 @@ public class ProdottoServiceImpl implements ProdottoService {
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerMarca(String marca) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll(" where marca = " + marca);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerPrezzoUnitario(double min, double max) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll(" where prezzouni < " + max + " and prezzouni > " + min);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiScontati() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.selectAll("where sconto > 0");
 	}
 
 	@Override
