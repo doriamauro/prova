@@ -25,8 +25,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 
 	@Override
 	public List<Prodotto> ricercaProdotti(String ricerca) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectAll(ricerca);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 		try {
 			return dao.select(idProdotto);
 		} catch (Exception e) {
-			throw new ProdottoNonTrovatoException("La chiave " + idProdotto + " non trovata! Motivo: " + e.getMessage());
+			throw new ProdottoNonTrovatoException("La chiave " + idProdotto + " non trovata! " + e.getMessage());
 		}
 		
 	}
