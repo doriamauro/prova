@@ -47,7 +47,6 @@ public class OrdineDAOImpl implements OrdineDAO {
 			return this.selectAllOrdini();
 		return template.query("select * from ordine " + where, new OrdineMapper());
 	}
-	
 
 	@Override
 	public void update(Ordine o) {
