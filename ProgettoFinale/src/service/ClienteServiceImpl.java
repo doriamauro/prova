@@ -33,7 +33,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	
-	public boolean checkCredenziali(String username, String password) throws ClienteException {
+	public boolean checkCredenziali(String username, String password) {// throws ClienteException {
 		Cliente c = dao.select(username);
 		if(c==null || !c.getPassword().equals(password))
 			return false;
