@@ -10,4 +10,5 @@ public interface ClienteService {
 	public List<Ordine> getOrdini(String username);
 	public void disabilitaCliente(String username) throws ClienteException; 
 	public void riabilitaCliente(String username, String password) throws ClienteException;  
+	//lo
 }
