@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +19,21 @@ import bean.Ordine;
 import bean.Tipologia;
 
 
-@Repository
-@Transactional
+//@Component("idClienteDAOImpl")
+//@Transactional
 public class ClienteDAOImpl implements ClienteDAO {
 
 	@Autowired
 	private JdbcTemplate template;
 
+
+	public JdbcTemplate getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+	}
 
 	@Override
 	public void insert(Cliente c) {
@@ -32,16 +41,16 @@ public class ClienteDAOImpl implements ClienteDAO {
 		template.update("insert into cliente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", c.getUsername(),
 				c.getNome(),
 				c.getCognome(),
-				c.getTipologia(),
+				c.getTipologia().ordinal(),
 				c.getPartitaIva(),
 				c.getCodiceFiscale(),
 				c.getCellulare(),
 				c.getTelefonoFisso(),
 				c.getEmail(),
 				c.getPassword(),
-				c.getAttivo(),
-				c.getAdmin(),
-				c.getAffidabile(),
+				c.getAttivo().ordinal(),
+				c.getAdmin().ordinal(),
+				c.getAffidabile().ordinal(),
 				c.getVia(),
 				c.getCap(),
 				c.getComune(),
@@ -79,16 +88,16 @@ public class ClienteDAOImpl implements ClienteDAO {
 				+ "nazione = ?  where username = ?",
 				c.getNome(),
 				c.getCognome(),
-				c.getTipologia(),
+				c.getTipologia().ordinal(),
 				c.getPartitaIva(),
 				c.getCodiceFiscale(),
 				c.getCellulare(),
 				c.getTelefonoFisso(),
 				c.getEmail(),
 				c.getPassword(),
-				c.getAttivo(),
-				c.getAdmin(),
-				c.getAffidabile(),
+				c.getAttivo().ordinal(),
+				c.getAdmin().ordinal(),
+				c.getAffidabile().ordinal(),
 				c.getVia(),
 				c.getCap(),
 				c.getComune(),
