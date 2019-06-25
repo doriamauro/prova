@@ -1,5 +1,11 @@
 package service;
 
+import java.util.List;
+
+import bean.Cliente;
+import bean.Ordine;
+import exception.ClienteException;
+
 public interface ClienteService {
 	
 	
@@ -10,5 +16,5 @@ public interface ClienteService {
 	public List<Ordine> getOrdini(String username);
 	public void disabilitaCliente(String username) throws ClienteException; 
 	public void riabilitaCliente(String username, String password) throws ClienteException;  
-	//lo
+	
 }
