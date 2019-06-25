@@ -3,7 +3,7 @@ package dao;
 import java.util.List;
 
 import bean.Cliente;
-
+//
 public interface UtenteDAO {
 	
 	public void insert(Cliente c);

@@ -15,7 +15,7 @@ import bean.Affidabile;
 import bean.Attivo;
 import bean.Cliente;
 import bean.Tipologia;
-
+//
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
 public class UtenteDAOImpl implements UtenteDAO {
