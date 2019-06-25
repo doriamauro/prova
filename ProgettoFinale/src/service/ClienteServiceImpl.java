@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,16 +25,19 @@ public class ClienteServiceImpl implements ClienteService {
 	public void registraCliente(Cliente c) throws ClienteException {
 		try {
 			dao.insert(c);
-		} catch (Exception e) {
-			throw new ClienteException("Il cliente con username "+ c.getUsername() +" non è stato registrato");
+		} catch (DuplicateKeyException e) {
+			throw new ClienteException("Il cliente con username "+ c.getUsername() +" è già registrato");
 		}
 	}
 
 	@Override
+	
 	public void checkCredenziali(String username, String password) throws ClienteException {
 		Cliente c = dao.select(username);
-		if(c!=null || c.getPassword().equals(password))
+		if(c==null || !c.getPassword().equals(password))
 			throw new ClienteException("Sei già registrato");
+		
+
 	}
 
 	@Override
