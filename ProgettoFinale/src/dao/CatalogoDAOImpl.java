@@ -117,4 +117,6 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 				dr.getTan(), dr.getMaxTaeg(), dr.getnRate());
 		
 	}
+	
+	
 }

@@ -16,10 +16,10 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 
 	@Override
 	public void insert(Prodotto p) {
-		ptemplate.update("insert into prodotto values(?,?,?,?,?,?,?,?,?,?,?,?)", p.getIdProdotto(),p.getDescrizione(),
+		ptemplate.update("insert into prodotto values(?,?,?,?,?,?,?,?,?,?,?,?,?)", p.getIdProdotto(),p.getDescrizione(),
 				p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),
-				p.getCostoSped(),p.getTempoConsegna(),p.getImmaginePrimaria(),p.getImmagineSec(),p.getIdCategoria());
+				p.getCostoSped(),p.getTempoConsegna(),p.getImmaginePrimaria(),p.getImmagineSec(),p.getIdCategoria(),p.getSconto());
 
 	}
 
@@ -31,12 +31,13 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 	}
 
 	@Override
-	public void update(Prodotto p) {
-		ptemplate.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+	public boolean update(Prodotto p) {
+		int n = ptemplate.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
-				p.getImmagineSec(),p.getIdCategoria(), p.getIdProdotto());
+				p.getImmagineSec(),p.getIdCategoria(),p.getSconto(), p.getIdProdotto());
+		return n==1;
 	}
 
 	@Override
@@ -77,6 +78,7 @@ class ProdottoMapper implements RowMapper<Prodotto>{
 		p.setImmaginePrimaria(rs.getString("immaginePrimaria"));
 		p.setImmagineSec(rs.getString("immagineSec"));
 		p.setIdCategoria(rs.getInt("idCategoria"));
+		p.setSconto(rs.getInt("sconto"));
 		
 		return p;
 	} 
