@@ -54,6 +54,12 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 
 	}
 
+	@Override
+	public int contaNumeroIndOrd() {
+		return ioTemplate.queryForObject("select count(*) from indirizzoOrdine", Integer.class);
+		
+	}
+
 }
 
 
