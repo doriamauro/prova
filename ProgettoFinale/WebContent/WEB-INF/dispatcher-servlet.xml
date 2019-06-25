@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:mvc="http://www.springframework.org/schema/mvc" 
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+             http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+             http://www.springframework.org/schema/beans 
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx.xsd
+             http://www.springframework.org/schema/context 
+             http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- supporto per le annotazioni, le abilita per ogni tipo-->
+	<context:component-scan base-package="conf, controller, service, dao, bean, exception" />
+     <mvc:annotation-driven />
+      <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+<!-- configuro il mapping di lista, ovvero come passare da etichetta della controller a percorso vero del file -->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
+              <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> 
+              <property name="prefix" value="/WEB-INF/jsp/"/> 
+              <property name="suffix" value=".jsp"/> 
+ </bean>
+ 
+ <!-- qui metteremo le annotazioni Globali, quelle locali le metteremo nei singoli file come annotazioni -->
+ 
+ <!-- ad esempio metto tutte le cose che mi servono per stabilire la connessione -->        
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"             value="jdbc:mysql://localhost:3306/progettoFinale" />
+		<property name="username"        value="root" />
+		<property name="password"        value="root" />
+	</bean> 
+         
+         
+     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/> <!-- è una "dependence injection" esplicita (potevo anche farla con l'autowired) -->
+	</bean>
+         
+         <!-- questo è il file dei messaggi di errore in italiano -->
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource"
+	      id="messageSource">
+	<property name="basename" value="messages" /> 
+	</bean>
+	
+	     <!-- questo è il Transaction Manager per JDBC -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+ 
+</beans>
