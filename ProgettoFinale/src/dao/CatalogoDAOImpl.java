@@ -65,7 +65,7 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	@Override
 	public Categoria select(int idCategoria) {
 		Categoria c= template.queryForObject("select * from categoria where idCategoria=?",		
-				new CategoriaMapper(), idCategoria);
+				new CategoriaMapper2(), idCategoria);
 		return c;
 		}
 			
@@ -73,24 +73,11 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	
 	@Override
 	public List<Categoria> selectAll() {
-		List<Categoria> categorie = template.query("select * from categoria", new CategoriaMapper());	
+		List<Categoria> categorie = template.query("select * from categoria", new CategoriaMapper2());	
 		return categorie;
 	}
 	
 	
-	class CategoriaMapper implements RowMapper<Categoria>{	
-		
-	
-	@Override
-	public Categoria mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Categoria c= new Categoria();  
-		c.setIdCategoria(rs.getInt("idCategoria"));
-		c.setNomeCategoria(rs.getString("nome"));
-
-		return c;
-	}
-
-}
 
 
 	@Override
@@ -116,4 +103,38 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 				dr.getTan(), dr.getMaxTaeg(), dr.getnRate());
 		
 	}
+	
+	public DatiRate selectRate() {
+		 return template.queryForObject("select * from datiRate",new DatiRateMapper());
+		
+	}
+}
+
+
+class CategoriaMapper2 implements RowMapper<Categoria>{	
+
+
+	@Override
+	public Categoria mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Categoria c= new Categoria();  
+		c.setIdCategoria(rs.getInt("idCategoria"));
+		c.setNomeCategoria(rs.getString("nome"));
+
+		return c;
+	}
+
+}
+
+class DatiRateMapper implements RowMapper<DatiRate>{	
+	
+	
+@Override
+public DatiRate mapRow(ResultSet rs, int rowNum) throws SQLException {
+	DatiRate dr= new DatiRate();  
+	dr.setTan(rs.getDouble("Tan"));
+	dr.setMaxTaeg(rs.getDouble("maxTaeg"));
+	dr.setnRate(rs.getInt("nRate"));
+	return dr;
+}
+
 }
