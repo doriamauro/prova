@@ -18,7 +18,7 @@ import exception.ClienteException;
 @Transactional
 //
 public class ClienteServiceImpl implements ClienteService {
-// ciao
+	
 	@Autowired
 	private ClienteDAO dao;
 
@@ -32,46 +32,46 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	
-	public void checkCredenziali(String username, String password) throws ClienteException {
+
+	public boolean checkCredenziali(String username, String password) throws ClienteException {
 		Cliente c = dao.select(username);
-		if(c==null || !c.getPassword().equals(password))
-			throw new ClienteException("Sei già registrato");
-		
+		if(c==null)
+		{throw new ClienteException("Utente non registrato o password errata");}
+		if(!c.getPassword().equals(password))
+			{throw new ClienteException("Password errata!");}
+	return true;}
 
+@Override
+public Cliente getCliente(String username) {
+	return dao.select(username);
+}
+
+@Override
+public void updateCliente(Cliente c) throws ClienteException {
+	dao.update(c);
+
+}
+
+@Override
+public List<Ordine> getOrdini(String username) {
+	return dao.selectAll(username);
+}
+
+@Override
+public void disabilitaCliente(String username) throws ClienteException {
+	Cliente c =  dao.select(username);
+	if (c.getAttivo().equals(Attivo.SI)) {
+		c.setAttivo(Attivo.NO);
+		dao.update(c);
 	}
+}
 
-	@Override
-	public Cliente getCliente(String username) {
-				return dao.select(username);
-	}
-
-	@Override
-	public void updateCliente(Cliente c) throws ClienteException {
-dao.update(c);
-
-	}
-
-	@Override
-	public List<Ordine> getOrdini(String username) {
-		return dao.selectAll(username);
-	}
-
-	@Override
-	public void disabilitaCliente(String username) throws ClienteException {
-			Cliente c =  dao.select(username);
-			if (c.getAttivo().equals(Attivo.SI)) {
-				c.setAttivo(Attivo.NO);
-				dao.update(c);
-			}
-	}
-
-	@Override
-	public void riabilitaCliente(String username, String password) throws ClienteException {
-			Cliente c =  dao.select(username);
-			if (c.getPassword().equals(password) && c.getAttivo().equals(Attivo.NO)) {
-				c.setAttivo(Attivo.SI);
-				dao.update(c);}
-	}
+@Override
+public void riabilitaCliente(String username, String password) throws ClienteException {
+	Cliente c =  dao.select(username);
+	if (c.getPassword().equals(password) && c.getAttivo().equals(Attivo.NO)) {
+		c.setAttivo(Attivo.SI);
+		dao.update(c);}
+}
 
 }
