@@ -15,4 +15,6 @@ public interface OrdineDAO {
 	
 	public void update(Ordine o);
 	
+	public int contaNumOrdini();
+	
 }

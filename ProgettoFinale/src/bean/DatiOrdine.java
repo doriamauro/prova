@@ -8,9 +8,9 @@ public class DatiOrdine {
 	private String username;
 	private ModPagamento modPag;
 	private IndirizzoOrdine indOrd;
+	private String scelta;
 	
-	public DatiOrdine() {
-	}
+	public DatiOrdine() {}
 
 	public DatiOrdine(ArrayList<Prodotto> prodotti, String username, ModPagamento modPag, IndirizzoOrdine indOrd) {
 		this.prodotti = prodotti;
