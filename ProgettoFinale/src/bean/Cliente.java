@@ -27,7 +27,7 @@ public class Cliente {
 			String codiceFiscale, String cellulare, String telefonoFisso, String email, String password, Attivo attivo,
 			Admin admin, Affidabile affidabile, String via, String cap, String comune, String provincia,
 			String nazione) {
-		super();
+		
 		this.username = username;
 		this.nome = nome;
 		this.cognome = cognome;
