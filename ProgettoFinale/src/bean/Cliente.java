@@ -21,8 +21,9 @@ public class Cliente {
 	private Admin admin; 
 	private Affidabile affidabile;
 
-	
-	//prova Luke ciao !
+
+	//prova Maurof
+>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
 	public Cliente() {
 	}
 
