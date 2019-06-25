@@ -1,7 +1,7 @@
 package bean;
 
 public class Prodotto {
-	 
+	
 //	@NotEmpty
 	private String idProdotto;
 //	@NotEmpty
