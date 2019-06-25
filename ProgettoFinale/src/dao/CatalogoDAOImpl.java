@@ -101,14 +101,13 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	}
 
 	@Override
-	public void updateProd(Prodotto p) {
-		
-		template.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+	public boolean updateProd(Prodotto p) {
+		int n = template.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
 				p.getImmagineSec(),p.getIdCategoria(), p.getIdProdotto());
-	
+		return n==1;
 	}
 
 	@Override

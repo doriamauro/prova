@@ -67,14 +67,13 @@ public class CatalogoServiceImpl implements CatalogoService{
 
 	@Override
 	public boolean eliminaProdotto(int idProdotto) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteProd(idProdotto);
+		
 	}
 
 	@Override
 	public boolean modificaSchedaProdotto(Prodotto p) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.updateProd(p);
 	}
 
 
