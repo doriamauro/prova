@@ -20,8 +20,8 @@ import bean.OrdineMapper;
 import bean.Tipologia;
 
 
-//@Component("idClienteDAOImpl")
-//@Transactional
+@Repository
+@Transactional
 public class ClienteDAOImpl implements ClienteDAO {
 
 	@Autowired
@@ -61,7 +61,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public Cliente select(String username) {
-
+// Nel main non ritorna null. org.springframework.dao.EmptyResultDataAccessException
 		Cliente c = template.queryForObject("select * from cliente where username = ?", new ClienteMapper(), username);
 
 		return c;
@@ -108,6 +108,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
+	// da provare
 	public List<Ordine> selectAll(String username) {
 		return template.query("select o.* from cliente c, ordine o where c.username = o.usOrdine and c.username = ?", 
 				new OrdineMapper(), username);
