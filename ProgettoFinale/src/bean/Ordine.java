@@ -3,7 +3,7 @@ package bean;
 import java.sql.Date;
 
 public class Ordine {
-	
+	 
 	private String codOrdine;
 	private String usOrdine; //username cliente nell'ordine
 	private Date dataOrdine;
