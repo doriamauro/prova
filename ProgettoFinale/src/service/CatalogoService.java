@@ -1,5 +1,14 @@
 package service;
 
+import java.util.List;
+
+import bean.Categoria;
+import bean.DatiRate;
+import bean.Prodotto;
+import exception.CategoriaException;
+
+import bean.Prodotto;
+
 public interface CatalogoService {
 	
 	public void creaCategoria(Categoria c);

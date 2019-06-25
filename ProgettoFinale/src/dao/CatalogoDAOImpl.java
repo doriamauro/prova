@@ -17,7 +17,7 @@ import bean.Prodotto;
 
 
 @Repository
-@Transactional(propagation= Propagation.REQUIRES_NEW)	
+@Transactional	
 public class CatalogoDAOImpl implements CatalogoDAO{
 
 	@Autowired
