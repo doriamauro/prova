@@ -43,16 +43,13 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente getCliente(String username) {
-		return dao.select(username);
+				return dao.select(username);
 	}
 
 	@Override
 	public void updateCliente(Cliente c) throws ClienteException {
-		try {
-			dao.update(c);
-		} catch (Exception e) {
-			throw new ClienteException("Impossibile effettuare la modifica");
-		}
+dao.update(c);
+
 	}
 
 	@Override
@@ -62,28 +59,19 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void disabilitaCliente(String username) throws ClienteException {
-		try {
 			Cliente c =  dao.select(username);
 			if (c.getAttivo().equals(Attivo.SI)) {
 				c.setAttivo(Attivo.NO);
 				dao.update(c);
 			}
-		} catch (Exception e) {
-			throw new ClienteException("Impossibile disattivare il profilo");
-		}
 	}
 
 	@Override
 	public void riabilitaCliente(String username, String password) throws ClienteException {
-		try {
 			Cliente c =  dao.select(username);
 			if (c.getPassword().equals(password) && c.getAttivo().equals(Attivo.NO)) {
 				c.setAttivo(Attivo.SI);
-				dao.update(c);
-			}
-		} catch (Exception e) {
-			throw new ClienteException("Operazione fallita");
-		}
+				dao.update(c);}
 	}
 
 }
