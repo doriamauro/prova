@@ -55,6 +55,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 				o.getUsOrdine(),o.getDataOrdine(),o.getPrezzoFinale(),o.getIdIndOrd(),o.getIdModPag(),o.getCodOrdine());
 
 	}
+	
 
 }
 class OrdineMapper implements RowMapper<Ordine>{
