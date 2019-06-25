@@ -22,7 +22,7 @@ public class Cliente {
 	private String nazione; 
 	
 	public Cliente() {}
- //dsdfsfds
+
 	public Cliente(String username, String nome, String cognome, Tipologia tipologia, String partitaIva,
 			String codiceFiscale, String cellulare, String telefonoFisso, String email, String password, Attivo attivo,
 			Admin admin, Affidabile affidabile, String via, String cap, String comune, String provincia,
