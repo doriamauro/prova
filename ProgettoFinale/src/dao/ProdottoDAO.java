@@ -10,7 +10,7 @@ public interface ProdottoDAO {
 	// Amministratore
 	public void insert(Prodotto p);
 	public boolean delete(int idProdotto);
-	public void update(Prodotto p);
+	public void update(Prodotto p); 
 	
 	// Utente
 	public Prodotto select(int idProdotto);

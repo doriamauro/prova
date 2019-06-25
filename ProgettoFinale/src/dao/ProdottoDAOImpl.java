@@ -79,6 +79,6 @@ class ProdottoMapper implements RowMapper<Prodotto>{
 		p.setIdCategoria(rs.getInt("idCategoria"));
 		
 		return p;
-	}
+	} 
 
 }

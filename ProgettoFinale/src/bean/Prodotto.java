@@ -128,8 +128,7 @@ public class Prodotto {
 
 	public void setImmagineSec(String immagineSec) {
 		this.immagineSec = immagineSec;
-	}
-
+	} 
 	public int getIdCategoria() {
 		return idCategoria;
 	} 

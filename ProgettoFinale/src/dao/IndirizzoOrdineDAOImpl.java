@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import bean.IndirizzoOrdine;
 import bean.Prodotto;
-import dao.ProdottoDAOImpl.ProdottoMapper;
 
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
