@@ -22,7 +22,7 @@ public class Cliente {
 	private Affidabile affidabile;
 
 
-	//prova Maurof
+	//prova Mauro Doria
 //>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
 	public Cliente() {
 	}
