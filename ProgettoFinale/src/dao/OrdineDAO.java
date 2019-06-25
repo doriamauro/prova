@@ -12,7 +12,7 @@ public interface OrdineDAO {
 	
 	public List<Ordine> selectAllOrdini();
 	public List<Ordine> selectAllOrdini(String where);
-	
+	 
 	public void update(Ordine o);
 	
 	public int contaNumOrdini();

@@ -6,7 +6,7 @@ public class Carrello {
 	
 	private ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
 	private int quantita;
-	
+	 
 	public Carrello() {
 	}
 

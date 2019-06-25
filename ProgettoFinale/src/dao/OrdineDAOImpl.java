@@ -37,7 +37,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 		return template.queryForObject("select * from ordine where codordine = ?", new OrdineMapper(), codOrdine);
 	}
 
-
+ 
 	@Override
 	public List<Ordine> selectAllOrdini() {
 		return template.query("select * from ordine", new OrdineMapper());

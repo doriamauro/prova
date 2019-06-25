@@ -46,7 +46,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 			costo += p.getPrezzoUni()*p.getDisponibilita();
 			speseSped += p.getCostoSped();
 		}
-		
+		 
 		double costoTot = costo;
 		
 		if (costo<20){
