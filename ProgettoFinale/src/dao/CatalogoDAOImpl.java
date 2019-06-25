@@ -95,14 +95,20 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 
 	@Override
 	public boolean deleteProd(int idProdotto) {
-		// TODO Auto-generated method stub
-		return false;
+		int p = template.update("delete from prodotto where idProdotto = ? ", idProdotto);
+		if (p==0) return false; 		
+		else return true;
 	}
 
 	@Override
-	public boolean updateProd(Prodotto p) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateProd(Prodotto p) {
+		
+		template.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
+				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
+				p.getTempoConsegna(),p.getImmaginePrimaria(),
+				p.getImmagineSec(),p.getIdCategoria(), p.getIdProdotto());
+	
 	}
 
 	@Override

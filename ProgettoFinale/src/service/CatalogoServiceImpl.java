@@ -46,8 +46,8 @@ public class CatalogoServiceImpl implements CatalogoService{
 	
 	try {
 		if(dao.select(idCategoria)!= null) {
-		p.setIdCategoria(idCategoria); 
-		dao.update(p);
+		p.setIdCategoria(idCategoria);
+		dao.updateProd(p);
 		}
 	}catch(Exception e) {
 		throw new CategoriaException("Categoria inesistente");

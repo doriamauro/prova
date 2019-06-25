@@ -15,7 +15,7 @@ public interface CatalogoDAO {
 	public void insertProdCat(int idCategoria, Prodotto p);
 	public boolean deleteAllProdInCat(int idCategoria);
 	public boolean deleteProd(int idProdotto);
-	public boolean updateProd(Prodotto p);
+	public void updateProd(Prodotto p);
 	public boolean updateCat(int idCategoria, String nome);
 	public void updateRate(DatiRate dr);
 
