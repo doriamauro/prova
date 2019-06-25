@@ -22,7 +22,7 @@ public class Cliente {
 	private Affidabile affidabile;
 
 	
-	//prova
+	//prova Mauro
 	public Cliente() {
 	}
 
