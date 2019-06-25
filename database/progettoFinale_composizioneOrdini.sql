@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `composizioneOrdini`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `composizioneOrdini` (
   `quantita` int(11) NOT NULL,
-  `idProdotto` varchar(30) NOT NULL,
   `idOrdine` varchar(30) NOT NULL,
+  `idProdotto` int(11) NOT NULL,
   KEY `cod_idx` (`idOrdine`),
   KEY `idProdotto_idx` (`idProdotto`),
   CONSTRAINT `cod` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:54
+-- Dump completed on 2019-06-25 14:27:48

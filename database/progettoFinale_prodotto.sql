@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `prodotto` (
-  `idProdotto` varchar(30) NOT NULL,
+  `idProdotto` int(11) NOT NULL,
   `marca` varchar(45) NOT NULL,
   `descrizione` varchar(80) NOT NULL,
   `codiceEAN` varchar(45) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES ('001','xiaomi ','xiomi redmi note 7 64gb black','3874659283744',199,100,'https://www.xiomi.com',8.99,2,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/16/991688.jpg',NULL,100),('002','hp','hp laptop 15-dw0077 nl','48239840058382',679,20,'https://store.hp.com',4.99,5,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/45/994534.jpg',NULL,200);
+INSERT INTO `prodotto` VALUES (1,'xiaomi ','xiomi redmi note 7 64gb black','3874659283744',199,100,'https://www.xiomi.com',8.99,2,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/16/991688.jpg',NULL,100),(2,'hp','hp laptop 15-dw0077 nl','48239840058382',679,20,'https://store.hp.com',4.99,5,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/45/994534.jpg',NULL,200);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:54
+-- Dump completed on 2019-06-25 14:27:48
