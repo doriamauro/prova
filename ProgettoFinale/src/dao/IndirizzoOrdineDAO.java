@@ -11,7 +11,7 @@ public interface IndirizzoOrdineDAO {
 	public IndirizzoOrdine select(String idIndOrdine);
 
 	public List<IndirizzoOrdine> selectAllIndirizzi();
-	public List<IndirizzoOrdine> selectAllIndirizzi(String where);
+	public List<IndirizzoOrdine> selectAllIndirizzi(String where); 
 
 	public void update(IndirizzoOrdine indord);
 }
