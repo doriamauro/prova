@@ -4,7 +4,7 @@ public class ModPagamento {
 	
 	private String idMod;
 	private String modalita;
-	 
+	
 	public ModPagamento() {
 	}
 

@@ -1,9 +1,9 @@
 package bean;
 
 public class Prodotto {
-	 
+	
 //	@NotEmpty
-	private String idProdotto;
+	private int idProdotto;
 //	@NotEmpty
 	private String descrizione;
 //	@NotEmpty
@@ -25,7 +25,7 @@ public class Prodotto {
 	
 	public Prodotto() {}
 
-	public Prodotto(String idProdotto, String descrizione, String marca, String codiceEAN, double prezzoUni,
+	public Prodotto(int idProdotto, String descrizione, String marca, String codiceEAN, double prezzoUni,
 			int disponibilita, String linkProduttore, double costoSped, int tempoConsegna, String immaginePrimaria,
 			String immagineSec, String idCategoria) {
 		this.idProdotto = idProdotto;
@@ -42,11 +42,11 @@ public class Prodotto {
 		this.idCategoria = idCategoria;
 	}
 
-	public String getIdProdotto() {
+	public int getIdProdotto() {
 		return idProdotto;
 	}
 
-	public void setIdProdotto(String idProdotto) {
+	public void setIdProdotto(int idProdotto) {
 		this.idProdotto = idProdotto;
 	}
 
