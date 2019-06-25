@@ -60,7 +60,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public void update(Cliente c) {
-
+// ciao
 		template.update("update cliente set nome = ?, cognome = ?,  "
 				+ " tipologia = ?, "
 				+ " partitaIva = ?, "

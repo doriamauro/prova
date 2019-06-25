@@ -6,7 +6,7 @@ import bean.Cliente;
 import bean.Ordine;
 
 public interface ClienteDAO {
-
+//ciao
 	public void insert(Cliente c);
 	public Cliente select(String username);
 	public void update(Cliente c);
