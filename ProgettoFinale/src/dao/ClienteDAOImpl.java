@@ -23,7 +23,7 @@ import bean.Tipologia;
 @Repository
 @Transactional
 public class ClienteDAOImpl implements ClienteDAO {
-
+//
 	@Autowired
 	private JdbcTemplate template;
 

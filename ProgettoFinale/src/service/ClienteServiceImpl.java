@@ -16,6 +16,7 @@ import exception.ClienteException;
 
 @Service
 @Transactional
+//
 public class ClienteServiceImpl implements ClienteService {
 // ciao
 	@Autowired
