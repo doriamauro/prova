@@ -139,10 +139,10 @@ public class Prodotto {
 
 	public void setImmagineSec(String immagineSec) {
 		this.immagineSec = immagineSec;
-	}
+	} 
 	public int getIdCategoria() {
 		return idCategoria;
-	}
+	} 
 
 	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
@@ -156,4 +156,6 @@ public class Prodotto {
 				+ ", immaginePrimaria=" + immaginePrimaria + ", immagineSec=" + immagineSec + ", idCategoria="
 				+ idCategoria + ", sconto=" + sconto + "]";
 	}	
+
+	
 }
