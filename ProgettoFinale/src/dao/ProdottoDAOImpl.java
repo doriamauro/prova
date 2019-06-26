@@ -21,7 +21,7 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 				p.getDisponibilita(),p.getLinkProduttore(),
 				p.getCostoSped(),p.getTempoConsegna(),p.getImmaginePrimaria(),p.getImmagineSec(),p.getIdCategoria(),p.getSconto());
 
-	}
+	} 
 
 	@Override
 	public boolean delete(int idProdotto) {
