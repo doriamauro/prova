@@ -16,7 +16,7 @@ import bean.ComposizioneOrdini;
 import bean.DatiOrdine;
 import bean.DatiRate;
 import bean.DatiRateOrdine;
-import bean.IndirizzoOrdine;
+import bean.IndirizzoOrdine; 
 import bean.ModPagamento;
 import bean.Ordine;
 import bean.Prodotto;

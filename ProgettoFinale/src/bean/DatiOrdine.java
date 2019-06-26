@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import service.ProdottoService;
 
 public class DatiOrdine {
-
+ 
 	private ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
 	private String username;
 	private ModPagamento modPag;

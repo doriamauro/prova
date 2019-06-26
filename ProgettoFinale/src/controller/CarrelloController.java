@@ -98,7 +98,7 @@ public class CarrelloController {
 		
 		session.setAttribute("numCarta", numCarta);
 		return new ModelAndView("indirizzoSpedizione");
-	}
+	} 
 	
 	@GetMapping("/riepilogo")
 	public ModelAndView getRiepilogo(@ModelAttribute("datiordine") DatiOrdine datOrd,
