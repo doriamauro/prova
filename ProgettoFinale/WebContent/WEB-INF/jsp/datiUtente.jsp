@@ -8,32 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- Dati dell'utente:
 
-<% 
-     Cliente c = (Cliente) request.getAttribute("c");
-out.println("<ul>");
-out.println("<li>"+c.getUsername()+"</li>" +
-             "<li>"+c.getNome()+"</li>" +
-             "<li>"+c.getCognome() + "<li>"+
-             "<li>"+c.getTipologia() + "</li>"+
-             "<li>"+c.getPartitaIva() + "</li>"+
-             "<li>"+c.getCodiceFiscale() + "</li>"+
-             "<li>"+c.getCellulare() + "</li>"+
-             "<li>"+c.getTelefonoFisso() + "</li>"+
-             "<li>"+c.getEmail() + "</li>"+
-             "<li>"+c.getPassword() + "</li>"+
-             "<li>"+c.getAttivo() + "</li>"+
-             "<li>"+c.getAdmin() + "</li>"+
-             "<li>"+c.getAffidabile() + "</li>"+
-             "<li>"+c.getVia() + "</li>"+
-             "<li>"+c.getCap() + "</li>"+
-             "<li>"+c.getComune() + "</li>"+
-             "<li>"+c.getProvincia() + "</li>"+
-             "<li>"+c.getNazione() + "</li>");
-out.println("</ul>");
-%> --%>
-<br><br>
 Dati modificabili dell'utente:
 <%
  Cliente c = (Cliente) request.getAttribute("c");

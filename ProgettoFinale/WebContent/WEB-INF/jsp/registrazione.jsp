@@ -22,10 +22,8 @@ Registrazione dell'utente:
   <input type="text" name="telefonoFisso">Telefono Fisso<br><br>
   <input type="email" name="email">Email<br><br>
   <input type="text" name="password">Password<br><br>
-  <input type="radio" name="attivo" value="0">Attivo<br><br>
-  <input type="radio" name="attivo" value="1">Non attivo<br><br>
-  <input type="radio" name="affidabile" value="0">Affidabile<br><br>
-  <input type="radio" name="affidabile" value="1">Non affidabile<br><br>
+  <input type="radio" name="attivo" value="0">Non Attivo<br><br>
+  <input type="radio" name="attivo" value="1">Attivo<br><br>
   <input type="text" name="via">Via<br><br>
   <input type="text" name="cap">Cap<br><br>
   <input type="text" name="comune">Comune<br><br>
