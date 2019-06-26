@@ -23,6 +23,9 @@ public class CatalogoServiceImpl implements CatalogoService{
 	@Autowired
 	private DatiRateDAO dao1;
 	
+	@Autowired
+	private DatiRateDAO daoRate;
+	
 	@Override
 	public void creaCategoria(Categoria c) {
 		dao.insert(c);
@@ -65,7 +68,11 @@ public class CatalogoServiceImpl implements CatalogoService{
 	
 	@Override
 	public void modificaDatiRateizzazione(DatiRate dr) {
+<<<<<<< Upstream, based on branch 'master' of https://github.com/doriamauro/prova.git
 		dao1.updateRate(dr);
+=======
+		daoRate.updateRate(dr);
+>>>>>>> 8bdfc79 jj
 		}
 
 	@Override
