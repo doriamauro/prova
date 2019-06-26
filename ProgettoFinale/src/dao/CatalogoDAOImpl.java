@@ -97,17 +97,6 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 		return n==1;
 	}
 
-	@Override
-	public void updateRate(DatiRate dr) {
-		template.update("update datiRate set tan=?, maxTaeg=?, nRate=?", 
-				dr.getTan(), dr.getMaxTaeg(), dr.getnRate());
-		
-	}
-	
-	public DatiRate selectRate() {
-		 return template.queryForObject("select * from datiRate",new DatiRateMapper());
-		
-	}
 }
 
 
@@ -125,20 +114,4 @@ class CategoriaMapper2 implements RowMapper<Categoria>{
 
 }
 
-class DatiRateMapper implements RowMapper<DatiRate>{	
-	
-	
-@Override
-public DatiRate mapRow(ResultSet rs, int rowNum) throws SQLException {
-	DatiRate dr= new DatiRate();  
-	dr.setTan(rs.getDouble("Tan"));
-	dr.setMaxTaeg(rs.getDouble("maxTaeg"));
-	dr.setnRate(rs.getInt("nRate"));
-	return dr;
-}
 
-
-	
-	
-
-}
