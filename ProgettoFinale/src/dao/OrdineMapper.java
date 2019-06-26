@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import bean.Ordine;
-
+//
 public class OrdineMapper implements RowMapper<Ordine> {
 
 	@Override
