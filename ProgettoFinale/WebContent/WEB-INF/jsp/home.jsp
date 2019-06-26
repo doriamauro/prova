@@ -31,6 +31,8 @@ function meno(index){
 }
 
 function mettiACarrello(codice, index){
+	console.log(codice);
+	console.log(index);
 	// recuperare la username dalla form
 	var v = document.getElementById("id"+index).value;
 	
@@ -48,7 +50,7 @@ function mettiACarrello(codice, index){
 	}
 	
 	// gestire la risposta in arrivo dal server
-	xhttp.open("GET", "example/carrello/add?idProdotto=" + codice+"&quantita="+v , true);
+	xhttp.open("GET", "../../example/carrello/add?idProdotto=" + codice+"&quantita="+v , true);
 	xhttp.send();
 }
 
@@ -80,9 +82,9 @@ function mettiACarrello(codice, index){
 </form>
 
 <% if(d==null || d.getProdotti().size()==0){ %>
-     <a href = "carrello"><img src="../../img/basket-empty-icon.png" alt="Carrello"></a>
+     <a href = "../../example/carrello/all"><img id="imgCarr" src="../../img/basket-empty-icon.png" alt="Carrello"></a>
 <%} else { %>
-     <a href = "carrello"><img src="../../img/basket-full-icon.png" alt="Carrello"></a>
+     <a href = "../../example/carrello/all"><img id="imgCarr"src="../../img/basket-full-icon.png" alt="Carrello"></a>
 <%}%>
 
 <a href="login"> Login </a>
@@ -120,7 +122,7 @@ function mettiACarrello(codice, index){
             <img src="../../img/plus.svg" alt="" />
           </button>
           
-          <button class="minus-btn" type="button" name="buttonAdd" onclick="mettiACarrello(<%= p.getCodiceEAN(), index %>)">
+          <button class="minus-btn" type="button" name="buttonAdd" onclick="mettiACarrello(<%= p.getIdProdotto()%>,<%= index %>)">
             <img src="../../img/add.png" alt="" />
           </button>
           <div id="esitoInserimento<%=index %>"></div>
