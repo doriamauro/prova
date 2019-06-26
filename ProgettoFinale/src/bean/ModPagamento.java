@@ -1,8 +1,14 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.validation.annotation.Validated;
+
+
 public class ModPagamento {
-	//
+	@NotEmpty
 	private int idMod;
+	@NotEmpty
 	private String modalita;
 	
 	public ModPagamento() {
