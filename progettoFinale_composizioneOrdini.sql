@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `composizioneOrdini`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `composizioneOrdini` (
   `quantita` int(11) NOT NULL,
-  `idOrdine` varchar(30) NOT NULL,
+  `idOrdine` int(11) NOT NULL,
   `idProdotto` int(11) NOT NULL,
-  KEY `cod_idx` (`idOrdine`),
   KEY `idProdotto_idx` (`idProdotto`),
-  CONSTRAINT `cod` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `codOrdine_idx` (`idOrdine`),
+  CONSTRAINT `codOrdine` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idProdotto` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,6 +39,7 @@ CREATE TABLE `composizioneOrdini` (
 
 LOCK TABLES `composizioneOrdini` WRITE;
 /*!40000 ALTER TABLE `composizioneOrdini` DISABLE KEYS */;
+INSERT INTO `composizioneOrdini` VALUES (2,1234,8),(2,1234,8),(2,1234,8),(2,1234,8),(2,1234,8),(2,1234,8);
 /*!40000 ALTER TABLE `composizioneOrdini` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 17:48:59
+-- Dump completed on 2019-06-26 15:33:51

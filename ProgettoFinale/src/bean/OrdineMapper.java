@@ -12,14 +12,14 @@ public class OrdineMapper implements RowMapper<Ordine>{
 	public Ordine mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Ordine ordine = new Ordine();
 
-		ordine.setCodOrdine(rs.getString("codOrdine"));
+		ordine.setCodOrdine(rs.getInt("codOrdine"));
 		ordine.setUsOrdine(rs.getString("usOrdine"));
 		ordine.setDataOrdine(rs.getDate("dataOrdine"));
 		ordine.setPrezzoFinale(rs.getDouble("prezzoFinale"));
-		ordine.setIdIndOrd(rs.getString("idIndOrd"));
-		ordine.setIdModPag(rs.getString("idModPag"));
+		ordine.setIdIndOrd(rs.getInt("idIndOrd"));
+		ordine.setIdModPag(rs.getInt("idModPag"));
 
-		return ordine;
+		return ordine; 
 
 	}
 

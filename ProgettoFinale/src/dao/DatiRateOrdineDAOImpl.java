@@ -4,14 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.DatiRateOrdine;
 import bean.Prodotto;
 
+@Repository
+@Transactional
 public class DatiRateOrdineDAOImpl implements DatiRateOrdineDAO {
 	
+	@Autowired
 	private JdbcTemplate droTemplate;
 
 	@Override
@@ -20,14 +26,14 @@ public class DatiRateOrdineDAOImpl implements DatiRateOrdineDAO {
 			}
 
 	@Override
-	public boolean delete(String idOrd) {
+	public boolean delete(int idOrd) {
 		 int dt = droTemplate.update("delete from datiRateOrdine where idOrd = ? ", idOrd);
 		if(dt==0) return false;
 		else return true;
 	}
 
 	@Override
-	public DatiRateOrdine select(String idOrd) {
+	public DatiRateOrdine select(int idOrd) {
 		DatiRateOrdine dro = droTemplate.queryForObject("select * from datiRateOrdine where idOrd = ? ", new DatiRateOrdineMapper(), idOrd);
 		return dro;
 	}
@@ -60,7 +66,7 @@ class DatiRateOrdineMapper implements RowMapper<DatiRateOrdine>{
 public DatiRateOrdine mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 	DatiRateOrdine dro = new DatiRateOrdine();
-	dro.setIdOrd(rs.getString("idOrd"));
+	dro.setIdOrd(rs.getInt("idOrd"));
 	dro.setTan(rs.getDouble("tan"));
 	dro.setMaxTaeg(rs.getDouble("maxTaeg"));
 	dro.setnRate(rs.getInt("nRate"));

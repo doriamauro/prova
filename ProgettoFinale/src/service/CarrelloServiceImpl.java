@@ -3,40 +3,53 @@ package service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mysql.fabric.xmlrpc.base.Data;
 
 import bean.ComposizioneOrdini;
 import bean.DatiOrdine;
+import bean.DatiRate;
 import bean.DatiRateOrdine;
 import bean.IndirizzoOrdine;
+import bean.ModPagamento;
 import bean.Ordine;
 import bean.Prodotto;
 import dao.ComposizioneOrdiniDAO;
 import dao.DatiRateDAO;
 import dao.DatiRateOrdineDAO;
 import dao.IndirizzoOrdineDAO;
+import dao.ModPagamentoDAO;
 import dao.OrdineDAO;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class CarrelloServiceImpl implements CarrelloService {
 
-	
+	@Autowired
 	private ComposizioneOrdiniDAO daoComp; 
+	@Autowired
 	private OrdineDAO daoOrd;
+	@Autowired
 	private DatiRateOrdineDAO daoRateOrd;
+	@Autowired
 	private IndirizzoOrdineDAO daoIndOrd;
+	@Autowired
 	private DatiRateDAO daoRateDef;
-	
+	@Autowired
+	private ModPagamentoDAO daoModPag;
 	
 	@Override
 	public void finalizzaAcquisto(DatiOrdine d) {
 		
 		//inserisce in indirizzoOrdine l'indirizzo
 		IndirizzoOrdine indOrd = d.getIndOrd();
-		indOrd.setIdIndOrdine(daoIndOrd.getProxID()+"");
+		indOrd.setIdIndOrdine(daoIndOrd.getProxID());
 		daoIndOrd.insert(indOrd);
 		
 		
@@ -50,7 +63,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 		 
 		double costoTot = costo;
 		
-		if (Integer.parseInt(d.getModPag().getIdMod())!=1) {
+		if (d.getModPag().getIdMod()!=1) {
 			if (costo<20){
 				costoTot += speseSped;
 			} else if (costo>=20 && costo<100) {
@@ -60,7 +73,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 		
 		
 		//inserisco l'ordine nella tabella ordini
-		Ordine ordine = new Ordine(daoOrd.contaNumOrdini()+1+"",
+		Ordine ordine = new Ordine(daoOrd.contaNumOrdini()+1,
 				 				   d.getUsername(),
 				 				   new Date(new java.util.Date().getTime()),
 				 				   costoTot,
@@ -76,14 +89,31 @@ public class CarrelloServiceImpl implements CarrelloService {
 		}
 		
 		//inserimento nella tabella datiRateOrdini
-		if (Integer.parseInt(d.getModPag().getIdMod())==5) {
+		if (d.getModPag().getIdMod()==5) {
 			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(),
 														   daoRateDef.selectRate().getTan(),
 														   daoRateDef.selectRate().getMaxTaeg(),
 														   daoRateDef.selectRate().getnRate());
-			daoRateOrd.insert(datiRatOrd);
+			daoRateOrd.insert(datiRatOrd);}
 	}
+		
+		@Override
+		public List<ModPagamento> getAllModPagamento() {
+			return daoModPag.selectAllModalita();
+		}
+		
+		
+		
+		@Override
+		public DatiRate getDatiRate() {
+			return daoRateDef.selectRate();
+		}
+
+		@Override
+		public ModPagamento getModPagamento(int idMod) {
+			return daoModPag.select(idMod);
+		}
 
 
 }
-}
+

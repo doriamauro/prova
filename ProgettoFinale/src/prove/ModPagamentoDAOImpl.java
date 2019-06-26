@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import bean.ModPagamento;
 
 @Repository
-@Transactional
 public class ModPagamentoDAOImpl implements ModPagamentoDAO {
 
 	@Autowired
@@ -38,14 +36,14 @@ public class ModPagamentoDAOImpl implements ModPagamentoDAO {
 	}
 
 	@Override
-	public List<ModPagamento> selectAllModalita() {
+	public List<ModPagamento> selectAllDatiRate() {
 		return template.query("select * from modpagamento", new ModPagamentoMapper());
 	}
 
 	@Override
-	public List<ModPagamento> selectAllModalita(String where) {
+	public List<ModPagamento> selectAllDatiRate(String where) {
 		if (where==null || where==" ")
-			return this.selectAllModalita();
+			return this.selectAllDatiRate();
 		return template.query("select * from modpagamento " + where, new ModPagamentoMapper());
 	}
 

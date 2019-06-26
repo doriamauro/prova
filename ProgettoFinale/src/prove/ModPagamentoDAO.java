@@ -10,8 +10,8 @@ public interface ModPagamentoDAO {
 	public boolean delete(int idMod);
 	public ModPagamento select(int idMod);
 
-	public List<ModPagamento> selectAllModalita();
-	public List<ModPagamento> selectAllModalita(String where);
+	public List<ModPagamento> selectAllDatiRate();
+	public List<ModPagamento> selectAllDatiRate(String where);
 
 	public void update(ModPagamento modpag);
 }

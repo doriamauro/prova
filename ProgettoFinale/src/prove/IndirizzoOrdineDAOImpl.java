@@ -1,4 +1,4 @@
-package dao;
+package prove;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import bean.IndirizzoOrdine;
 import bean.Prodotto;
 
 @Repository
-@Transactional
+//@Transactional
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
 	@Autowired
@@ -55,7 +55,7 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 
 	@Override
 	public void update(IndirizzoOrdine indord) {
-		ioTemplate.update("update IndirizzoOrdine set via = ?,comune = ?,cap = ?, provincia = ?, nazione = ? where idIndOrdine = ?", 
+		ioTemplate.update("update IndirizzoOrdine set( via = ?,comune = ?,cap = ?, provincia = ?, nazione = ? where idIndOrdine = ? )", 
 				indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione(),indord.getIdIndOrdine());
 
 	}

@@ -1,10 +1,14 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class DatiRate {
 
-	
+	@NotEmpty
 	private double tan;
+	@NotEmpty
 	private double maxTaeg;
+	@NotEmpty
 	private int nRate;
 
 	

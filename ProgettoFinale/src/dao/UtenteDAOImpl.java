@@ -43,9 +43,12 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public Cliente select(String username) {
-		Cliente c = template.queryForObject("select * from cliente where username = ?", 
+		List<Cliente> c = template.query("select * from cliente where username = ?", 
 				new ClienteMapper(), username);
-		return c;
+		if(c.size()==0)
+		return null;
+		
+		return c.get(0);
 	}
 
 	@Override

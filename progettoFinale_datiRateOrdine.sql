@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `datiRateOrdine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `datiRateOrdine` (
-  `idOrd` varchar(30) NOT NULL,
+  `idOrd` int(11) NOT NULL,
   `tan` double NOT NULL,
   `maxTaeg` double NOT NULL,
   `nRate` int(11) NOT NULL,
   PRIMARY KEY (`idOrd`),
-  CONSTRAINT `codOrdine` FOREIGN KEY (`idOrd`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idOrd` FOREIGN KEY (`idOrd`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 17:48:58
+-- Dump completed on 2019-06-26 15:33:50

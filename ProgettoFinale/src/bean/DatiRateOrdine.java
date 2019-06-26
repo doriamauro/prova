@@ -1,26 +1,31 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class DatiRateOrdine {
-	
-	private String idOrd;
+	@NotEmpty
+	private int idOrd;
+	@NotEmpty
 	private double tan;
+	@NotEmpty
 	private double maxTaeg;
+	@NotEmpty
 	private int nRate;
 	
 	public DatiRateOrdine() {}
 
-	public DatiRateOrdine(String idOrd, double tan, double maxTaeg, int nRate) {
+	public DatiRateOrdine(int idOrd, double tan, double maxTaeg, int nRate) {
 		this.idOrd = idOrd;
 		this.tan = tan;
 		this.maxTaeg = maxTaeg;
 		this.nRate = nRate;
 	}
 
-	public String getIdOrd() {
+	public int getIdOrd() {
 		return idOrd;
 	}
 
-	public void setIdOrd(String idOrd) {
+	public void setIdOrd(int idOrd) {
 		this.idOrd = idOrd;
 	}
 

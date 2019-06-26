@@ -4,14 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.Categoria;
 import bean.Prodotto;
 
+@Repository
+@Transactional
 public class ProdottoDAOImpl implements ProdottoDAO {
 	
+	@Autowired
 	private JdbcTemplate ptemplate;
 
 	@Override
@@ -32,31 +38,31 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 
 	@Override
 	public boolean update(Prodotto p) {
-		int n = ptemplate.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+		int n = ptemplate.update("update prodotto set descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,categoria=?,sconto=? where idProdotto = ? ) ",
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
-				p.getImmagineSec(),p.getIdCategoria(),p.getSconto(), p.getIdProdotto());
+				p.getImmagineSec(),p.getIdCategoria(), p.getSconto(), p.getIdProdotto());
 		return n==1;
 	}
 
 	@Override
 	public Prodotto select(int idProdotto) {
-		Prodotto p = ptemplate.queryForObject("select* from prodotto where idProdotto = ? ", new ProdottoMapper(), idProdotto);
+		Prodotto p = ptemplate.queryForObject("select * from prodotto where idProdotto = ? ", new ProdottoMapper(), idProdotto);
 		return p;
 		
 	}
 
 	@Override
 	public List<Prodotto> selectAllProdotti() {
-		return 	ptemplate.query("select* from prodotto", new ProdottoMapper());
+		return 	ptemplate.query("select * from prodotto", new ProdottoMapper());
 	}
 
 	@Override
 	public List<Prodotto> selectAll(String where) {
 		if (where == null || where == " ")
 			return this.selectAllProdotti();
-		return ptemplate.query("select* from prodotto " + where, new ProdottoMapper());
+		return ptemplate.query("select * from prodotto " + where, new ProdottoMapper());
 	}
 
 }
