@@ -1,5 +1,11 @@
 package dao;
 
+import bean.DatiRate;
+
 public interface DatiRateDAO {
-// DA COMPLETAREEEEEE 
-}
+
+	public DatiRate selectRate();
+	public void updateRate(DatiRate dr);
+	 
+	
+} 

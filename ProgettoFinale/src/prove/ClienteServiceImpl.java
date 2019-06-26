@@ -1,25 +1,24 @@
-package service;
+package prove;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import bean.Attivo;
 import bean.Cliente;
 import bean.Ordine;
-import dao.ClienteDAO;
+import prove.ClienteDAO;
 import exception.ClienteException;
-import service.ClienteService;
 
 
-@Service
-@Transactional
+@Service("id")
+//@Transactional
 //
 public class ClienteServiceImpl implements ClienteService {
-//ciao
+// ciao
 	@Autowired
 	private ClienteDAO dao;
 
@@ -49,16 +48,15 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	//dà null se non esiste
-	//
 	public Cliente getCliente(String username) {
 				return dao.select(username);
 	}
 
 	@Override
 	public void updateCliente(Cliente c) throws ClienteException {
-      Cliente c2 = dao.select(c.getUsername());
-      if(c2 == null)
-      	throw new ClienteException("Username non trovato");
+        Cliente c2 = dao.select(c.getUsername());
+        if(c2 == null)
+        	throw new ClienteException("Username non trovato");
 		dao.update(c);
 
 	}
