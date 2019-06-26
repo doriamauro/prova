@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import bean.Categoria;
 import bean.DatiRate;
 import bean.Prodotto;
+import prove.CatalogoDAO;
+import dao.CategoriaMapper2;
+import dao.DatiRateMapper2;
 
 
 @Repository
