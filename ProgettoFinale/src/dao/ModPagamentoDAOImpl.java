@@ -23,21 +23,28 @@ public class ModPagamentoDAOImpl implements ModPagamentoDAO {
 	}
 
 	@Override
-	public boolean delete(String idMod) {
+	public boolean delete(int idMod) {
 		int n = template.update("delete from modpagamento where idmod = ?", idMod);
 		return n==1;
 	}
 
 	@Override
-	public ModPagamento select(String idMod) {
+	public ModPagamento select(int idMod) {
 		ModPagamentoMapper modPag = new ModPagamentoMapper();
 
 		return template.queryForObject("select * from modpagamento where idmod = ?", modPag, idMod);
 	}
 
 	@Override
-	public List<ModPagamento> selectAllModalita() {
+	public List<ModPagamento> selectAllDatiRate() {
 		return template.query("select * from modpagamento", new ModPagamentoMapper());
+	}
+
+	@Override
+	public List<ModPagamento> selectAllDatiRate(String where) {
+		if (where==null || where==" ")
+			return this.selectAllDatiRate();
+		return template.query("select * from modpagamento " + where, new ModPagamentoMapper());
 	}
 
 	@Override
@@ -54,7 +61,7 @@ class ModPagamentoMapper implements RowMapper<ModPagamento>{
 	public ModPagamento mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ModPagamento mod = new ModPagamento();
 
-		mod.setIdMod(rs.getString("idmod"));
+		mod.setIdMod(rs.getInt("idmod"));
 		mod.setModalita(rs.getString("modalita"));
 
 		return mod;
