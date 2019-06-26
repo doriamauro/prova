@@ -6,14 +6,10 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import bean.IndirizzoOrdine;
 import bean.Prodotto;
 
-@Repository
-@Transactional
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
 	private JdbcTemplate ioTemplate;
@@ -27,14 +23,14 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	}
 
 	@Override
-	public boolean delete(String idIndOrdine) {
+	public boolean delete(int idIndOrdine) {
 		int p = ioTemplate.update("delete from IndirizzoOrdine where idIndOrdine = ? ", idIndOrdine);
 		if(p==0) return false;
 		else return true;
 	}
 
 	@Override
-	public IndirizzoOrdine select(String idIndOrdine) {
+	public IndirizzoOrdine select(int idIndOrdine) {
 		return ioTemplate.queryForObject("select * from indirizzoOrdine where idIndOrdine = ?", new IndirizzoOrdineMapper(),idIndOrdine);
 		
 	}
@@ -57,21 +53,14 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 				indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione(),indord.getIdIndOrdine());
 
 	}
-
  
-	@Override  //idIndOrd è string!
-	public int getProxID() {
-		int id = ioTemplate.queryForObject("select max(idIndOrdine) from indirizzoOrdine", Integer.class);
-		return id+1;}
-
-
 	@Override
-	public int contaNumeroIndOrd() {
-		return ioTemplate.queryForObject("select count(*) from indirizzoOrdine", Integer.class);
+	public int getProxID() {
+		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
+		return id+1;
 	}
 
 }
-
 
 class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 
@@ -79,7 +68,7 @@ class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 	public IndirizzoOrdine mapRow(ResultSet rs, int rowNum) throws SQLException {
         IndirizzoOrdine io = new IndirizzoOrdine();
 		
-        io.setIdIndOrdine(rs.getString("idIndOrdine"));
+        io.setIdIndOrdine(rs.getInt("idIndOrdine"));
         io.setVia(rs.getString("via"));
         io.setComune(rs.getString("comune"));
         io.setCap(rs.getString("cap"));

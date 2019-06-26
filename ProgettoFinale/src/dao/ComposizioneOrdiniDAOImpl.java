@@ -27,14 +27,14 @@ public class ComposizioneOrdiniDAOImpl implements ComposizioneOrdiniDAO{
 	}
 
 	@Override
-	public boolean delete(String idOrdine, int idProdotto) {
+	public boolean delete(int idOrdine, int idProdotto) {
 		int n = template.update("delete from composizioneOrdine where idOrdine=? and idProdotto=?", idOrdine,idProdotto);
 		return n==1;
 		
 	}
 
 	@Override
-	public ComposizioneOrdini select(String idOrdine, int idProdotto) {
+	public ComposizioneOrdini select(int idOrdine, int idProdotto) {
 		ComposizioneOrdini com = template.queryForObject("select * from composizioneOrdine where idOrdine=? and idProdotto=?", new ComposizioneOrdiniMapper(), idOrdine, idProdotto);
 		return com;
 	}
@@ -71,7 +71,7 @@ class ComposizioneOrdiniMapper implements RowMapper<ComposizioneOrdini> {
 		
 		ComposizioneOrdini com = new ComposizioneOrdini();
 		
-		com.setIdOrdine(rs.getString("idOrdine"));
+		com.setIdOrdine(rs.getInt("idOrdine"));
 		com.setIdProdotto(rs.getInt("idProdotto"));
 		com.setQuantita(rs.getInt("quantita"));
 				

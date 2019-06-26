@@ -27,13 +27,13 @@ public class OrdineDAOImpl implements OrdineDAO {
 	}
 
 	@Override
-	public boolean delete(String codOrdine) {
+	public boolean delete(int codOrdine) {
 		int n = template.update("delete from ordine where codordine = ?", codOrdine);
 		return n==1;
 	}
 
 	@Override
-	public Ordine select(String codOrdine) {
+	public Ordine select(int codOrdine) {
 		return template.queryForObject("select * from ordine where codordine = ?", new OrdineMapper(), codOrdine);
 	}
 
@@ -52,13 +52,13 @@ public class OrdineDAOImpl implements OrdineDAO {
 	
 	@Override
 	public int contaNumOrdini() {
-		return template.queryForObject("select count(*) from ordine", Integer.class) ;
+		return template.queryForObject("select max(idIndOrdine) from ordine", Integer.class) ;
 	}
 	
 	@Override
 	public void update(Ordine o) {
 
-		template.update("update ordine set usordine = ?, dataordine = ?, prezzofinale = ?, idindord = ?, idmodpag = ? where  codordine = ?", 
+		template.update("update ordine set usordine = ?, dataordine = ?, prezzofinale = ?, idindordine = ?, idmodpag = ? where  codordine = ?", 
 				o.getUsOrdine(),o.getDataOrdine(),o.getPrezzoFinale(),o.getIdIndOrd(),o.getIdModPag(),o.getCodOrdine());
 
 	}
