@@ -66,13 +66,14 @@ public class ProdottoController {
 	}
 	
 	@RequestMapping("/eraseProd")
-	public String eliminaProdotto(int idProdotto, ModelMap model) {
+	public ModelAndView eliminaProdotto(int idProdotto, ModelMap model) {
+		List<Prodotto> prodotti= service.ricercaProdottiScontati();
 		boolean b=service.eliminaProdotto(idProdotto);
 		if(b==false) {
 			model.addAttribute("msg", "Prodotto non eliminato");
-			return "erroreGenerico";
+			return new ModelAndView("erroreGenerico");
 		}
-		else return "listaProdotti";
+		else return new ModelAndView("listaProdotti", "prodotti", prodotti);
 	}
 	
 	@RequestMapping("/editProd")
