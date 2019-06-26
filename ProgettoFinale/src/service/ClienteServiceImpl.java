@@ -49,6 +49,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	//dà null se non esiste
+	//
 	public Cliente getCliente(String username) {
 				return dao.select(username);
 	}
