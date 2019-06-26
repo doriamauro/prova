@@ -4,28 +4,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-//
+
 import bean.IndirizzoOrdine;
 import bean.Prodotto;
-import dao.IndirizzoOrdineDAO;
-import dao.IndirizzoOrdineMapper;
 
-@Repository
-@Transactional
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
-	@Autowired
 	private JdbcTemplate ioTemplate;
 	
 	
 
 	@Override
-	// gestire nel controller DuplicateKeyException
 	public void insert(IndirizzoOrdine indord) {
 		ioTemplate.update("insert into IndirizzoOrdine values(?,?,?,?,?,?)", indord.getIdIndOrdine(),indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione());
 
@@ -40,10 +31,8 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 
 	@Override
 	public IndirizzoOrdine select(String idIndOrdine) {
-		List<IndirizzoOrdine> li =  ioTemplate.query("select * from indirizzoOrdine where idIndOrdine = ?", new IndirizzoOrdineMapper(),idIndOrdine);
-		if(li.size()==0)
-			return null;
-		else return li.get(0);
+		return ioTemplate.queryForObject("select * from indirizzoOrdine where idIndOrdine = ?", new IndirizzoOrdineMapper(),idIndOrdine);
+		
 	}
 
 	@Override
@@ -56,24 +45,29 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 		if (where == null || where == " ")
 			return this.selectAllIndirizzi();
 		return ioTemplate.query("select * from indirizzoOrdine " + where, new IndirizzoOrdineMapper());
-		// ricordare che come argomento ha bisogno di "where colonna = valoreColonna", e se è string 'valoreColonna'.
-				// inoltre serve il ; (opzionale)
 	}
 
 	@Override
 	public void update(IndirizzoOrdine indord) {
-		ioTemplate.update("update IndirizzoOrdine set via = ?,comune = ?,cap = ?, provincia = ?, nazione = ? where idIndOrdine = ?", 
+		ioTemplate.update("update IndirizzoOrdine set( via = ?,comune = ?,cap = ?, provincia = ?, nazione = ? where idIndOrdine = ? )", 
 				indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione(),indord.getIdIndOrdine());
 
 	}
+
  
 	@Override  //idIndOrd è string!
 	public int getProxID() {
 		int id = ioTemplate.queryForObject("select max(idIndOrdine) from indirizzoOrdine", Integer.class);
-		return id+1;
+		return id+1;}
+
+
+	@Override
+	public int contaNumeroIndOrd() {
+		return ioTemplate.queryForObject("select count(*) from indirizzoOrdine", Integer.class);
 	}
 
 }
+
 
 class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 
@@ -93,3 +87,6 @@ class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 	}
 
 }
+
+
+
