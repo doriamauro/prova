@@ -25,6 +25,12 @@ public class Prodotto {
 	private int sconto;
 	
 	public Prodotto() {}
+	
+	
+
+	public Prodotto(int idProdotto) {
+		this.idProdotto = idProdotto;
+	}
 
 	public Prodotto(int idProdotto, String descrizione, String marca, String codiceEAN, double prezzoUni,
 			int disponibilita, String linkProduttore, double costoSped, int tempoConsegna, String immaginePrimaria,
@@ -155,5 +161,27 @@ public class Prodotto {
 				+ ", linkProduttore=" + linkProduttore + ", costoSped=" + costoSped + ", tempoConsegna=" + tempoConsegna
 				+ ", immaginePrimaria=" + immaginePrimaria + ", immagineSec=" + immagineSec + ", idCategoria="
 				+ idCategoria + ", sconto=" + sconto + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idProdotto;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Prodotto other = (Prodotto) obj;
+		if (idProdotto != other.idProdotto)
+			return false;
+		return true;
 	}	
 }
