@@ -12,7 +12,7 @@ import bean.Cliente;
 import bean.Ordine;
 import dao.ClienteDAO;
 import exception.ClienteException;
-import prove.ClienteService;
+import service.ClienteService;
 
 
 @Service
