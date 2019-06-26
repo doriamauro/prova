@@ -33,14 +33,12 @@ public class CarrelloController {
 
 	@GetMapping("/add")
 	@ResponseBody
-	public boolean inserisciProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto, int quantita) throws ProdottoNonTrovatoException {
+	public void inserisciProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto, int quantita) throws ProdottoNonTrovatoException {
 
 		Prodotto p = serviceProdotto.getSchedaProdotto(idProdotto);
 
 		p.setDisponibilita(quantita);
-		datOrd.addProdotto(p);
-
-		return true;		
+		datOrd.addProdotto(p);		
 	}
 
 	@GetMapping("/varia")
@@ -55,8 +53,9 @@ public class CarrelloController {
 	// questo metodo sarà lo stesso ad essere invocato quando si annulla il pagamento!
 	@RequestMapping("/all")
 	public ModelAndView getCarrello(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model) {
+		System.out.println(datOrd);
 
-		return new ModelAndView("Carrello", "lista", datOrd.getProdotti());
+		return new ModelAndView("carrello", "lista", datOrd.getProdotti());
 	}
 
 	@GetMapping("/remove")
@@ -69,6 +68,10 @@ public class CarrelloController {
 
 	@GetMapping("/modalita")
 	public ModelAndView getModPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model, HttpSession session) {
+		
+		if ((Integer)session.getAttribute("affidabile")==0) {
+			return new ModelAndView("erroreGenerico", "msg", "Impossibile procedere all'acquisto. Utente non affidabile!");
+		}
 		
 		String username = (String)session.getAttribute("login");
 		datOrd.setUsername(username);
