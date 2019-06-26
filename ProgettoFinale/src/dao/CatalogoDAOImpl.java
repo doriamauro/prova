@@ -121,7 +121,7 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	
 	@Override
 	public DatiRate selectRate() {
-		 List<DatiRate> dd = template.query("select * from datiRate",new DatiRateMapper());
+		 List<DatiRate> dd = template.query("select * from datiRate",new DatiRateMapper2());
 		 if(dd.size()==0)
 			 return null;
 		 return dd.get(0);
@@ -144,7 +144,7 @@ class CategoriaMapper2 implements RowMapper<Categoria>{
 
 }
 
-class DatiRateMapper implements RowMapper<DatiRate>{	
+class DatiRateMapper2 implements RowMapper<DatiRate>{	
 	
 	
 @Override
