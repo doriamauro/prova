@@ -76,12 +76,13 @@ public class ProdottoController {
 	}
 	
 	@RequestMapping("/editProd")
-	public String modificaProd(Prodotto p, ModelMap model) {
+	public ModelAndView modificaProd(Prodotto p, ModelMap model) {
 		boolean b= service.modificaSchedaProdotto(p);
 		if(b==false) {
 			model.addAttribute("msg", "Prodotto non modificato");
-			return "erroreGenerico";
+			return new ModelAndView("erroreGenerico");
 		}
-		else return "dettagliProdotto";
+		else return new ModelAndView("dettagliProdotto", "prodotto", p);
 	}
+	
 }
