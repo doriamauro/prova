@@ -56,7 +56,7 @@ public class CarrelloController {
 	@RequestMapping("/all")
 	public ModelAndView getCarrello(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model) {
 
-		return new ModelAndView("Carrello", "lista", datOrd.getProdotti());
+		return new ModelAndView("carrello", "lista", datOrd.getProdotti());
 	}
 
 	@GetMapping("/remove")

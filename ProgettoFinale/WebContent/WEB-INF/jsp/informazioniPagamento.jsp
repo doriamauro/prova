@@ -9,7 +9,7 @@
 <body>
 Scelta della modalità di pagamento:
 
-<form action="">
+<form action="scelta">
   <input type="radio" name="pag" value="1">Contanti con ritiro in negozio<br>
   <input type="radio" name="pag" value="2">Bonifico bancario<br>
   <input type="radio" name="pag" value="3">Carta di credito<br>
@@ -18,7 +18,7 @@ Scelta della modalità di pagamento:
 <input type="submit" value="avanti"><br> 
 </form>
 
-<form action="">
+<form action="all">
 <input type="submit" value="annulla"><br> 
 </form>
 </body>
