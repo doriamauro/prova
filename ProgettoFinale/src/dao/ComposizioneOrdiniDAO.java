@@ -3,7 +3,7 @@ package dao;
 import java.util.List;
 
 import bean.ComposizioneOrdini;
-
+//
 public interface ComposizioneOrdiniDAO {
 	
 	public void insert(ComposizioneOrdini com);
