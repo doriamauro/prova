@@ -1,10 +1,15 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class DatiRateOrdine {
-	//
+	@NotEmpty
 	private int idOrd;
+	@NotEmpty
 	private double tan;
+	@NotEmpty
 	private double maxTaeg;
+	@NotEmpty
 	private int nRate;
 	
 	public DatiRateOrdine() {}
