@@ -22,10 +22,7 @@ public class ComposizioneOrdiniDAOImpl implements ComposizioneOrdiniDAO{
 	
 	@Override
 	public void insert(ComposizioneOrdini com) {
-		template.update("insert into composizioneOrdini values(?,?,?)",com.getIdOrdine(),
-																	   com.getIdProdotto(),
-																	   com.getQuantita());
-		
+		template.update("insert into composizioneOrdini values(?,?,?)",com.getQuantita(),com.getIdOrdine(),com.getIdProdotto());
 	}
 
 	@Override
