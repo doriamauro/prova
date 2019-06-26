@@ -1,7 +1,7 @@
 package bean;
 
 public class ModPagamento {
-	
+	//
 	private int idMod;
 	private String modalita;
 	
