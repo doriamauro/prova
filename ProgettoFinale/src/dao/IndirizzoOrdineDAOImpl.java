@@ -54,8 +54,13 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 
 	}
 
-}
+	@Override
+	public int getProxID() {
+		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
+		return id+1;
+	}
 
+}
 
 class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 

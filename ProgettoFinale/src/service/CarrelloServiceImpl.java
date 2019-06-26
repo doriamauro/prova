@@ -36,7 +36,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 		
 		//inserisce in indirizzoOrdine l'indirizzo
 		IndirizzoOrdine indOrd = d.getIndOrd();
-		indOrd.setIdIndOrdine(daoIndOrd.contaNumeroIndOrd()+1+"");
+		indOrd.setIdIndOrdine(daoIndOrd.getProxID()+"");
 		daoIndOrd.insert(indOrd);
 		
 		
