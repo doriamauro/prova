@@ -15,7 +15,7 @@ import dao.CatalogoDAO;
 import dao.DatiRateDAO;
 import exception.CategoriaException;
 import prove.CatalogoService;
-
+//
 @Service
 @Transactional(propagation= Propagation.REQUIRES_NEW)	
 public class CatalogoServiceImpl implements CatalogoService{
