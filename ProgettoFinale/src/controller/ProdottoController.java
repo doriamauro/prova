@@ -12,6 +12,7 @@ import bean.Categoria;
 import bean.DatiRate;
 import bean.Prodotto;
 import exception.CategoriaException;
+import exception.ProdottoNonTrovatoException;
 import service.CatalogoService;
 import service.ProdottoService;
 import service.UtenteService;
@@ -22,6 +23,47 @@ public class ProdottoController {
 
 	@Autowired
 	private ProdottoService service;
+	
+	@RequestMapping("/list")
+	public ModelAndView visualizzaProdotti(int idCategoria) {
+		List<Prodotto> prodotti= service.getProdotti(idCategoria);
+		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+	}
+	
+	@RequestMapping("/search")
+	public ModelAndView ricercaProdotti(String ricerca) {
+		List<Prodotto> prodotti= service.ricercaProdotti(ricerca);
+		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+	}
+	
+	@RequestMapping("/searchMarca")
+	public ModelAndView ricercaProdottiPerMarca(String marca) {
+		List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
+		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+	}
+	
+	@RequestMapping("/searchPrice")
+	public ModelAndView ricercaProdottiPerPrezzo(double min, double max) {
+		List<Prodotto> prodotti= service.ricercaProdottiPerPrezzoUnitario(min, max);
+		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+	}
+	
+	@RequestMapping("/search")
+	public ModelAndView ricercaProdottiScontati() {
+		List<Prodotto> prodotti= service.ricercaProdottiScontati();
+		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+	}
+	
+	@RequestMapping("/scheda")
+	public ModelAndView schedaProdotto(int idProdotto) {
+		Prodotto p;
+		try {
+			p = service.getSchedaProdotto(idProdotto);
+			return new ModelAndView("dettagliProdotto", "prodotto", p);
+		} catch (ProdottoNonTrovatoException e) {
+			return new ModelAndView("erroreGenerico", "msg", e);
+		}
+	}
 	
 	@RequestMapping("/eraseProd")
 	public String eliminaProdotto(int idProdotto, ModelMap model) {
