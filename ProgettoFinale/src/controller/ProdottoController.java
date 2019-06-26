@@ -20,7 +20,7 @@ import service.UtenteService;
 @Controller
 @RequestMapping("/prod")
 public class ProdottoController {
-
+//
 	@Autowired 
 	private ProdottoService service;
 	
