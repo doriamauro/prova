@@ -1,14 +1,14 @@
 package bean;
 
 public class ComposizioneOrdini {
-	
+	//
 	private int quantita;
 	private int idProdotto;
-	private String idOrdine;
+	private int idOrdine;
 	
 	public ComposizioneOrdini() {}
 
-	public ComposizioneOrdini(int quantita, int idProdotto, String idOrdine) {
+	public ComposizioneOrdini(int quantita, int idProdotto, int idOrdine) {
 		this.quantita = quantita;
 		this.idProdotto = idProdotto;
 		this.idOrdine = idOrdine;
@@ -30,11 +30,11 @@ public class ComposizioneOrdini {
 		this.idProdotto = idProdotto;
 	}
 
-	public String getIdOrdine() {
+	public int getIdOrdine() {
 		return idOrdine;
 	}
 
-	public void setIdOrdine(String idOrdine) {
+	public void setIdOrdine(int idOrdine) {
 		this.idOrdine = idOrdine;
 	}
 

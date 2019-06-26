@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `modPagamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `modPagamento` (
-  `idMod` varchar(30) NOT NULL,
+  `idMod` int(11) NOT NULL,
   `modalita` varchar(45) NOT NULL,
   PRIMARY KEY (`idMod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -35,7 +35,7 @@ CREATE TABLE `modPagamento` (
 
 LOCK TABLES `modPagamento` WRITE;
 /*!40000 ALTER TABLE `modPagamento` DISABLE KEYS */;
-INSERT INTO `modPagamento` VALUES ('1','contanti con ritiro in negozio'),('2','bonifico bancario'),('3','carta di credito'),('4','vaglia postale'),('5','rateizzazione');
+INSERT INTO `modPagamento` VALUES (1,'contanti con ritiro in negozio'),(2,'bonifico bancario'),(3,'carta di credito'),(4,'vaglia postale'),(5,'rateizzazione');
 /*!40000 ALTER TABLE `modPagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 17:48:59
+-- Dump completed on 2019-06-26 15:33:51

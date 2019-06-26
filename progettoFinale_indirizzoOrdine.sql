@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `indirizzoOrdine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `indirizzoOrdine` (
-  `idIndOrdine` varchar(45) NOT NULL,
+  `idIndOrdine` int(11) NOT NULL,
   `via` varchar(45) NOT NULL,
   `comune` varchar(45) NOT NULL,
   `cap` varchar(45) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `indirizzoOrdine` (
 
 LOCK TABLES `indirizzoOrdine` WRITE;
 /*!40000 ALTER TABLE `indirizzoOrdine` DISABLE KEYS */;
-INSERT INTO `indirizzoOrdine` VALUES ('rm800','condotti','roma','0127','rm','italia');
+INSERT INTO `indirizzoOrdine` VALUES (500,'malcontenti','sulmona','67039','aq','italia'),(800,'condotti','roma','0127','rm','italia');
 /*!40000 ALTER TABLE `indirizzoOrdine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 17:48:58
+-- Dump completed on 2019-06-26 15:33:50

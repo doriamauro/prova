@@ -23,19 +23,17 @@ DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `ordine` (
-  `codOrdine` varchar(30) NOT NULL,
+  `codOrdine` int(11) NOT NULL,
   `usOrdine` varchar(30) NOT NULL,
   `dataOrdine` date NOT NULL,
   `prezzoFinale` double NOT NULL,
-  `idIndOrd` varchar(30) NOT NULL,
-  `idModPag` varchar(30) NOT NULL,
+  `idIndOrd` int(11) NOT NULL,
+  `idModPag` int(11) NOT NULL,
   PRIMARY KEY (`codOrdine`),
   KEY `username_idx` (`usOrdine`),
   KEY `idIndOrdine_idx` (`idIndOrd`),
   KEY `idMod_idx` (`idModPag`),
-  CONSTRAINT `idIndOrdine` FOREIGN KEY (`idIndOrd`) REFERENCES `indirizzoordine` (`idIndOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idMod` FOREIGN KEY (`idModPag`) REFERENCES `modpagamento` (`idMod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `username` FOREIGN KEY (`usOrdine`) REFERENCES `cliente` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idMod` FOREIGN KEY (`idModPag`) REFERENCES `modpagamento` (`idMod`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,6 +43,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
+INSERT INTO `ordine` VALUES (1234,'fra45','2019-06-20',5000,500,4),(1789,'fabio79','2019-06-15',300,500,1);
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 17:49:00
+-- Dump completed on 2019-06-26 15:33:51

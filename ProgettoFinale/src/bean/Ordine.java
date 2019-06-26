@@ -3,18 +3,18 @@ package bean;
 import java.sql.Date;
 
 public class Ordine {
-	
-	private String codOrdine;
+	//
+	private int codOrdine;
 	private String usOrdine; //username cliente nell'ordine
 	private Date dataOrdine;
 	private double prezzoFinale;
-	private String idIndOrd; //indirizzo ordine
-	private String idModPag;
+	private int idIndOrd; //indirizzo ordine
+	private int idModPag;
 	
 	public Ordine() {}
 
-	public Ordine(String codOrdine, String usOrdine, Date dataOrdine, double prezzoFinale, String idIndOrd,
-			String idModPag) {
+	public Ordine( int codOrdine, String usOrdine, Date dataOrdine, double prezzoFinale,  int idIndOrd,
+			 int idModPag) {
 		this.codOrdine = codOrdine;
 		this.usOrdine = usOrdine;
 		this.dataOrdine = dataOrdine;
@@ -23,11 +23,11 @@ public class Ordine {
 		this.idModPag = idModPag;
 	}
 
-	public String getCodOrdine() {
+	public  int getCodOrdine() {
 		return codOrdine;
 	}
 
-	public void setCodOrdine(String codOrdine) {
+	public void setCodOrdine( int codOrdine) {
 		this.codOrdine = codOrdine;
 	}
 
@@ -55,19 +55,19 @@ public class Ordine {
 		this.prezzoFinale = prezzoFinale;
 	}
 
-	public String getIdIndOrd() {
+	public int getIdIndOrd() {
 		return idIndOrd;
 	}
 
-	public void setIdIndOrd(String idIndOrd) {
+	public void setIdIndOrd(int idIndOrd) {
 		this.idIndOrd = idIndOrd;
 	}
 
-	public String getIdModPag() {
+	public  int getIdModPag() {
 		return idModPag;
 	}
 
-	public void setIdModPag(String idModPag) {
+	public void setIdModPag( int idModPag) {
 		this.idModPag = idModPag;
 	}
 
