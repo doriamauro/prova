@@ -1,24 +1,42 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class Cliente {
 	
+	@NotEmpty
 	private String username; 
+	@NotEmpty
 	private String nome;
 	private String cognome;
+	@NotEmpty
 	private Tipologia tipologia;
 	private String partitaIva;
 	private String codiceFiscale;
 	private String cellulare; 
 	private String telefonoFisso; 
+	@NotEmpty
 	private String email;
+	@NotEmpty
 	private String password; 
+	@NotEmpty
 	private Attivo attivo; 
+	@NotEmpty
 	private Admin admin; 
+	@NotEmpty
 	private Affidabile affidabile;
+	@NotEmpty
 	private String via; 
+	@NotEmpty
 	private String cap; 
+	@NotEmpty
 	private String comune; 
+	@NotEmpty
 	private String provincia; 
+	@NotEmpty
 	private String nazione; 
 	
 	public Cliente() {}
