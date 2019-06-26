@@ -22,10 +22,10 @@ public class Cliente {
 	private String password; 
 	@NotEmpty
 	private Attivo attivo; 
-	@NotEmpty
-	private Admin admin; 
-	@NotEmpty
-	private Affidabile affidabile;
+	
+	private Admin admin = Admin.NO; 
+	
+	private Affidabile affidabile = Affidabile.SI;
 	@NotEmpty
 	private String via; 
 	@NotEmpty
