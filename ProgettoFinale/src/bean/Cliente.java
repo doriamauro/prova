@@ -1,5 +1,6 @@
 package bean;
 
+// ciao
 import javax.validation.constraints.NotEmpty;
 
 public class Cliente {
