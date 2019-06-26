@@ -2,25 +2,25 @@ package bean;
 
 public class DatiRateOrdine {
 	
-	private String idOrd;
+	private int idOrd;
 	private double tan;
 	private double maxTaeg;
 	private int nRate;
 	
 	public DatiRateOrdine() {}
 
-	public DatiRateOrdine(String idOrd, double tan, double maxTaeg, int nRate) {
+	public DatiRateOrdine(int idOrd, double tan, double maxTaeg, int nRate) {
 		this.idOrd = idOrd;
 		this.tan = tan;
 		this.maxTaeg = maxTaeg;
 		this.nRate = nRate;
 	}
 
-	public String getIdOrd() {
+	public int getIdOrd() {
 		return idOrd;
 	}
 
-	public void setIdOrd(String idOrd) {
+	public void setIdOrd(int idOrd) {
 		this.idOrd = idOrd;
 	}
 

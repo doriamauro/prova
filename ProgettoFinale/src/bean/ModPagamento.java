@@ -2,22 +2,22 @@ package bean;
 
 public class ModPagamento {
 	
-	private String idMod;
+	private int idMod;
 	private String modalita;
 	
 	public ModPagamento() {
 	}
 
-	public ModPagamento(String idMod, String modalita) {
+	public ModPagamento(int idMod, String modalita) {
 		this.idMod = idMod;
 		this.modalita = modalita;
 	}
 
-	public String getIdMod() {
+	public int getIdMod() {
 		return idMod;
 	}
 
-	public void setIdMod(String idMod) {
+	public void setIdMod(int idMod) {
 		this.idMod = idMod;
 	}
 

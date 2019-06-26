@@ -2,7 +2,7 @@ package bean;
 
 public class IndirizzoOrdine {
 	
-	private String idIndOrdine;
+	private int idIndOrdine;
 	private String via;
 	private String comune;
 	private String cap;
@@ -11,7 +11,7 @@ public class IndirizzoOrdine {
 	
 	public IndirizzoOrdine() {}
 
-	public IndirizzoOrdine(String idIndOrdine, String via, String comune, String cap, String provincia,
+	public IndirizzoOrdine(int idIndOrdine, String via, String comune, String cap, String provincia,
 			String nazione) {
 		this.idIndOrdine = idIndOrdine;
 		this.via = via;
@@ -21,11 +21,11 @@ public class IndirizzoOrdine {
 		this.nazione = nazione;
 	}
 
-	public String getIdIndOrdine() {
+	public int getIdIndOrdine() {
 		return idIndOrdine;
 	}
 
-	public void setIdIndOrdine(String idIndOrdine) {
+	public void setIdIndOrdine(int idIndOrdine) {
 		this.idIndOrdine = idIndOrdine;
 	}
 
