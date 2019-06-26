@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import bean.Affidabile;
 import bean.Cliente;
+import bean.Ordine;
 import dao.UtenteDAO;
 //
 @Service
@@ -63,7 +64,12 @@ public class UtenteServiceImpl implements UtenteService {
 		c.setAffidabile(Affidabile.SI);
 		return true;
 	}
-	
-	
+
+	@Override
+	public List<Ordine> visualizzaTuttiGliOrdini() {
+		return dao.selectOrdini();
+	}
+
+
 
 }

@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import bean.Cliente;
+import bean.Ordine;
 //
 public interface UtenteDAO {
 	
@@ -13,5 +14,6 @@ public interface UtenteDAO {
 	public List<Cliente> selectInaffidabili();
 	public List<Cliente> selectAffidabili();
 	public void update(Cliente c);
+	public List<Ordine> selectOrdini();
 
 }
