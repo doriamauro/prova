@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- ciao -->
 	<form action="modificaCliente">
 		<input type="text" name="password"> Password <br>
 		<input type="text" name="nome"> Nome <br>
