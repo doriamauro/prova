@@ -11,6 +11,7 @@ import bean.Categoria;
 import bean.DatiRate;
 import bean.Prodotto;
 import dao.CatalogoDAO;
+import dao.DatiRateDAO;
 import exception.CategoriaException;
 
 @Service
@@ -19,6 +20,8 @@ public class CatalogoServiceImpl implements CatalogoService{
 
 	@Autowired
 	private CatalogoDAO dao;
+	@Autowired
+	private DatiRateDAO dao1;
 	
 	@Override
 	public void creaCategoria(Categoria c) {
@@ -62,7 +65,7 @@ public class CatalogoServiceImpl implements CatalogoService{
 	
 	@Override
 	public void modificaDatiRateizzazione(DatiRate dr) {
-		dao.updateRate(dr);
+		dao1.updateRate(dr);
 		}
 
 	@Override

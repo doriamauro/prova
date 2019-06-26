@@ -29,7 +29,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
-		return dao.selectAllProdotti();
+		return dao.selectAll(" where idCategoria = " + idCat);
 	}
 
 	@Override
@@ -59,9 +59,18 @@ public class ProdottoServiceImpl implements ProdottoService {
 		try {
 			return dao.select(idProdotto);
 		} catch (Exception e) {
-			throw new ProdottoNonTrovatoException("La chiave " + idProdotto + " non trovata! " + e.getMessage());
+			throw new ProdottoNonTrovatoException("Chiave " + idProdotto + " non trovata!\n" + e.getMessage());
 		}
+	
+	}
+	@Override
+	public boolean eliminaProdotto(int idProdotto) {
+		return dao.delete(idProdotto);
 		
 	}
 
+	@Override
+	public boolean modificaSchedaProdotto(Prodotto p) {
+		return dao.update(p);
+	}
 }

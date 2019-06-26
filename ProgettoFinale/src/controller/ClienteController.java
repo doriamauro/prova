@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Attivo;
 import bean.Cliente;
 import bean.Ordine;
 import exception.ClienteException;
@@ -26,21 +27,29 @@ public class ClienteController {
 	public ModelAndView registraCliente(Cliente c) {
 		try {
 			service.registraCliente(c);
-			String username = c.getUsername();
-			return new ModelAndView("registrazioneOk", "username", username);
+			return new ModelAndView("home");
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
 	}
 
 	@RequestMapping("/loginCliente")
-	public ModelAndView logCliente(String username, String password, HttpSession session) {
+	public ModelAndView logCliente(String username, String password, HttpSession session) {		
+		Cliente c = service.getCliente(username);
 		try {
 			if (service.checkCredenziali(username, password)) {
-				session.setAttribute("login", username);
-				return new ModelAndView("home");
+				if (c.getAttivo().equals(Attivo.SI)) {
+					session.setAttribute("login", username);
+					session.setMaxInactiveInterval(0);
+					return new ModelAndView("home");
+				}
+				else {
+					return new ModelAndView("riabilitati");
+				}
 			}
-			return new ModelAndView("login");
+			else {
+				return new ModelAndView("login");
+			}
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
@@ -49,24 +58,24 @@ public class ClienteController {
 	@RequestMapping("/datiCliente")
 	public ModelAndView visualizzaDati(String username) {
 		Cliente c = service.getCliente(username);
-		return new ModelAndView("schedaCliente", "cliente", c);
+		return new ModelAndView("datiUtente", "cliente", c);
 	}
 	
 	@RequestMapping("/disabilitaCliente")
-	public ModelAndView disabilitaCliente(String username) {
+	public ModelAndView disabilitaCliente(String username, HttpSession session) {
 		try {
 			service.disabilitaCliente(username);
-			return new ModelAndView("disabilitazione","username", username);
+			return logoutCliente(session);
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
 		
 	}
 	@RequestMapping("/riabilitaCliente")
-	public ModelAndView riabilitaCliente(String username, String password) {
+	public ModelAndView riabilitaCliente(String username, String password, HttpSession session) {
 		try {
 			service.riabilitaCliente(username, password);
-			return new ModelAndView("riabilitazione","username", username);
+			return logCliente(username, password, session);
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 
@@ -75,7 +84,18 @@ public class ClienteController {
 	
 	public ModelAndView visualizzaOrdini(String username) {
 		List<Ordine> lista = service.getOrdini(username);
-		return new ModelAndView("listaOrdini", "lista", lista);
+		return new ModelAndView("visualizzaOrdini", "lista", lista);
 	}
+	
+	@RequestMapping("/logoutCliente")
+	public ModelAndView logoutCliente(HttpSession session) {
 		
+//		HttpSession session = request.getSession();
+		
+//		if(session.getAttribute("login") != null) {
+			session.invalidate();
+			return new ModelAndView("home");
+//		}
+		
+	}
 }
