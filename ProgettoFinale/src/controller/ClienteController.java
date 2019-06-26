@@ -42,19 +42,26 @@ public class ClienteController {
 			if (service.checkCredenziali(username, password)) {
 				if (c.getAttivo().equals(Attivo.SI) && c.getAdmin().equals(Admin.NO)) {
 					session.setAttribute("login", username);
-					session.setAttribute("admin", false);
+					session.setAttribute("admin", c.getAdmin().ordinal());
+					session.setAttribute("affidabile",c.getAffidabile().ordinal());
 					session.setMaxInactiveInterval(0);
 					return new ModelAndView("home");
 				}
-				else {
+				else if (c.getAttivo().equals(Attivo.SI) && c.getAdmin().equals(Admin.SI)){
+					session.setAttribute("login", username);
+					session.setAttribute("admin", c.getAdmin().ordinal());
+					session.setAttribute("affidabile",c.getAffidabile().ordinal());
+					session.setMaxInactiveInterval(0);
+					return new ModelAndView("home");
+				}
+					else
 					return new ModelAndView("riabilitati");
 				}
-			}
 			else {
-				return new ModelAndView("login");
+				return new ModelAndView("login"); // non ci entra mai
 			}
-		} catch (ClienteException e) {
-			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+		} catch (ClienteException e) { // per pwd sbagliata o per username non trovato
+			return new ModelAndView("login", "msg", e.getMessage());
 		}
 	}
 

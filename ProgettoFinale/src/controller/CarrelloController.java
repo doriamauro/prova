@@ -69,6 +69,10 @@ public class CarrelloController {
 	@GetMapping("/modalita")
 	public ModelAndView getModPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model, HttpSession session) {
 		
+		if ((Integer)session.getAttribute("affidabile")==0) {
+			return new ModelAndView("erroreGenerico", "msg", "Impossibile procedere all'acquisto. Utente non affidabile!");
+		}
+		
 		String username = (String)session.getAttribute("login");
 		datOrd.setUsername(username);
 		return new ModelAndView("informazioniPagamento", "modpagamento", serviceCarrello.getAllModPagamento());
