@@ -4,14 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.Categoria;
 import bean.Prodotto;
 
+@Repository
+@Transactional
 public class ProdottoDAOImpl implements ProdottoDAO {
 	
+	@Autowired
 	private JdbcTemplate ptemplate;
 
 	@Override
