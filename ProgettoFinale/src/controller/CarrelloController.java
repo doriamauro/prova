@@ -111,9 +111,7 @@ public class CarrelloController {
 	}
 
 	@GetMapping("finalizza")
-	
 	public ModelAndView acquista(@ModelAttribute("datiordine") DatiOrdine datOrd) {
-		
 		serviceCarrello.finalizzaAcquisto(datOrd);
 		return new ModelAndView("grazie");
 				
