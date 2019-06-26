@@ -48,7 +48,7 @@ public class ProdottoController {
 		return new ModelAndView("listaProdotti", "prodotti", prodotti);
 	}
 	
-	@RequestMapping("/search")
+	@RequestMapping("/searchSconto")
 	public ModelAndView ricercaProdottiScontati() {
 		List<Prodotto> prodotti= service.ricercaProdottiScontati();
 		return new ModelAndView("listaProdotti", "prodotti", prodotti);

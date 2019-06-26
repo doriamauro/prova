@@ -11,6 +11,7 @@ public interface CarrelloService {
 	public List<ModPagamento> getAllModPagamento();
 	public ModPagamento getModPagamento(int idMod);
 	public DatiRate getDatiRate();
+	
 	public void finalizzaAcquisto(DatiOrdine d);
 	
 	

@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,18 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public boolean modificaSchedaProdotto(Prodotto p) {
 		return dao.update(p);
+	}
+	
+	@Override
+	public List<String> getMarche() {
+		List<Prodotto> lista = dao.selectAllProdotti();
+		List<String> marche = new ArrayList<String>();
+		for (int i = 0; i < lista.size(); i++) {
+			if(!marche.contains(lista.get(i).getMarca())) {
+				String marca= lista.get(i).getMarca();
+				marche.add(marca);
+			}
+		}
+		return marche;
 	}
 }
