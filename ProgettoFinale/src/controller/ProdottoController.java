@@ -21,7 +21,7 @@ import service.UtenteService;
 @RequestMapping("/prod")
 public class ProdottoController {
 
-	@Autowired
+	@Autowired 
 	private ProdottoService service;
 	
 	@RequestMapping("/list")
