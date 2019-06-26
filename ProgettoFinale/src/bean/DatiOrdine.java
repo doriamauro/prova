@@ -16,9 +16,6 @@ public class DatiOrdine {
 	private ModPagamento modPag;
 	private IndirizzoOrdine indOrd;
 	private String scelta;
-	 
-	@Autowired
-	private ProdottoService serviceP;
 	
 	public DatiOrdine() {}
 
@@ -64,21 +61,17 @@ public class DatiOrdine {
 	public void addProdotto(Prodotto p) {
 		for (Prodotto pList : this.prodotti) {
 			if (p.getIdProdotto()==pList.getIdProdotto()) {
-				pList.setDisponibilita(pList.getDisponibilita()+p.getDisponibilita());
+				this.variaQuantita(p);
 				return;
 			}
 		}
 		this.prodotti.add(p);
 	}
 	
-	public Prodotto removeProdotto(Prodotto p) {
-		for (Prodotto pList : this.prodotti) {
-			if (p.getIdProdotto()==pList.getIdProdotto()) {
-				this.prodotti.remove(p);
-				return p;
-			}
-		}
-		return null;
+	public Prodotto removeProdotto(int idProdotto) {
+		
+		int index = this.prodotti.indexOf(new Prodotto(idProdotto));
+		return this.prodotti.remove(index);
 	}
 
 	public double calcolaTotale() {
@@ -96,7 +89,7 @@ public class DatiOrdine {
 	public void variaQuantita(Prodotto p) {
 		int index = this.prodotti.indexOf(new Prodotto(p.getIdProdotto()));
 		if (index != -1) {
-			this.prodotti.get(index).setDisponibilita(this.prodotti.get(index).getDisponibilita()+p.getDisponibilita());
+			this.prodotti.get(index).setDisponibilita(this.prodotti.get(index).getDisponibilita() + p.getDisponibilita());
 
 			if (this.prodotti.get(index).getDisponibilita()<=0) {
 				this.prodotti.remove(index);
