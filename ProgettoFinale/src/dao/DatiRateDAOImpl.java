@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import bean.DatiRate;
 import dao.DatiRateMapper;
-
+//
 @Repository
 @Transactional
 public class DatiRateDAOImpl implements DatiRateDAO {
