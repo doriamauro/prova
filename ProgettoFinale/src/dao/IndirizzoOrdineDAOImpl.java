@@ -67,11 +67,11 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 
 	}
  
-//	@Override  idIndOrd è string!
-//	public int getProxID() {
-//		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
-//		return id+1;
-//	}
+	@Override  //idIndOrd è string!
+	public int getProxID() {
+		int id = ioTemplate.queryForObject("select max(idIndOrdine) from indirizzoOrdine", Integer.class);
+		return id+1;
+	}
 
 }
 
