@@ -40,6 +40,7 @@ public class CarrelloController {
 		return datOrd.getProdotti();		
 	}
 
+	// questo metodo sarà lo stesso ad essere invocato quando si annulla il pagamento!
 	@RequestMapping("/all")
 	public String getCarrello(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model) {
 
@@ -50,21 +51,18 @@ public class CarrelloController {
 	@GetMapping("/remove")
 	@ResponseBody
 	public List<Prodotto> rimuoviProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto) throws ProdottoNonTrovatoException {
-		
+
 		datOrd.removeProdotto(idProdotto);
 		return datOrd.getProdotti();
-		
+
 	}  
 
-	@GetMapping("/remove")
-//		public String annulla(@ModelAttribute("datiordine") DatiOrdine datOrd) {
-//			
-//		}
+	
 
-	
-	
-	
-	
+
+
+
+
 	@ModelAttribute("datiordine")
 	public DatiOrdine getDatiOrdine(ModelMap map) {
 		if (map.containsKey("datiordine"))
