@@ -15,7 +15,7 @@ public interface ProdottoService {
 	public List <Prodotto> ricercaProdottiPerMarca (String marca);
 	public List <Prodotto> ricercaProdottiPerPrezzoUnitario (double min, double max);
 	public List <Prodotto> ricercaProdottiScontati ();
-
-	
+	public boolean eliminaProdotto(int idProdotto); 
+	public boolean modificaSchedaProdotto(Prodotto p);
 
 }

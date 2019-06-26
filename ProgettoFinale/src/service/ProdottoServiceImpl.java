@@ -7,63 +7,70 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import bean.Categoria;
 import bean.Prodotto;
 import dao.CategoriaDAO;
 import dao.ProdottoDAO;
 import exception.ProdottoNonTrovatoException;
 
-
 @Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ProdottoServiceImpl implements ProdottoService {
 
 	@Autowired
-	private ProdottoDAO daoP;
+	private ProdottoDAO dao;
 	@Autowired
-	private CategoriaDAO daoC;
-		
+	private CategoriaDAO daoCat;
+	
 	@Override
 	public List<Categoria> getCategorie() {
-		List<Categoria> lista= daoC.selectAllCategorie();
-		return lista;
+		return daoCat.selectAllCategorie();
 	}
-
 
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
-		return daoP.selectAllProdotti();
+		return dao.selectAll(" where idCategoria = " + idCat);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdotti(String ricerca) {
-		return daoP.selectAll(ricerca);
+		return dao.selectAll(ricerca);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerMarca(String marca) {
-		String where = "where marca="+marca;
-		return daoP.selectAll(where);
+		return dao.selectAll(" where marca = " + marca);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerPrezzoUnitario(double min, double max) {
-		String where = "where prezzo<"+max+" and prezzo>"+min;
-		return daoP.selectAll(where);
+		return dao.selectAll(" where prezzouni < " + max + " and prezzouni > " + min);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiScontati() {
-		return daoP.selectAll("where sconto > 0");
+		
+		return dao.selectAll("where sconto > 0");
 	}
 
 	@Override
 	public Prodotto getSchedaProdotto(int idProdotto) throws ProdottoNonTrovatoException {
+		
 		try {
-			return daoP.select(idProdotto);
+			return dao.select(idProdotto);
 		} catch (Exception e) {
-			throw new ProdottoNonTrovatoException("La chiave " + idProdotto + " non trovata! " + e.getMessage());
+			throw new ProdottoNonTrovatoException("Chiave " + idProdotto + " non trovata!\n" + e.getMessage());
+		}
+	
+	}
+	@Override
+	public boolean eliminaProdotto(int idProdotto) {
+		return dao.delete(idProdotto);
+		
 	}
 
-}
+	@Override
+	public boolean modificaSchedaProdotto(Prodotto p) {
+		return dao.update(p);
+	}
 }

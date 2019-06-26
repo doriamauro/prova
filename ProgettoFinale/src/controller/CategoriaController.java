@@ -17,7 +17,7 @@ import service.UtenteService;
 
 @Controller
 @RequestMapping("/cat")
-public class CategoriaController {
+public class CategoriaController { 
 
 
 	
@@ -90,23 +90,13 @@ public class CategoriaController {
 		return "datiRate";
 	}
 	
-	@RequestMapping("/eraseProd")
-	public String eliminaProdotto(int idProdotto, ModelMap model) {
-		boolean b=service.eliminaProdotto(idProdotto);
-		if(b==false) {
-			model.addAttribute("msg", "Prodotto non eliminato");
-			return "erroreGenerico";
-		}
-		else return "listaProdotti";
+	@RequestMapping("/pageCreaProd")
+	public String paginaCreaProdotto() {
+		return "dettagliProdotto";
 	}
 	
-	@RequestMapping("/editProd")
-	public String modificaProd(Prodotto p, ModelMap model) {
-		boolean b= service.modificaSchedaProdotto(p);
-		if(b==false) {
-			model.addAttribute("msg", "Prodotto non modificato");
-			return "erroreGenerico";
-		}
-		else return "dettagliProdotto";
+	@RequestMapping("/pageRate")
+	public String paginaRate() {
+		return "datiRate";
 	}
 }
