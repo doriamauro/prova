@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.ModPagamento;
 import bean.Ordine;
 import bean.OrdineMapper;
 
 @Repository
+@Transactional
 public class OrdineDAOImpl implements OrdineDAO {
 
 	@Autowired
