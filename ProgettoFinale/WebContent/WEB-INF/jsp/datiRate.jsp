@@ -1,3 +1,4 @@
+<%@page import="bean.DatiRate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,18 +11,32 @@
 
 
 
-<!-- DA FINIRE CON JAVASCRIPT -->
+<!-- METTERE FUNZIONE -->
 
 
 
 
 Dati rateizzazione: <br><br>
-<form method="get" action="modRate">
-	<input id="i1" type="text" name="tan"> Tan  <br>
-	<input id="i2" type="text" name="maxTaeg"> max Taeg <br>
-	<input id="i3" type="text" name="nRate"> numero di rate <br>
-	<input type="button" value="Modifica" onclick="send()"> 
-</form>
+
+<% DatiRate dr= (DatiRate) request.getAttribute("datiRate");
+%>
+
+ <div class="datiRate">
+          <span><%= dr.getTan() %></span>
+          <span><%= dr.getMaxTaeg() %></span>
+          <span><%= dr.getnRate() %></span>
+            
+        </div>
+        
+        
+<div class="bottoni">
+ <script type="text/javascript">
+      $('.modifica-btn').on('click', function(e) {
+    		
+    	    	});
+      
+
+  </script>
 
 
 </body>
