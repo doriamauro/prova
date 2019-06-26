@@ -15,7 +15,6 @@ public class DatiOrdine {
 	private String username;
 	private ModPagamento modPag;
 	private IndirizzoOrdine indOrd;
-	private String scelta;
 	
 	public DatiOrdine() {}
 
@@ -26,6 +25,7 @@ public class DatiOrdine {
 		this.indOrd = indOrd;
 	}
 
+	
 	public ArrayList<Prodotto> getProdotti() {
 		return prodotti;
 	}
@@ -61,7 +61,7 @@ public class DatiOrdine {
 	public void addProdotto(Prodotto p) {
 		for (Prodotto pList : this.prodotti) {
 			if (p.getIdProdotto()==pList.getIdProdotto()) {
-				this.variaQuantita(p);
+				this.variaQuantita(p.getIdProdotto(),p.getDisponibilita());
 				return;
 			}
 		}
@@ -86,10 +86,10 @@ public class DatiOrdine {
 		return costoTot;
 	}
  
-	public void variaQuantita(Prodotto p) {
-		int index = this.prodotti.indexOf(new Prodotto(p.getIdProdotto()));
+	public void variaQuantita(int idProdotto, int quantita) {
+		int index = this.prodotti.indexOf(new Prodotto(idProdotto));
 		if (index != -1) {
-			this.prodotti.get(index).setDisponibilita(this.prodotti.get(index).getDisponibilita() + p.getDisponibilita());
+			this.prodotti.get(index).setDisponibilita(this.prodotti.get(index).getDisponibilita() + quantita);
 
 			if (this.prodotti.get(index).getDisponibilita()<=0) {
 				this.prodotti.remove(index);

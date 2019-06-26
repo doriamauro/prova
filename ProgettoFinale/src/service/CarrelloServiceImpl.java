@@ -28,7 +28,7 @@ import dao.ModPagamentoDAO;
 import dao.OrdineDAO;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW)
+@Transactional
 public class CarrelloServiceImpl implements CarrelloService {
 
 	@Autowired
@@ -45,6 +45,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 	private ModPagamentoDAO daoModPag;
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void finalizzaAcquisto(DatiOrdine d) {
 		
 		//inserisce in indirizzoOrdine l'indirizzo
