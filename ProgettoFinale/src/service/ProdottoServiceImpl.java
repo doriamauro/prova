@@ -33,12 +33,12 @@ public class ProdottoServiceImpl implements ProdottoService {
 
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
-		return dao.selectAllProdotti();
+		return daoP.selectAllProdotti();
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdotti(String ricerca) {
-		return dao.selectAll(ricerca);
+		return daoP.selectAll(ricerca);
 	}
 
 	@Override
