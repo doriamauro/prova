@@ -12,31 +12,35 @@ import bean.Cliente;
 import bean.Ordine;
 import dao.ClienteDAO;
 import exception.ClienteException;
+import prove.ClienteService;
 
 
 @Service
 @Transactional
 //
 public class ClienteServiceImpl implements ClienteService {
-// ciao
+//ciao
 	@Autowired
 	private ClienteDAO dao;
 
 	@Override
 	public void registraCliente(Cliente c) throws ClienteException {
-//		try {
+		try {
 			dao.insert(c);
-//		} catch (DuplicateKeyException e) {
-//			throw new ClienteException("Il cliente con username "+ c.getUsername() +" è già registrato");
-//		}
+		} catch (DuplicateKeyException e) {
+			throw new ClienteException("Il cliente con username "+ c.getUsername() +" è già registrato");
+		}
 	}
 
 	@Override
 	
-	public boolean checkCredenziali(String username, String password) {// throws ClienteException {
+	public boolean checkCredenziali(String username, String password) throws ClienteException {
 		Cliente c = dao.select(username);
-		if(c==null || !c.getPassword().equals(password))
-			return false;
+		if(c==null)
+			throw new ClienteException("Username non trovato");
+		if(!c.getPassword().equals(password))
+			throw new ClienteException("Password errata!");
+	
 		return true;
 		
 		
@@ -44,17 +48,22 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
+	//dà null se non esiste
 	public Cliente getCliente(String username) {
 				return dao.select(username);
 	}
 
 	@Override
 	public void updateCliente(Cliente c) throws ClienteException {
-dao.update(c);
+      Cliente c2 = dao.select(c.getUsername());
+      if(c2 == null)
+      	throw new ClienteException("Username non trovato");
+		dao.update(c);
 
 	}
 
 	@Override
+	// da provare
 	public List<Ordine> getOrdini(String username) {
 		return dao.selectAll(username);
 	}
@@ -62,18 +71,30 @@ dao.update(c);
 	@Override
 	public void disabilitaCliente(String username) throws ClienteException {
 			Cliente c =  dao.select(username);
+			if(c==null)
+				throw new ClienteException("Username non trovato");
+			if (c.getAttivo().equals(Attivo.NO))
+				throw new ClienteException("Cliente già disabilitato");
 			if (c.getAttivo().equals(Attivo.SI)) {
 				c.setAttivo(Attivo.NO);
 				dao.update(c);
 			}
+		
 	}
 
 	@Override
 	public void riabilitaCliente(String username, String password) throws ClienteException {
 			Cliente c =  dao.select(username);
+			if(c==null)
+				throw new ClienteException("Username non trovato");
+			if(!c.getPassword().equals(password))
+				throw new ClienteException("Password errata!");
+			if(c.getAttivo().equals(Attivo.SI))
+				throw new ClienteException("Utente già attivo");
 			if (c.getPassword().equals(password) && c.getAttivo().equals(Attivo.NO)) {
 				c.setAttivo(Attivo.SI);
 				dao.update(c);}
+			
 	}
 
 }
