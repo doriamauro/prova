@@ -9,13 +9,12 @@ public interface ProdottoDAO {
 
 	// Amministratore
 	public void insert(Prodotto p);
-	public boolean delete(String idProdotto);
-	public void update(Prodotto p);
+	public boolean delete(int idProdotto);
+	public boolean update(Prodotto p); 
 	
 	// Utente
-	public Prodotto select(String idProdotto);
+	public Prodotto select(int idProdotto);
 	public List<Prodotto> selectAllProdotti();
 	public List<Prodotto> selectAll(String where);
-	public List<Categoria> selectAllCategorie();
 
 }

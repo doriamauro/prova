@@ -3,10 +3,11 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+//da
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,16 +16,25 @@ import bean.Affidabile;
 import bean.Attivo;
 import bean.Cliente;
 import bean.Ordine;
+import bean.OrdineMapper;
 import bean.Tipologia;
-
+//
 
 @Repository
 @Transactional
 public class ClienteDAOImpl implements ClienteDAO {
-
+//
 	@Autowired
 	private JdbcTemplate template;
 
+
+	public JdbcTemplate getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+	}
 
 	@Override
 	public void insert(Cliente c) {
@@ -32,16 +42,16 @@ public class ClienteDAOImpl implements ClienteDAO {
 		template.update("insert into cliente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", c.getUsername(),
 				c.getNome(),
 				c.getCognome(),
-				c.getTipologia(),
+				c.getTipologia().ordinal(),
 				c.getPartitaIva(),
 				c.getCodiceFiscale(),
 				c.getCellulare(),
 				c.getTelefonoFisso(),
 				c.getEmail(),
 				c.getPassword(),
-				c.getAttivo(),
-				c.getAdmin(),
-				c.getAffidabile(),
+				c.getAttivo().ordinal(),
+				c.getAdmin().ordinal(),
+				c.getAffidabile().ordinal(),
 				c.getVia(),
 				c.getCap(),
 				c.getComune(),
@@ -51,10 +61,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public Cliente select(String username) {
-
-		Cliente c = template.queryForObject("select * from cliente where username = ?", new ClienteMapper(), username);
-
-		return c;
+// Nel main non ritorna null. org.springframework.dao.EmptyResultDataAccessException
+		List<Cliente> c = template.query("select * from cliente where username = ?", new ClienteMapper(), username);
+		//System.out.println(c);
+		if(c.size()==0)
+			return null;
+		return c.get(0);
 
 	}
 
@@ -79,16 +91,16 @@ public class ClienteDAOImpl implements ClienteDAO {
 				+ "nazione = ?  where username = ?",
 				c.getNome(),
 				c.getCognome(),
-				c.getTipologia(),
+				c.getTipologia().ordinal(),
 				c.getPartitaIva(),
 				c.getCodiceFiscale(),
 				c.getCellulare(),
 				c.getTelefonoFisso(),
 				c.getEmail(),
 				c.getPassword(),
-				c.getAttivo(),
-				c.getAdmin(),
-				c.getAffidabile(),
+				c.getAttivo().ordinal(),
+				c.getAdmin().ordinal(),
+				c.getAffidabile().ordinal(),
 				c.getVia(),
 				c.getCap(),
 				c.getComune(),
@@ -98,8 +110,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
+	// da provare
 	public List<Ordine> selectAll(String username) {
-		return template.query("select o.* from cliente c, ordine o where c.username = o.usOrdine and c.username = ?", 
+		return template.query("select o.* from cliente c, ordine o where c.username = ? and c.username = o.usOrdine", 
 				new OrdineMapper(), username);
 	}
 
@@ -109,7 +122,9 @@ class ClienteMapper implements RowMapper<Cliente>{
 
 	@Override
 	public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
-
+		System.out.println("passato da qui");
+		if(rowNum==0) return null;
+		
 		Cliente c = new Cliente();
 		c.setUsername(rs.getString("username"));
 		c.setNome(rs.getString("nome"));
@@ -164,19 +179,3 @@ class ClienteMapper implements RowMapper<Cliente>{
 	}
 }
 
-class OrdineMapper implements RowMapper<Ordine> {
-
-	@Override
-	public Ordine mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Ordine o = new Ordine();
-
-		o.setCodOrdine(rs.getString("codOrdine"));
-		o.setUsOrdine(rs.getString("usOrdine"));
-		o.setDataOrdine(rs.getDate("dataOrdine"));
-		o.setPrezzoFinale(rs.getDouble("prezzoFinale"));
-		o.setIdIndOrd(rs.getString("idIndOrd"));
-		o.setIdModPag(rs.getString("idModPag"));
-
-		return o;
-	}
-}

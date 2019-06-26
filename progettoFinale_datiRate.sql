@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `composizioneOrdini`
+-- Table structure for table `datiRate`
 --
 
-DROP TABLE IF EXISTS `composizioneOrdini`;
+DROP TABLE IF EXISTS `datiRate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `composizioneOrdini` (
-  `quantita` int(11) NOT NULL,
-  `idOrdine` varchar(30) NOT NULL,
-  `idProdotto` int(11) NOT NULL,
-  KEY `cod_idx` (`idOrdine`),
-  KEY `idProdotto_idx` (`idProdotto`),
-  CONSTRAINT `cod` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idProdotto` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `datiRate` (
+  `tan` double NOT NULL,
+  `maxTaeg` double NOT NULL,
+  `nRate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `composizioneOrdini`
+-- Dumping data for table `datiRate`
 --
 
-LOCK TABLES `composizioneOrdini` WRITE;
-/*!40000 ALTER TABLE `composizioneOrdini` DISABLE KEYS */;
-/*!40000 ALTER TABLE `composizioneOrdini` ENABLE KEYS */;
+LOCK TABLES `datiRate` WRITE;
+/*!40000 ALTER TABLE `datiRate` DISABLE KEYS */;
+INSERT INTO `datiRate` VALUES (4.89,6.17,36);
+/*!40000 ALTER TABLE `datiRate` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 14:27:48
+-- Dump completed on 2019-06-25 17:48:59

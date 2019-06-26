@@ -16,31 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `indirizzoOrdine`
+-- Table structure for table `ordine`
 --
 
-DROP TABLE IF EXISTS `indirizzoOrdine`;
+DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `indirizzoOrdine` (
-  `idIndOrdine` varchar(45) NOT NULL,
-  `via` varchar(45) NOT NULL,
-  `comune` varchar(45) NOT NULL,
-  `cap` varchar(45) NOT NULL,
-  `provincia` varchar(45) NOT NULL,
-  `nazione` varchar(45) NOT NULL,
-  PRIMARY KEY (`idIndOrdine`)
+CREATE TABLE `ordine` (
+  `codOrdine` varchar(30) NOT NULL,
+  `usOrdine` varchar(30) NOT NULL,
+  `dataOrdine` date NOT NULL,
+  `prezzoFinale` double NOT NULL,
+  `idIndOrd` varchar(30) NOT NULL,
+  `idModPag` varchar(30) NOT NULL,
+  PRIMARY KEY (`codOrdine`),
+  KEY `username_idx` (`usOrdine`),
+  KEY `idIndOrdine_idx` (`idIndOrd`),
+  KEY `idMod_idx` (`idModPag`),
+  CONSTRAINT `idIndOrdine` FOREIGN KEY (`idIndOrd`) REFERENCES `indirizzoordine` (`idIndOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idMod` FOREIGN KEY (`idModPag`) REFERENCES `modpagamento` (`idMod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `username` FOREIGN KEY (`usOrdine`) REFERENCES `cliente` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `indirizzoOrdine`
+-- Dumping data for table `ordine`
 --
 
-LOCK TABLES `indirizzoOrdine` WRITE;
-/*!40000 ALTER TABLE `indirizzoOrdine` DISABLE KEYS */;
-INSERT INTO `indirizzoOrdine` VALUES ('rm800','condotti','roma','0127','rm','italia');
-/*!40000 ALTER TABLE `indirizzoOrdine` ENABLE KEYS */;
+LOCK TABLES `ordine` WRITE;
+/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:53
+-- Dump completed on 2019-06-25 17:49:00

@@ -16,27 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `modPagamento`
+-- Table structure for table `indirizzoOrdine`
 --
 
-DROP TABLE IF EXISTS `modPagamento`;
+DROP TABLE IF EXISTS `indirizzoOrdine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `modPagamento` (
-  `idMod` varchar(30) NOT NULL,
-  `modalita` varchar(45) NOT NULL,
-  PRIMARY KEY (`idMod`)
+CREATE TABLE `indirizzoOrdine` (
+  `idIndOrdine` varchar(45) NOT NULL,
+  `via` varchar(45) NOT NULL,
+  `comune` varchar(45) NOT NULL,
+  `cap` varchar(45) NOT NULL,
+  `provincia` varchar(45) NOT NULL,
+  `nazione` varchar(45) NOT NULL,
+  PRIMARY KEY (`idIndOrdine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `modPagamento`
+-- Dumping data for table `indirizzoOrdine`
 --
 
-LOCK TABLES `modPagamento` WRITE;
-/*!40000 ALTER TABLE `modPagamento` DISABLE KEYS */;
-INSERT INTO `modPagamento` VALUES ('b155','bonifico bancario'),('b500','bonifico postale'),('c455','carta di credito'),('m777','bancomat'),('pp899','paypal');
-/*!40000 ALTER TABLE `modPagamento` ENABLE KEYS */;
+LOCK TABLES `indirizzoOrdine` WRITE;
+/*!40000 ALTER TABLE `indirizzoOrdine` DISABLE KEYS */;
+INSERT INTO `indirizzoOrdine` VALUES ('rm800','condotti','roma','0127','rm','italia');
+/*!40000 ALTER TABLE `indirizzoOrdine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:54
+-- Dump completed on 2019-06-25 17:48:58

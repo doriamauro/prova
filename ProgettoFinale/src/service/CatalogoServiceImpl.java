@@ -46,8 +46,8 @@ public class CatalogoServiceImpl implements CatalogoService{
 	
 	try {
 		if(dao.select(idCategoria)!= null) {
-		p.setIdCategoria(idCategoria); 
-		dao.update(p);
+		p.setIdCategoria(idCategoria);
+		dao.updateProd(p);
 		}
 	}catch(Exception e) {
 		throw new CategoriaException("Categoria inesistente");
@@ -67,14 +67,13 @@ public class CatalogoServiceImpl implements CatalogoService{
 
 	@Override
 	public boolean eliminaProdotto(int idProdotto) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteProd(idProdotto);
+		
 	}
 
 	@Override
 	public boolean modificaSchedaProdotto(Prodotto p) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.updateProd(p);
 	}
 
 

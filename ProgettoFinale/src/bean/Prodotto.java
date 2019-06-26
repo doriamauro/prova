@@ -21,13 +21,14 @@ public class Prodotto {
 	
 	private String immagineSec;
 	
-	private String idCategoria; //FK
+	private int idCategoria;
+	private int sconto;
 	
 	public Prodotto() {}
 
 	public Prodotto(int idProdotto, String descrizione, String marca, String codiceEAN, double prezzoUni,
 			int disponibilita, String linkProduttore, double costoSped, int tempoConsegna, String immaginePrimaria,
-			String immagineSec, String idCategoria) {
+			String immagineSec, int idCategoria, int sconto) {
 		this.idProdotto = idProdotto;
 		this.descrizione = descrizione;
 		this.marca = marca;
@@ -40,6 +41,7 @@ public class Prodotto {
 		this.immaginePrimaria = immaginePrimaria;
 		this.immagineSec = immagineSec;
 		this.idCategoria = idCategoria;
+		this.sconto = sconto;
 	}
 
 	public int getIdProdotto() {
@@ -130,12 +132,20 @@ public class Prodotto {
 		this.immagineSec = immagineSec;
 	}
 
-	public String getIdCategoria() {
+	public int getIdCategoria() {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(String idCategoria) {
+	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+
+	public int getSconto() {
+		return sconto;
+	}
+
+	public void setSconto(int sconto) {
+		this.sconto = sconto;
 	}
 
 	@Override
@@ -144,8 +154,6 @@ public class Prodotto {
 				+ ", codiceEAN=" + codiceEAN + ", prezzoUni=" + prezzoUni + ", disponibilita=" + disponibilita
 				+ ", linkProduttore=" + linkProduttore + ", costoSped=" + costoSped + ", tempoConsegna=" + tempoConsegna
 				+ ", immaginePrimaria=" + immaginePrimaria + ", immagineSec=" + immagineSec + ", idCategoria="
-				+ idCategoria + "]";
-	}
-	
-	
+				+ idCategoria + ", sconto=" + sconto + "]";
+	}	
 }
