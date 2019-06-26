@@ -55,11 +55,12 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public void updateCliente(Cliente c) throws ClienteException {
+	public boolean updateCliente(Cliente c) throws ClienteException {
       Cliente c2 = dao.select(c.getUsername());
       if(c2 == null)
       	throw new ClienteException("Username non trovato");
 		dao.update(c);
+		return true;
 
 	}
 
