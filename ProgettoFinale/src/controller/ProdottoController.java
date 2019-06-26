@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Categoria;
@@ -24,10 +28,13 @@ public class ProdottoController {
 	@Autowired 
 	private ProdottoService service;
 	
-	@RequestMapping("/list")
-	public ModelAndView visualizzaProdotti(int idCategoria) {
+	//@RequestMapping(value="/list/{idCategoria}", method = RequestMethod.GET)// params = "categorie= {idCategoria}")
+@RequestMapping(value="/list", method = RequestMethod.POST)
+	//@ResponseBody
+	//public @ResponseBody ModelAndView visualizzaProdotti(@PathVariable(value = "idCategoria") int idCategoria) {
+	public @ResponseBody ModelAndView visualizzaProdotti(@RequestParam(value = "menuCategorie") int idCategoria) {
 		List<Prodotto> prodotti= service.getProdotti(idCategoria);
-		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
 	@RequestMapping("/search")

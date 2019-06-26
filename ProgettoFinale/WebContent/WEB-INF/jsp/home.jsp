@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,15 +70,19 @@ function mettiACarrello(codice, index){
    
 
 <div class="shopping-cart"> 
-<form action="../prod/list">
-<select id="menuCategoria">
+<form action="../prod/list" method="post">
+<select name="menuCategorie">
 	<c:forEach var="categorie" items="${categorie}">
-		 <option value="${categorie}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
+		 <option value="${categorie.idCategoria}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
  	</c:forEach>
- 	 <input type="submit" value="Vai"> 
+ 	 
  	
 </select> 
+<input type="submit" value="Vai"> 
+
 </form>
+
+                 
 
 <%-- <% for(int i=0; i < categorie.size(); i++){%>
  --%>
@@ -95,7 +99,7 @@ function mettiACarrello(codice, index){
 	<option> <a href="listaProdotti"> Fotocamere </a> </option>
 	<option> <a href="listaProdotti"> Musica </a> </option>
 	<option> <a href="listaProdotti"> Tablet </a> </option> -->
-</select>
+<!-- </select> -->
 
 <%-- <%} %> --%>
 <form action="/prod/search">
