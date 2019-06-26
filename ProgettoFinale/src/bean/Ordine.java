@@ -2,13 +2,22 @@ package bean;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.validation.annotation.Validated;
+@Validated
 public class Ordine {
-	//
+	@NotEmpty
 	private int codOrdine;
+	@NotEmpty
 	private String usOrdine; //username cliente nell'ordine
+	@NotEmpty
 	private Date dataOrdine;
+	@NotEmpty
 	private double prezzoFinale;
+	@NotEmpty
 	private int idIndOrd; //indirizzo ordine
+	@NotEmpty
 	private int idModPag;
 	
 	public Ordine() {}
