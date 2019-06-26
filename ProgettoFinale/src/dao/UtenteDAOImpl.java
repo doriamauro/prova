@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import bean.Affidabile;
 import bean.Attivo;
 import bean.Cliente;
+import bean.Ordine;
+import bean.OrdineMapper;
 import bean.Tipologia;
 //
 @Repository
@@ -63,6 +65,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 		List<Cliente> c = template.query("select * from cliente where affidabile = 1", new ClienteMapper());
 		return c;
 	}
+	
 
 	@Override
 	public void update(Cliente c) {
@@ -71,6 +74,14 @@ public class UtenteDAOImpl implements UtenteDAO {
 				c.getEmail(), c.getPassword(), c.getAttivo(), c.getAffidabile(), c.getVia(), c.getCap(),
 				c.getComune(), c.getProvincia(),  c.getNazione(),c.getUsername());
 	}
+	
+	@Override
+	public List<Ordine> selectOrdini() {
+		return template.query("select * from ordine", new OrdineMapper());
+	}
+	
+	
+	
 	
 	class ClienteMapper implements RowMapper<Cliente> {
 
@@ -101,4 +112,6 @@ public class UtenteDAOImpl implements UtenteDAO {
 		}
 
 }
+
+	
 }
