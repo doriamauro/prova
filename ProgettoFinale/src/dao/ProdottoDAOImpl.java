@@ -38,11 +38,11 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 
 	@Override
 	public boolean update(Prodotto p) {
-		int n = ptemplate.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+		int n = ptemplate.update("update prodotto set descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,categoria=? where idProdotto = ? ) ",
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
-				p.getImmagineSec(),p.getIdCategoria(),p.getSconto(), p.getIdProdotto());
+				p.getImmagineSec(),p.getIdCategoria(),p.getSconto(), p.getSconto(), p.getIdProdotto());
 		return n==1;
 	}
 
