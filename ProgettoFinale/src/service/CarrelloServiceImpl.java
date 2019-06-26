@@ -65,10 +65,10 @@ public class CarrelloServiceImpl implements CarrelloService {
 			daoComp.insert(compOrd);
 		}
 		
-		if (d.getModPag().getIdMod().equals("INSERIREEEEEEE")) {
-			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(), daoRateDef.getTan,
-															daoRateDef.getMaxTaeg, daoRateDef.getNRate);
-			daoRateOrd.insert(datiRatOrd);
-	}
+//		if (d.getModPag().getIdMod().equals("5")) {
+//			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(), daoRateDef.getTan,
+//					daoRateDef.getMaxTaeg, daoRateDef.getNRate);
+//			daoRateOrd.insert(datiRatOrd);
+		}
 
 }
