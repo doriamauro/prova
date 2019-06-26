@@ -62,10 +62,10 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/disabilitaCliente")
-	public ModelAndView disabilitaCliente(String username) {
+	public ModelAndView disabilitaCliente(String username, HttpSession session) {
 		try {
 			service.disabilitaCliente(username);
-			return new ModelAndView("home"); //TODO logout
+			return logoutCliente(session);
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
