@@ -45,7 +45,7 @@ public class ModPagamentoDAOImpl implements ModPagamentoDAO {
 	@Override
 	public List<ModPagamento> selectAllModalita(String where) {
 		if (where==null || where==" ")
-			return this.selectAllDatiRate();
+			return this.selectAllModalita();
 		return template.query("select * from modpagamento " + where, new ModPagamentoMapper());
 	}
 
