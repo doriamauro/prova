@@ -1,7 +1,7 @@
 package bean;
 
 public class DatiRateOrdine {
-	
+	//
 	private int idOrd;
 	private double tan;
 	private double maxTaeg;
