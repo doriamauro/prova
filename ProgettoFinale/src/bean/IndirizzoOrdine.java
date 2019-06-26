@@ -1,12 +1,19 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class IndirizzoOrdine {
-	//
+	@NotEmpty
 	private int idIndOrdine;
+	@NotEmpty
 	private String via;
+	@NotEmpty
 	private String comune;
+	@NotEmpty
 	private String cap;
+	@NotEmpty
 	private String provincia;
+	@NotEmpty
 	private String nazione;
 	
 	public IndirizzoOrdine() {}
