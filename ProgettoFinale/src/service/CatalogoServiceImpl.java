@@ -12,6 +12,7 @@ import bean.Categoria;
 import bean.DatiRate;
 import bean.Prodotto;
 import dao.CatalogoDAO;
+import dao.CategoriaDAO;
 import dao.DatiRateDAO;
 import exception.CategoriaException;
 import service.CatalogoService;
@@ -22,13 +23,15 @@ public class CatalogoServiceImpl implements CatalogoService{
 
 	@Autowired
 	private CatalogoDAO dao;
-	
+	@Autowired
+	private CategoriaDAO daoC;
 	@Autowired
 	private DatiRateDAO dao1;
 	
 	@Override
 	// trattare l'errore DuplicateKeyException nel controller! Oppure genereazione automatica
 	public void creaCategoria(Categoria c) {
+		c.setIdCategoria(daoC.creaProxID());
 		dao.insert(c);
 	}
 	

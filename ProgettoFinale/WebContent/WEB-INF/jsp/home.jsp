@@ -1,8 +1,11 @@
+<%@page import="bean.Categoria"%>
 <%@page import="bean.DatiOrdine"%>
 <%@page import="java.util.List"%>
 <%@page import="bean.Prodotto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +34,8 @@ function meno(index){
 }
 
 function mettiACarrello(codice, index){
+	console.log(codice);
+	console.log(index);
 	// recuperare la username dalla form
 	var v = document.getElementById("id"+index).value;
 	
@@ -48,7 +53,7 @@ function mettiACarrello(codice, index){
 	}
 	
 	// gestire la risposta in arrivo dal server
-	xhttp.open("GET", "example/carrello/add?idProdotto=" + codice+"&quantita="+v , true);
+	xhttp.open("GET", "../../example/carrello/add?idProdotto=" + codice+"&quantita="+v , true);
 	xhttp.send();
 }
 
@@ -59,11 +64,29 @@ function mettiACarrello(codice, index){
 
 <% DatiOrdine d = (DatiOrdine) session.getAttribute("datiordine");
    List<Prodotto> lista = (List<Prodotto>) request.getAttribute("prodotti"); 
-   List<String> marche = (List<String>) request.getAttribute("marche");%>
+   List<String> marche = (List<String>) request.getAttribute("marche");
+   List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
+   %>
+   
 
 <div class="shopping-cart"> 
+<form action="../prod/list">
 <select id="menuCategoria">
-	<option> <a href="listaProdotti"> Telefonia </a></option>
+	<c:forEach var="categorie" items="${categorie}">
+		 <option value="${categorie}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
+ 	</c:forEach>
+ 	 <input type="submit" value="Vai"> 
+ 	
+</select> 
+</form>
+
+<%-- <% for(int i=0; i < categorie.size(); i++){%>
+ --%>
+
+
+<%-- 	<option> <a href="listaProdotti"><%= categorie.get(i).getNomeCategoria() %></a></option>
+ --%>
+	<!-- <option> <a href="listaProdotti"> Telefonia </a></option>
 	<option> <a href="listaProdotti"> Computer </a> </option>
 	<option> <a href="listaProdotti"> Televisori </a></option>
 	<option> <a href="listaProdotti"> Robot da cucina </a></option>
@@ -71,18 +94,19 @@ function mettiACarrello(codice, index){
 	<option> <a href="listaProdotti"> Console </a> </option>
 	<option> <a href="listaProdotti"> Fotocamere </a> </option>
 	<option> <a href="listaProdotti"> Musica </a> </option>
-	<option> <a href="listaProdotti"> Tablet </a> </option>
+	<option> <a href="listaProdotti"> Tablet </a> </option> -->
 </select>
 
+<%-- <%} %> --%>
 <form action="/prod/search">
 <input type="text" placeholder="Cerca..." name="cerca">
 <input type="submit" value="cerca"> <i class="fa fa-search"></i>
 </form>
 
 <% if(d==null || d.getProdotti().size()==0){ %>
-     <a href = "carrello"><img src="../../img/basket-empty-icon.png" alt="Carrello"></a>
+     <a href = "../../example/carrello/all"><img id="imgCarr" src="../../img/basket-empty-icon.png" alt="Carrello"></a>
 <%} else { %>
-     <a href = "carrello"><img src="../../img/basket-full-icon.png" alt="Carrello"></a>
+     <a href = "../../example/carrello/all"><img id="imgCarr"src="../../img/basket-full-icon.png" alt="Carrello"></a>
 <%}%>
 
 <a href="login"> Login </a>
@@ -102,7 +126,7 @@ function mettiACarrello(codice, index){
       <div class="item">
         <div class="image">
           <img src="<%=p.getImmaginePrimaria() %>" alt="Prodotto in Sconto" />
-        </div>
+        </div> 
 
 
         <div class="description">
@@ -120,7 +144,7 @@ function mettiACarrello(codice, index){
             <img src="../../img/plus.svg" alt="" />
           </button>
           
-          <button class="minus-btn" type="button" name="buttonAdd" onclick="mettiACarrello(<%= p.getCodiceEAN(), index %>)">
+          <button class="minus-btn" type="button" name="buttonAdd" onclick="mettiACarrello(<%= p.getIdProdotto()%>,<%= index %>)">
             <img src="../../img/add.png" alt="" />
           </button>
           <div id="esitoInserimento<%=index %>"></div>

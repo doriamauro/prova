@@ -64,6 +64,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		template.update("update categoria set nome=? where idCategoria=?",c.getNomeCategoria(),c.getIdCategoria());
 	}
 
+	@Override
+	public int creaProxID() {
+		int nextID=(template.queryForObject("select max(idCategoria) from categoria", Integer.class))+1;
+		return 	nextID;
+	}
+
 }
 
 
