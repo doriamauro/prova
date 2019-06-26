@@ -35,8 +35,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public Categoria select(int idCategoria) {
-		Categoria c = template.queryForObject("select * from categoria where idCategoria=?", new CategoriaMapper(), idCategoria);
-		return c;
+		List<Categoria> c = template.query("select * from categoria where idCategoria=?", new CategoriaMapper(), idCategoria);
+		if(c.size()==0)
+			return null;
+		return c.get(0);
 	}
 
 	@Override
