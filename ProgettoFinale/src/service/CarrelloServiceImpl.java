@@ -24,7 +24,7 @@ import dao.OrdineDAO;
 public class CarrelloServiceImpl implements CarrelloService {
 
 	
-	private ComposizioneOrdiniDAO daoComp;
+	private ComposizioneOrdiniDAO daoComp; 
 	private OrdineDAO daoOrd;
 	private DatiRateOrdineDAO daoRateOrd;
 	private IndirizzoOrdineDAO daoIndOrd;
@@ -79,10 +79,11 @@ public class CarrelloServiceImpl implements CarrelloService {
 		//inserimento nella tabella datiRateOrdini
 		if (Integer.parseInt(d.getModPag().getIdMod())==5) {
 			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(),
-														   daoRateDef.getTan,
-														   daoRateDef.getMaxTaeg,
-														   daoRateDef.getNRate);
+														   daoRateDef.selectRate().getTan(),
+														   daoRateDef.selectRate().getMaxTaeg(),
+														   daoRateDef.selectRate().getnRate());
 			daoRateOrd.insert(datiRatOrd);
 	}
 
+}
 }
