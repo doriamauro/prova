@@ -1,9 +1,10 @@
-package dao;
+package prove;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,10 @@ import bean.IndirizzoOrdine;
 import bean.Prodotto;
 
 @Repository
-@Transactional
+//@Transactional
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
+	@Autowired
 	private JdbcTemplate ioTemplate;
 	
 	
@@ -60,7 +62,7 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
  
 	@Override
 	public int getProxID() {
-		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
+		int id = ioTemplate.queryForObject("select max(idIndOrdine) from indirizzoOrdine", Integer.class);
 		return id+1;
 	}
 
