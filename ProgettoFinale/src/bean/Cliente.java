@@ -2,9 +2,7 @@ package bean;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.validation.annotation.Validated;
 
-@Validated
 public class Cliente {
 	
 	@NotEmpty
