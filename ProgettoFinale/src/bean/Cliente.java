@@ -2,7 +2,7 @@ package bean;
 
 import javax.validation.constraints.NotEmpty;
 
-
+// ciao
 public class Cliente {
 	
 	@NotEmpty
