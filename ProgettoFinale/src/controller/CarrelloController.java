@@ -54,7 +54,7 @@ public class CarrelloController {
 		datOrd.removeProdotto(idProdotto);
 		return datOrd.getProdotti();
 		
-	} 
+	}  
 
 	@GetMapping("/remove")
 //		public String annulla(@ModelAttribute("datiordine") DatiOrdine datOrd) {

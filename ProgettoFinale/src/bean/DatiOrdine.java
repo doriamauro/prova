@@ -72,7 +72,7 @@ public class DatiOrdine {
 		
 		int index = this.prodotti.indexOf(new Prodotto(idProdotto));
 		return this.prodotti.remove(index);
-	} 
+	}  
 
 	public double calcolaTotale() {
 		double costoSing = 0;
