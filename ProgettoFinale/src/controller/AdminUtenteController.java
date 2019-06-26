@@ -54,20 +54,31 @@ public class AdminUtenteController {
 		}
 	}
 	
-//	@RequestMapping("/modifica")
-//	public ModelAndView modifica(Cliente c) {
-//		try {
-//			service.modificaDatiCliente(c);
-//			
-//			return new ModelAndView("gestioneUtenti", "lista", lista);
-//		} catch (Exception e) {
-//			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
-//		}
-//	}
+	@RequestMapping("/modifica")
+	public ModelAndView modifica(Cliente c) {
+		try {
+			service.modificaDatiCliente(c);
+			return new ModelAndView("datiUtente", "c",c);
+		} catch (Exception e) {
+			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+		}
+	}
 	
-//	metodo che restituisce tutti gli ordini
-	
-	
+	//	metodo che restituisce tutti gli ordini
+
+	@RequestMapping("/visDatiCliente")
+	public ModelAndView modificaDati(String username) {
+		try {
+			Cliente c = service.visualizzaDatiCliente(username);
+			return new ModelAndView("datiUtente", "c", c);
+			
+		} catch (Exception e) {
+			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+		}
+	}
+
+
+
 	
 	
 	

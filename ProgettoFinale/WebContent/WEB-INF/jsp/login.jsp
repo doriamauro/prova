@@ -14,10 +14,9 @@
  <input type="submit" value="login"><br>
 </form>
 
-<form action="registrazioneCliente">
+<form action="invioRegistrazione">
  <input type="submit" value="registrati"><br>
 </form>
-
 
 </body>
 </html>

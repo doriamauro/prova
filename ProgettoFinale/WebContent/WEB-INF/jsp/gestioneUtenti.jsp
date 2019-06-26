@@ -16,18 +16,18 @@
 	System.out.println(c);
 	out.println("<ol>");
 	for (Cliente cl : c) {
-		out.println("<li><a href='cliente/datiCliente?username=" + cl.getUsername() + "'>" + " - "
+		out.println("<li><a href='visDatiCliente?username=" + cl.getUsername() + "'>" + " - "
 				+ cl.getCognome() + " " + cl.getNome() + "(" + cl.getEmail() + ")" + "</li><br>");
 	}
 	out.println("</ol>");
 %>
 
 <form action="affidabili">
-<input type="submit" value="visualizza clienti inaffidabili"><br>
+<input type="submit" value="visualizza clienti affidabili"><br>
 </form>
 
 <form action="inaffidabili">
-<input type="submit" value="visualizza clienti affidabili"><br>
+<input type="submit" value="visualizza clienti inaffidabili"><br>
 </form>
 
 <form action="view">

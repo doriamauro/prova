@@ -8,8 +8,6 @@
 </head>
 <body>
 
-DA DEFINIRE IL NOME DELLA JSP
-
 Registrazione dell'utente:
 
 <form action="registrazioneCliente">
