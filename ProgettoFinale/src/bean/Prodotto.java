@@ -1,26 +1,34 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class Prodotto {
 	
-//	@NotEmpty
+@NotEmpty
 	private int idProdotto;
-//	@NotEmpty
+@NotEmpty
 	private String descrizione;
-//	@NotEmpty
+@NotEmpty
 	private String marca;
 	private String codiceEAN;
-//	@NotEmpty
+	@NotEmpty
 	private double prezzoUni;
-//	@Range(min = 1)
+	@NotEmpty
 	private int disponibilita;
+	
 	private String linkProduttore;
+	@NotEmpty
 	private double costoSped;
+	@NotEmpty
 	private int tempoConsegna;
-//	@NotEmpty
+	@NotEmpty
 	private String immaginePrimaria;
 	
 	private String immagineSec;
-	
+	@NotEmpty
 	private int idCategoria;
 	private int sconto;
 	
