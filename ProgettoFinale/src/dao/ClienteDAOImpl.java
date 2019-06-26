@@ -18,7 +18,7 @@ import bean.Cliente;
 import bean.Ordine;
 import bean.OrdineMapper;
 import bean.Tipologia;
-//
+
 
 @Repository
 @Transactional
@@ -122,8 +122,8 @@ class ClienteMapper implements RowMapper<Cliente>{
 
 	@Override
 	public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
-		System.out.println("passato da qui");
-		if(rowNum==0) return null;
+		//System.out.println("passato da qui");
+		//if(rowNum==0) return null;
 		
 		Cliente c = new Cliente();
 		c.setUsername(rs.getString("username"));
