@@ -42,7 +42,7 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
-				p.getImmagineSec(),p.getIdCategoria(),p.getSconto(), p.getSconto(), p.getIdProdotto());
+				p.getImmagineSec(),p.getIdCategoria(), p.getSconto(), p.getIdProdotto());
 		return n==1;
 	}
 
