@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import bean.Categoria;
 import bean.ComposizioneOrdini;
-//
+////
 @Repository
 @Transactional
 public class ComposizioneOrdiniDAOImpl implements ComposizioneOrdiniDAO{
