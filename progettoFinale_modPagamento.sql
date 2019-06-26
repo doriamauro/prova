@@ -16,29 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `datiRateOrdine`
+-- Table structure for table `modPagamento`
 --
 
-DROP TABLE IF EXISTS `datiRateOrdine`;
+DROP TABLE IF EXISTS `modPagamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `datiRateOrdine` (
-  `idOrd` varchar(30) NOT NULL,
-  `tan` double NOT NULL,
-  `maxTaeg` double NOT NULL,
-  `nRate` int(11) NOT NULL,
-  PRIMARY KEY (`idOrd`),
-  CONSTRAINT `codOrdine` FOREIGN KEY (`idOrd`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `modPagamento` (
+  `idMod` varchar(30) NOT NULL,
+  `modalita` varchar(45) NOT NULL,
+  PRIMARY KEY (`idMod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `datiRateOrdine`
+-- Dumping data for table `modPagamento`
 --
 
-LOCK TABLES `datiRateOrdine` WRITE;
-/*!40000 ALTER TABLE `datiRateOrdine` DISABLE KEYS */;
-/*!40000 ALTER TABLE `datiRateOrdine` ENABLE KEYS */;
+LOCK TABLES `modPagamento` WRITE;
+/*!40000 ALTER TABLE `modPagamento` DISABLE KEYS */;
+INSERT INTO `modPagamento` VALUES ('1','contanti con ritiro in negozio'),('2','bonifico bancario'),('3','carta di credito'),('4','vaglia postale'),('5','rateizzazione');
+/*!40000 ALTER TABLE `modPagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:53
+-- Dump completed on 2019-06-25 17:48:59
