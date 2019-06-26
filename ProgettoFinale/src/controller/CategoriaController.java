@@ -90,5 +90,13 @@ public class CategoriaController {
 		return "datiRate";
 	}
 	
+	@RequestMapping("/pageCreaProd")
+	public String paginaCreaProdotto() {
+		return "dettagliProdotto";
+	}
 	
+	@RequestMapping("/pageRate")
+	public String paginaRate() {
+		return "datiRate";
+	}
 }

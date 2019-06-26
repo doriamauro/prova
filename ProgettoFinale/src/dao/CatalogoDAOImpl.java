@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import bean.Categoria;
 import bean.DatiRate;
 import bean.Prodotto;
+import dao.CatalogoDAO;
+import dao.CategoriaMapper2;
+import dao.DatiRateMapper2;
 
 
 @Repository
@@ -23,7 +26,7 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	@Autowired
 	private JdbcTemplate template;
 	
-
+	
 	@Override
 	public void insert(Categoria c) {
 		template.update("insert into categoria values(?,?)", c.getIdCategoria(), c.getNomeCategoria());
@@ -32,11 +35,24 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	
 	@Override
 	public void insertProdCat(int idCategoria, Prodotto p) {
-		template.update("insert into prodotto values (?,?,?,?,?,?,?,?,?,?,?)", 
-				p.getIdProdotto(), p.getDescrizione(), p.getMarca(), p.getCodiceEAN(), p.getPrezzoUni(), p.getDisponibilita(), p.getLinkProduttore(), p.getCostoSped(), p.getTempoConsegna(), p.getImmaginePrimaria(), p.getImmagineSec(), idCategoria );
+		template.update("insert into prodotto values (?,?,?,?,?,?,?,?,?,?,?,?,?)", 
+				p.getIdProdotto(),
+				p.getDescrizione(),
+				p.getMarca(),
+				p.getCodiceEAN(),
+				p.getPrezzoUni(),
+				p.getDisponibilita(),
+				p.getLinkProduttore(),
+				p.getCostoSped(),
+			 p.getTempoConsegna(),
+				p.getImmaginePrimaria(),
+				p.getImmagineSec(),
+				idCategoria,
+				p.getSconto() );
 	}
 	
 	@Override
+	//MySQLIntegrityConstraintViolationException
 	public boolean delete(int idCategoria) {
 		int n= template.update("delete from categoria where idCategoria=?", idCategoria); 		
 		if(n==0) return false;	
@@ -45,7 +61,7 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	
 	@Override
 	public boolean deleteAllProdInCat(int idCategoria) {
-		int n= template.update("delete from prodotto where idCategoria=?", idCategoria); 		
+		int n= template.update("delete from prodotto where categoria=?", idCategoria); 		
 		if(n==0) return false;	
 		else return true;
 	}
@@ -54,8 +70,8 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 
 	@Override
 	public boolean updateCat(int idCategoria, String nome) {
-		if(select(idCategoria)!=null) {
-			template.update("update categoria set nomeCategoria=? where idCategoria=?", 
+			if(select(idCategoria)!=null) {
+			template.update("update categoria set nome=? where idCategoria=?", 
 					nome, idCategoria);
 			return true;
 		}
@@ -64,16 +80,18 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 	
 	@Override
 	public Categoria select(int idCategoria) {
-		Categoria c= template.queryForObject("select * from categoria where idCategoria=?",		
+		List<Categoria> c= template.query("select * from categoria where idCategoria=?",		
 				new CategoriaMapper2(), idCategoria);
-		return c;
+		if(c.size()==0)
+			return null;
+		return c.get(0);
 		}
 			
 	
 	
 	@Override
 	public List<Categoria> selectAll() {
-		List<Categoria> categorie = template.query("select * from categoria", new CategoriaMapper2());	
+		List<Categoria> categorie = template.query("select * from categoria", new CategoriaMapper2());
 		return categorie;
 	}
 	
@@ -89,14 +107,29 @@ public class CatalogoDAOImpl implements CatalogoDAO{
 
 	@Override
 	public boolean updateProd(Prodotto p) {
-		int n = template.update("update prodotto set(descrizione=?,marca=?,codiceEAN=?,prezzoUni=?,disponibilita=?,linkProduttore=?,costoSped=?,tempoConsegna=?,immaginePrimaria=?,immagineSec=?,idCategoria=? where idProdotto = ? ) ",
+		int n = template.update("update prodotto set descrizione=?, marca=?, codiceEAN=?, prezzoUni=?, disponibilita=?, linkProduttore=?, costoSped=?, tempoConsegna=?, immaginePrimaria=?, immagineSec=?, categoria=?, sconto=? where idProdotto = ?",
 				p.getDescrizione(),p.getMarca(),p.getCodiceEAN(),p.getPrezzoUni(),
 				p.getDisponibilita(),p.getLinkProduttore(),p.getCostoSped(),
 				p.getTempoConsegna(),p.getImmaginePrimaria(),
-				p.getImmagineSec(),p.getIdCategoria(), p.getIdProdotto());
+				p.getImmagineSec(),p.getIdCategoria(), p.getSconto(), p.getIdProdotto());
 		return n==1;
 	}
 
+	@Override
+	public void updateRate(DatiRate dr) {
+		template.update("update datiRate set tan=?, maxTaeg=?, nRate=?", 
+				dr.getTan(), dr.getMaxTaeg(), dr.getnRate());
+		
+	}
+	
+	@Override
+	public DatiRate selectRate() {
+		 List<DatiRate> dd = template.query("select * from datiRate",new DatiRateMapper2());
+		 if(dd.size()==0)
+			 return null;
+		 return dd.get(0);
+		
+	}
 }
 
 
@@ -114,4 +147,21 @@ class CategoriaMapper2 implements RowMapper<Categoria>{
 
 }
 
+class DatiRateMapper2 implements RowMapper<DatiRate>{	
+	
+	
+@Override
+public DatiRate mapRow(ResultSet rs, int rowNum) throws SQLException {
+	DatiRate dr= new DatiRate();  
+	dr.setTan(rs.getDouble("Tan"));
+	dr.setMaxTaeg(rs.getDouble("maxTaeg"));
+	dr.setnRate(rs.getInt("nRate"));
+	return dr;
+}
+
+
+	
+	
+
+}
 

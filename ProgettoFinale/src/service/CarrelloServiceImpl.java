@@ -36,7 +36,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 		
 		//inserisce in indirizzoOrdine l'indirizzo
 		IndirizzoOrdine indOrd = d.getIndOrd();
-		indOrd.setIdIndOrdine(daoIndOrd.contaNumeroIndOrd()+1+"");
+		indOrd.setIdIndOrdine(daoIndOrd.getProxID()+"");
 		daoIndOrd.insert(indOrd);
 		
 		
@@ -75,7 +75,6 @@ public class CarrelloServiceImpl implements CarrelloService {
 			daoComp.insert(compOrd);
 		}
 		
-		
 		//inserimento nella tabella datiRateOrdini
 		if (Integer.parseInt(d.getModPag().getIdMod())==5) {
 			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(),
@@ -84,6 +83,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 														   daoRateDef.selectRate().getnRate());
 			daoRateOrd.insert(datiRatOrd);
 	}
+
 
 }
 }
