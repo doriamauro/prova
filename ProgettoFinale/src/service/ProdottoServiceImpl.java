@@ -7,61 +7,63 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import bean.Categoria;
 import bean.Prodotto;
 import dao.CategoriaDAO;
 import dao.ProdottoDAO;
 import exception.ProdottoNonTrovatoException;
 
+
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ProdottoServiceImpl implements ProdottoService {
 
 	@Autowired
-	private ProdottoDAO dao;
+	private ProdottoDAO daoP;
 	@Autowired
-	private CategoriaDAO daoCat;
-	
+	private CategoriaDAO daoC;
+		
 	@Override
 	public List<Categoria> getCategorie() {
-		return daoCat.selectAllCategorie();
+		List<Categoria> lista= daoC.selectAllCategorie();
+		return lista;
 	}
+
 
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
-		return dao.selectAllProdotti();
+		return daoP.selectAllProdotti();
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdotti(String ricerca) {
-		return dao.selectAll(ricerca);
+		return daoP.selectAll(ricerca);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerMarca(String marca) {
-		return dao.selectAll(" where marca = " + marca);
+		String where = "where marca="+marca;
+		return daoP.selectAll(where);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerPrezzoUnitario(double min, double max) {
-		return dao.selectAll(" where prezzouni < " + max + " and prezzouni > " + min);
+		String where = "where prezzo<"+max+" and prezzo>"+min;
+		return daoP.selectAll(where);
 	}
 
 	@Override
 	public List<Prodotto> ricercaProdottiScontati() {
-		
-		return dao.selectAll("where sconto > 0");
+		return daoP.selectAll("where sconto > 0");
 	}
 
 	@Override
 	public Prodotto getSchedaProdotto(int idProdotto) throws ProdottoNonTrovatoException {
-		
 		try {
-			return dao.select(idProdotto);
+			return daoP.select(idProdotto);
 		} catch (Exception e) {
 			throw new ProdottoNonTrovatoException("La chiave " + idProdotto + " non trovata! " + e.getMessage());
-		}
-		
 	}
 
+}
 }
