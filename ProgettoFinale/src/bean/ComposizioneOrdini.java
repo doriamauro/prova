@@ -1,7 +1,7 @@
 package bean;
 
 public class ComposizioneOrdini {
-	
+	//
 	private int quantita;
 	private int idProdotto;
 	private int idOrdine;
