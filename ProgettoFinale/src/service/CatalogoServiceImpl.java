@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import bean.Prodotto;
 import dao.CatalogoDAO;
 import dao.DatiRateDAO;
 import exception.CategoriaException;
+import prove.CatalogoService;
 
 @Service
 @Transactional(propagation= Propagation.REQUIRES_NEW)	
@@ -20,20 +22,20 @@ public class CatalogoServiceImpl implements CatalogoService{
 
 	@Autowired
 	private CatalogoDAO dao;
+	
 	@Autowired
 	private DatiRateDAO dao1;
 	
-	@Autowired
-	private DatiRateDAO daoRate;
-	
 	@Override
+	// trattare l'errore DuplicateKeyException nel controller! Oppure genereazione automatica
 	public void creaCategoria(Categoria c) {
 		dao.insert(c);
 	}
 	
 	@Override
 	public boolean eliminaCategoria (int idCategoria) {
-		return dao.deleteAllProdInCat(idCategoria);
+		this.svuotaCategoria(idCategoria);
+		return dao.delete(idCategoria);
 	}
 	
 	@Override
@@ -50,29 +52,26 @@ public class CatalogoServiceImpl implements CatalogoService{
 	@Override
 	public void addProdottoCategoria(int idCategoria, Prodotto p) throws CategoriaException {
 	
-	try {
-		if(dao.select(idCategoria)!= null) {
-		p.setIdCategoria(idCategoria);
-		dao.updateProd(p);
-		}
-	}catch(Exception e) {
-		throw new CategoriaException("Categoria inesistente");
-	}
+        try {
+		if(dao.select(idCategoria)!= null)
+		{
+		dao.insertProdCat(idCategoria, p);;}
+		else
+		throw new CategoriaException("Categoria inesistente");}
+        catch (DuplicateKeyException e) {
+        	throw new CategoriaException("Prodotto già inserito"); // servirebbe prodotto exception
+        }
 	}
 
 	@Override
 	public boolean svuotaCategoria(int idCategoria) {
-		Categoria c= dao.select(idCategoria);	
+		Categoria c = dao.select(idCategoria);
 		return dao.deleteAllProdInCat(idCategoria);
 	}
 	
 	@Override
 	public void modificaDatiRateizzazione(DatiRate dr) {
-<<<<<<< Upstream, based on branch 'master' of https://github.com/doriamauro/prova.git
 		dao1.updateRate(dr);
-=======
-		daoRate.updateRate(dr);
->>>>>>> 8bdfc79 jj
 		}
 
 	@Override
