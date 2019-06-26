@@ -38,7 +38,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	public void insert(Cliente c) {
-
+//
 		template.update("insert into cliente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", c.getUsername(),
 				c.getNome(),
 				c.getCognome(),

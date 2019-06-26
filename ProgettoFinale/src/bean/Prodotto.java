@@ -21,18 +21,9 @@ public class Prodotto {
 	
 	private String immagineSec;
 	
-	private int idCategoria; //FK
-	
+	private int idCategoria;
 	private int sconto;
 	
-	public int getSconto() {
-		return sconto;
-	}
-
-	public void setSconto(int sconto) {
-		this.sconto = sconto;
-	}
-
 	public Prodotto() {}
 	
 	
@@ -145,13 +136,22 @@ public class Prodotto {
 
 	public void setImmagineSec(String immagineSec) {
 		this.immagineSec = immagineSec;
-	} 
+	}
+
 	public int getIdCategoria() {
 		return idCategoria;
-	} 
+	}
 
 	public void setIdCategoria(int idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+
+	public int getSconto() {
+		return sconto;
+	}
+
+	public void setSconto(int sconto) {
+		this.sconto = sconto;
 	}
 
 	@Override
@@ -184,6 +184,4 @@ public class Prodotto {
 			return false;
 		return true;
 	}	
-
-	
 }
