@@ -53,9 +53,14 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 				indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione(),indord.getIdIndOrdine());
 
 	}
+ 
+	@Override
+	public int getProxID() {
+		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
+		return id+1;
+	}
 
 }
-
 
 class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 
