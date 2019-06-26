@@ -79,11 +79,11 @@ class ProdottoMapper implements RowMapper<Prodotto>{
 		p.setPrezzoUni(rs.getDouble("prezzoUni"));
 		p.setDisponibilita(rs.getInt("disponibilita"));
 		p.setLinkProduttore(rs.getString("linkProduttore"));
-		p.setCostoSped(rs.getDouble("costoSpedizione"));
+		p.setCostoSped(rs.getDouble("costoSped"));
 		p.setTempoConsegna(rs.getInt("tempoConsegna"));
 		p.setImmaginePrimaria(rs.getString("immaginePrimaria"));
 		p.setImmagineSec(rs.getString("immagineSec"));
-		p.setIdCategoria(rs.getInt("idCategoria"));
+		p.setIdCategoria(rs.getInt("categoria"));
 		p.setSconto(rs.getInt("sconto"));
 		
 		return p;

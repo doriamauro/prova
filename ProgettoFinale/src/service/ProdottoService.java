@@ -17,5 +17,5 @@ public interface ProdottoService {
 	public List <Prodotto> ricercaProdottiScontati ();
 	public boolean eliminaProdotto(int idProdotto); 
 	public boolean modificaSchedaProdotto(Prodotto p);
-
+	public List<String> getMarche();
 }
