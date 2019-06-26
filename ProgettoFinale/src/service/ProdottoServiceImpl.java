@@ -63,5 +63,14 @@ public class ProdottoServiceImpl implements ProdottoService {
 		}
 		
 	}
+	@Override
+	public boolean eliminaProdotto(int idProdotto) {
+		return dao.delete(idProdotto);
+		
+	}
 
+	@Override
+	public boolean modificaSchedaProdotto(Prodotto p) {
+		return dao.update(p);
+	}
 }
