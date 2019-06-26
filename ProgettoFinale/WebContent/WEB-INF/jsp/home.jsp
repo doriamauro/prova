@@ -77,7 +77,7 @@ function mettiACarrello(codice, index){
  	</c:forEach>
  	 <input type="submit" value="Vai"> 
  	
-</select>
+</select> 
 </form>
 
 <%-- <% for(int i=0; i < categorie.size(); i++){%>

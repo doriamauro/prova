@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Categoria;
 import bean.Prodotto;
 import service.ProdottoService;
 @Controller
@@ -19,10 +20,11 @@ public class HomeController {
 	public ModelAndView ricercaProdottiScontati() {
 		List<Prodotto> prodotti= service.ricercaProdottiScontati();
 		List<String> marche= service.getMarche();
-		
+		List<Categoria> categorie = service.getCategorie();
 		ModelAndView mav= new ModelAndView("home");
 		mav.addObject("prodotti", prodotti);
 		mav.addObject("marche", marche);
+		mav.addObject("categorie", categorie);
 		return mav;
 	}
 	

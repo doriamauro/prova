@@ -13,5 +13,6 @@ public interface CategoriaDAO {
 	public List<Categoria> selectAllCategorie();
 	public List<Categoria> selectAllCategorie(String where);
 	public void update(Categoria c);
+	public int creaProxID();
 	
 }
