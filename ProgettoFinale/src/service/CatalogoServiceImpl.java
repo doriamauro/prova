@@ -14,7 +14,7 @@ import bean.Prodotto;
 import dao.CatalogoDAO;
 import dao.DatiRateDAO;
 import exception.CategoriaException;
-import prove.CatalogoService;
+import service.CatalogoService;
 //
 @Service
 @Transactional(propagation= Propagation.REQUIRES_NEW)	
