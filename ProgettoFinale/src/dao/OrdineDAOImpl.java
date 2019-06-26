@@ -54,7 +54,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 	
 	@Override
 	public int contaNumOrdini() {
-		return template.queryForObject("select max(idIndOrdine) from ordine", Integer.class) ;
+		return template.queryForObject("select max(codOrdine) from ordine", Integer.class) ;
 	}
 	
 	@Override
