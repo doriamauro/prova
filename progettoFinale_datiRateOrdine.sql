@@ -16,39 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `prodotto`
+-- Table structure for table `datiRateOrdine`
 --
 
-DROP TABLE IF EXISTS `prodotto`;
+DROP TABLE IF EXISTS `datiRateOrdine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `prodotto` (
-  `idProdotto` int(11) NOT NULL,
-  `marca` varchar(45) NOT NULL,
-  `descrizione` varchar(80) NOT NULL,
-  `codiceEAN` varchar(45) NOT NULL,
-  `prezzoUni` double NOT NULL,
-  `disponibilita` int(11) NOT NULL,
-  `linkProduttore` varchar(80) DEFAULT NULL,
-  `costoSped` double NOT NULL,
-  `tempoConsegna` int(11) NOT NULL,
-  `immaginePrimaria` varchar(200) NOT NULL,
-  `immagineSec` varchar(80) DEFAULT NULL,
-  `categoria` int(11) NOT NULL,
-  PRIMARY KEY (`idProdotto`),
-  KEY `idCategoria_idx` (`categoria`),
-  CONSTRAINT `idCategoria` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `datiRateOrdine` (
+  `idOrd` varchar(30) NOT NULL,
+  `tan` double NOT NULL,
+  `maxTaeg` double NOT NULL,
+  `nRate` int(11) NOT NULL,
+  PRIMARY KEY (`idOrd`),
+  CONSTRAINT `codOrdine` FOREIGN KEY (`idOrd`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `prodotto`
+-- Dumping data for table `datiRateOrdine`
 --
 
-LOCK TABLES `prodotto` WRITE;
-/*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES (1,'xiaomi ','xiomi redmi note 7 64gb black','3874659283744',199,100,'https://www.xiomi.com',8.99,2,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/16/991688.jpg',NULL,100),(2,'hp','hp laptop 15-dw0077 nl','48239840058382',679,20,'https://store.hp.com',4.99,5,'https://asset.mediaw.it/wcsstore/MMCatalogAssetStore/asset/images/99/45/994534.jpg',NULL,200);
-/*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
+LOCK TABLES `datiRateOrdine` WRITE;
+/*!40000 ALTER TABLE `datiRateOrdine` DISABLE KEYS */;
+/*!40000 ALTER TABLE `datiRateOrdine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 14:27:48
+-- Dump completed on 2019-06-25 17:48:58

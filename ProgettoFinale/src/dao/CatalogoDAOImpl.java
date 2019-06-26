@@ -137,4 +137,8 @@ public DatiRate mapRow(ResultSet rs, int rowNum) throws SQLException {
 	return dr;
 }
 
+
+	
+	
+
 }

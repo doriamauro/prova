@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import exception.ClienteException;
 
 @Service
 @Transactional
+//
 public class ClienteServiceImpl implements ClienteService {
 // ciao
 	@Autowired
@@ -22,32 +24,34 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void registraCliente(Cliente c) throws ClienteException {
-		try {
+//		try {
 			dao.insert(c);
-		} catch (Exception e) {
-			throw new ClienteException("Il cliente con username "+ c.getUsername() +" non è stato registrato");
-		}
+//		} catch (DuplicateKeyException e) {
+//			throw new ClienteException("Il cliente con username "+ c.getUsername() +" è già registrato");
+//		}
 	}
 
 	@Override
-	public void checkCredenziali(String username, String password) throws ClienteException {
+	
+	public boolean checkCredenziali(String username, String password) {// throws ClienteException {
 		Cliente c = dao.select(username);
-		if(c!=null || c.getPassword().equals(password))
-			throw new ClienteException("Sei già registrato");
+		if(c==null || !c.getPassword().equals(password))
+			return false;
+		return true;
+		
+		
+
 	}
 
 	@Override
 	public Cliente getCliente(String username) {
-		return dao.select(username);
+				return dao.select(username);
 	}
 
 	@Override
 	public void updateCliente(Cliente c) throws ClienteException {
-		try {
-			dao.update(c);
-		} catch (Exception e) {
-			throw new ClienteException("Impossibile effettuare la modifica");
-		}
+dao.update(c);
+
 	}
 
 	@Override
@@ -57,28 +61,19 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void disabilitaCliente(String username) throws ClienteException {
-		try {
 			Cliente c =  dao.select(username);
 			if (c.getAttivo().equals(Attivo.SI)) {
 				c.setAttivo(Attivo.NO);
 				dao.update(c);
 			}
-		} catch (Exception e) {
-			throw new ClienteException("Impossibile disattivare il profilo");
-		}
 	}
 
 	@Override
 	public void riabilitaCliente(String username, String password) throws ClienteException {
-		try {
 			Cliente c =  dao.select(username);
 			if (c.getPassword().equals(password) && c.getAttivo().equals(Attivo.NO)) {
 				c.setAttivo(Attivo.SI);
-				dao.update(c);
-			}
-		} catch (Exception e) {
-			throw new ClienteException("Operazione fallita");
-		}
+				dao.update(c);}
 	}
 
 }

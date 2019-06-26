@@ -16,36 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ordine`
+-- Table structure for table `composizioneOrdini`
 --
 
-DROP TABLE IF EXISTS `ordine`;
+DROP TABLE IF EXISTS `composizioneOrdini`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `ordine` (
-  `codOrdine` varchar(30) NOT NULL,
-  `usOrdine` varchar(30) NOT NULL,
-  `dataOrdine` date NOT NULL,
-  `prezzoFinale` double NOT NULL,
-  `idIndOrd` varchar(30) NOT NULL,
-  `idModPag` varchar(30) NOT NULL,
-  PRIMARY KEY (`codOrdine`),
-  KEY `username_idx` (`usOrdine`),
-  KEY `idIndOrdine_idx` (`idIndOrd`),
-  KEY `idMod_idx` (`idModPag`),
-  CONSTRAINT `idIndOrdine` FOREIGN KEY (`idIndOrd`) REFERENCES `indirizzoordine` (`idIndOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idMod` FOREIGN KEY (`idModPag`) REFERENCES `modpagamento` (`idMod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `username` FOREIGN KEY (`usOrdine`) REFERENCES `cliente` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `composizioneOrdini` (
+  `quantita` int(11) NOT NULL,
+  `idOrdine` varchar(30) NOT NULL,
+  `idProdotto` int(11) NOT NULL,
+  KEY `cod_idx` (`idOrdine`),
+  KEY `idProdotto_idx` (`idProdotto`),
+  CONSTRAINT `cod` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`codOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idProdotto` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ordine`
+-- Dumping data for table `composizioneOrdini`
 --
 
-LOCK TABLES `ordine` WRITE;
-/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
+LOCK TABLES `composizioneOrdini` WRITE;
+/*!40000 ALTER TABLE `composizioneOrdini` DISABLE KEYS */;
+/*!40000 ALTER TABLE `composizioneOrdini` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 11:25:54
+-- Dump completed on 2019-06-25 17:48:59
