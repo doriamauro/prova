@@ -6,10 +6,14 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.IndirizzoOrdine;
 import bean.Prodotto;
 
+@Repository
+@Transactional
 public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 	
 	private JdbcTemplate ioTemplate;
@@ -53,14 +57,21 @@ public class IndirizzoOrdineDAOImpl implements IndirizzoOrdineDAO {
 				indord.getVia(),indord.getComune(),indord.getCap(),indord.getProvincia(),indord.getNazione(),indord.getIdIndOrdine());
 
 	}
+
  
-	@Override
+	@Override  //idIndOrd è string!
 	public int getProxID() {
-		int id = ioTemplate.queryForObject("select max(idIndOrd) from indirizzoOrdine", Integer.class);
-		return id+1;
+		int id = ioTemplate.queryForObject("select max(idIndOrdine) from indirizzoOrdine", Integer.class);
+		return id+1;}
+
+
+	@Override
+	public int contaNumeroIndOrd() {
+		return ioTemplate.queryForObject("select count(*) from indirizzoOrdine", Integer.class);
 	}
 
 }
+
 
 class IndirizzoOrdineMapper implements RowMapper<IndirizzoOrdine>{
 

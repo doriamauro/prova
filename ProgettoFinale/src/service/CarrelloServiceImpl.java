@@ -3,6 +3,7 @@ package service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,17 @@ import com.mysql.fabric.xmlrpc.base.Data;
 
 import bean.ComposizioneOrdini;
 import bean.DatiOrdine;
+import bean.DatiRate;
 import bean.DatiRateOrdine;
 import bean.IndirizzoOrdine;
+import bean.ModPagamento;
 import bean.Ordine;
 import bean.Prodotto;
 import dao.ComposizioneOrdiniDAO;
 import dao.DatiRateDAO;
 import dao.DatiRateOrdineDAO;
 import dao.IndirizzoOrdineDAO;
+import dao.ModPagamentoDAO;
 import dao.OrdineDAO;
 
 @Service
@@ -29,6 +33,8 @@ public class CarrelloServiceImpl implements CarrelloService {
 	private DatiRateOrdineDAO daoRateOrd;
 	private IndirizzoOrdineDAO daoIndOrd;
 	private DatiRateDAO daoRateDef;
+	private ModPagamentoDAO daoModPag;
+	
 	
 	
 	@Override
@@ -86,4 +92,21 @@ public class CarrelloServiceImpl implements CarrelloService {
 
 
 }
+
+	@Override
+	public List<ModPagamento> getAllModPagamento() {
+		return daoModPag.selectAllModalita();
+	}
+	
+	
+	
+	@Override
+	public DatiRate getDatiRate() {
+		return daoRateDef.selectRate();
+	}
+
+	@Override
+	public ModPagamento getModPagamento(String idMod) {
+		return daoModPag.select(idMod);
+	}
 }
