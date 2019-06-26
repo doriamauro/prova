@@ -9,7 +9,7 @@ public interface IndirizzoOrdineDAO {
 	public void insert(IndirizzoOrdine indord);
 	public boolean delete(String idIndOrdine);
 	public IndirizzoOrdine select(String idIndOrdine);
-	public int contaNumeroIndOrd();
+
 	public List<IndirizzoOrdine> selectAllIndirizzi();
 	public List<IndirizzoOrdine> selectAllIndirizzi(String where); 
 

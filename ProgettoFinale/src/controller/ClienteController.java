@@ -51,7 +51,7 @@ public class ClienteController {
 				return new ModelAndView("login");
 			}
 		} catch (ClienteException e) {
-			return new ModelAndView("erroreGenerico", "msg", e.getMessage()); // probabilmente inutile
+			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
 	}
 	
@@ -72,10 +72,10 @@ public class ClienteController {
 		
 	}
 	@RequestMapping("/riabilitaCliente")
-	public ModelAndView riabilitaCliente(String username, String password) {
+	public ModelAndView riabilitaCliente(String username, String password, HttpSession session) {
 		try {
 			service.riabilitaCliente(username, password);
-			return new ModelAndView("home");
+			return logCliente(username, password, session);
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 
