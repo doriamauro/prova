@@ -43,7 +43,7 @@ public class DatiRate {
 	public void setnRate(int nRate) {
 		this.nRate = nRate;
 	}
-
+//
 	@Override
 	public String toString() {
 		return "DatiRate [tan=" + tan + ", maxTaeg=" + maxTaeg + ", nRate=" + nRate + "]";
