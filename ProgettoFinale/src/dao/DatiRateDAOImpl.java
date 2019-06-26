@@ -2,13 +2,17 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import bean.DatiRate;
+import dao.DatiRateMapper;
 
+@Transactional
 public class DatiRateDAOImpl implements DatiRateDAO {
  
 	
@@ -17,8 +21,10 @@ public class DatiRateDAOImpl implements DatiRateDAO {
 
 
 	public DatiRate selectRate() {
-		return template.queryForObject("select * from datiRate",new DatiRateMapper());
-
+		List<DatiRate> dr =  template.query("select * from datiRate",new DatiRateMapper());
+        if(dr.size()==0)
+        	return null;
+        return dr.get(0);
 	}
 
 
