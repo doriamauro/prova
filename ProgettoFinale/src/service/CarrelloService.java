@@ -9,7 +9,7 @@ import bean.ModPagamento;
 public interface CarrelloService {
 	
 	public List<ModPagamento> getAllModPagamento();
-	public ModPagamento getModPagamento(String idMod);
+	public ModPagamento getModPagamento(int idMod);
 	public DatiRate getDatiRate();
 	public void finalizzaAcquisto(DatiOrdine d);
 	

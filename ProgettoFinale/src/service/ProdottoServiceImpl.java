@@ -59,7 +59,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 		try {
 			return dao.select(idProdotto);
 		} catch (Exception e) {
-			throw new ProdottoNonTrovatoException("Chiave " + idProdotto + " non trovata!\n" + e.getMessage());
+			throw new ProdottoNonTrovatoException("Chiave n°" + idProdotto + " non trovata!\n" + e.getMessage());
 		}
 	
 	}
