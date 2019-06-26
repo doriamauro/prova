@@ -48,21 +48,21 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 
 	@Override
 	public Prodotto select(int idProdotto) {
-		Prodotto p = ptemplate.queryForObject("select* from prodotto where idProdotto = ? ", new ProdottoMapper(), idProdotto);
+		Prodotto p = ptemplate.queryForObject("select * from prodotto where idProdotto = ? ", new ProdottoMapper(), idProdotto);
 		return p;
 		
 	}
 
 	@Override
 	public List<Prodotto> selectAllProdotti() {
-		return 	ptemplate.query("select* from prodotto", new ProdottoMapper());
+		return 	ptemplate.query("select * from prodotto", new ProdottoMapper());
 	}
 
 	@Override
 	public List<Prodotto> selectAll(String where) {
 		if (where == null || where == " ")
 			return this.selectAllProdotti();
-		return ptemplate.query("select* from prodotto " + where, new ProdottoMapper());
+		return ptemplate.query("select * from prodotto " + where, new ProdottoMapper());
 	}
 
 }
