@@ -29,17 +29,18 @@ public class CarrelloServiceImpl implements CarrelloService {
 	private DatiRateOrdineDAO daoRateOrd;
 	private IndirizzoOrdineDAO daoIndOrd;
 	private DatiRateDAO daoRateDef;
-		
+	
 	
 	@Override
 	public void finalizzaAcquisto(DatiOrdine d) {
 		
-		IndirizzoOrdine indOrd = new IndirizzoOrdine(d.getIndOrd().getIdIndOrdine(),
-				d.getIndOrd().getVia(), d.getIndOrd().getComune(), d.getIndOrd().getCap(),
-				d.getIndOrd().getProvincia(), d.getIndOrd().getNazione());
+		//inserisce in indirizzoOrdine l'indirizzo
+		IndirizzoOrdine indOrd = d.getIndOrd();
+		indOrd.setIdIndOrdine(daoIndOrd.contaNumeroIndOrd()+1+"");
 		daoIndOrd.insert(indOrd);
 		
 		
+		//Calcolo il costo totale comprensivo di spese di spedizione
 		double costo = 0;
 		double speseSped = 0;
 		for (Prodotto p: d.getProdotti()) {
@@ -49,25 +50,38 @@ public class CarrelloServiceImpl implements CarrelloService {
 		 
 		double costoTot = costo;
 		
-		if (costo<20){
-			costoTot += speseSped;
-		} else if (costo>=20 && costo<100) {
-			costoTot += 10;
+		if (Integer.parseInt(d.getModPag().getIdMod())!=1) {
+			if (costo<20){
+				costoTot += speseSped;
+			} else if (costo>=20 && costo<100) {
+				costoTot += 10;
+			}
 		}
 		
+		
+		//inserisco l'ordine nella tabella ordini
 		Ordine ordine = new Ordine(daoOrd.contaNumOrdini()+1+"",
-				d.getUsername(), new Date(new java.util.Date().getTime()), costoTot,
-				d.getIndOrd().getIdIndOrdine(), d.getModPag().getIdMod());
+				 				   d.getUsername(),
+				 				   new Date(new java.util.Date().getTime()),
+				 				   costoTot,
+				 				   d.getIndOrd().getIdIndOrdine(),
+				 				   d.getModPag().getIdMod());
 		daoOrd.insert(ordine);
 		
+		
+		//inserimento nella tabella composizioneOrdini
 		for (Prodotto p: d.getProdotti()) {
 			ComposizioneOrdini compOrd = new ComposizioneOrdini(p.getDisponibilita(), p.getIdProdotto(), ordine.getCodOrdine());
 			daoComp.insert(compOrd);
 		}
 		
-		if (d.getModPag().getIdMod().equals("INSERIREEEEEEE")) {
-			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(), daoRateDef.getTan,
-															daoRateDef.getMaxTaeg, daoRateDef.getNRate);
+		
+		//inserimento nella tabella datiRateOrdini
+		if (Integer.parseInt(d.getModPag().getIdMod())==5) {
+			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(),
+														   daoRateDef.getTan,
+														   daoRateDef.getMaxTaeg,
+														   daoRateDef.getNRate);
 			daoRateOrd.insert(datiRatOrd);
 	}
 

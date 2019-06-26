@@ -61,7 +61,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 		} catch (Exception e) {
 			throw new ProdottoNonTrovatoException("Chiave " + idProdotto + " non trovata!\n" + e.getMessage());
 		}
-		
+	
 	}
 	@Override
 	public boolean eliminaProdotto(int idProdotto) {
