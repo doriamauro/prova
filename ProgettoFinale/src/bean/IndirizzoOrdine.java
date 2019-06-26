@@ -1,7 +1,7 @@
 package bean;
 
 public class IndirizzoOrdine {
-	
+	//
 	private int idIndOrdine;
 	private String via;
 	private String comune;
