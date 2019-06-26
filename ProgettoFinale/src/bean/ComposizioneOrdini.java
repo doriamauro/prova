@@ -1,9 +1,13 @@
 package bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class ComposizioneOrdini {
-	//
+	@NotEmpty
 	private int quantita;
+	@NotEmpty
 	private int idProdotto;
+	@NotEmpty
 	private int idOrdine;
 	
 	public ComposizioneOrdini() {}
