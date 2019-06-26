@@ -22,7 +22,7 @@ public class ComposizioneOrdiniDAOImpl implements ComposizioneOrdiniDAO{
 	
 	@Override
 	public void insert(ComposizioneOrdini com) {
-		template.update("insert into composizioneOrdine values(?,?,?)",com.getIdOrdine(),
+		template.update("insert into composizioneOrdini values(?,?,?)",com.getIdOrdine(),
 																	   com.getIdProdotto(),
 																	   com.getQuantita());
 		
@@ -30,26 +30,26 @@ public class ComposizioneOrdiniDAOImpl implements ComposizioneOrdiniDAO{
 
 	@Override
 	public boolean delete(int idOrdine, int idProdotto) {
-		int n = template.update("delete from composizioneOrdine where idOrdine=? and idProdotto=?", idOrdine,idProdotto);
+		int n = template.update("delete from composizioneOrdini where idOrdine=? and idProdotto=?", idOrdine,idProdotto);
 		return n==1;
 		
 	}
 
 	@Override
 	public ComposizioneOrdini select(int idOrdine, int idProdotto) {
-		ComposizioneOrdini com = template.queryForObject("select * from composizioneOrdine where idOrdine=? and idProdotto=?", new ComposizioneOrdiniMapper(), idOrdine, idProdotto);
+		ComposizioneOrdini com = template.queryForObject("select * from composizioneOrdini where idOrdine=? and idProdotto=?", new ComposizioneOrdiniMapper(), idOrdine, idProdotto);
 		return com;
 	}
 
 	@Override
 	public List<ComposizioneOrdini> selectAllOrdini() {
-		List<ComposizioneOrdini> listaOrdini= template.query("select * from composizioneOrdine", new ComposizioneOrdiniMapper());
+		List<ComposizioneOrdini> listaOrdini= template.query("select * from composizioneOrdini", new ComposizioneOrdiniMapper());
 		return listaOrdini;
 	}
 
 	@Override
 	public List<ComposizioneOrdini> selectAllOrdini(String where) {
-		List<ComposizioneOrdini> listaOrdini= template.query("select * from composizioneOrdine "+where, new ComposizioneOrdiniMapper());
+		List<ComposizioneOrdini> listaOrdini= template.query("select * from composizioneOrdini "+where, new ComposizioneOrdiniMapper());
 		return listaOrdini;
 	}
 
