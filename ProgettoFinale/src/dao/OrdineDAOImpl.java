@@ -18,7 +18,7 @@ public class OrdineDAOImpl implements OrdineDAO {
 
 	@Autowired
 	private JdbcTemplate template;
-
+	
 	@Override
 	public void insert(Ordine o) {
 		template.update("insert into ordine values(?,?,?,?,?,?)", o.getCodOrdine(),o.getUsOrdine(),o.getDataOrdine(),o.getPrezzoFinale(),
