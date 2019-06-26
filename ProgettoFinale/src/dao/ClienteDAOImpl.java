@@ -119,7 +119,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 }
 
 class ClienteMapper implements RowMapper<Cliente>{
-
+//
 	@Override
 	public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
 		//System.out.println("passato da qui");
