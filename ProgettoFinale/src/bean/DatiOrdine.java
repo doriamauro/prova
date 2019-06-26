@@ -65,7 +65,7 @@ public class DatiOrdine {
 		}
 		return costoTot;
 	}
-
+ 
 	public void variaQuantita(Prodotto p) {
 		int index = this.prodotti.indexOf(new Prodotto(p.getIdProdotto()));
 		if (index != -1) {
