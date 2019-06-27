@@ -17,73 +17,45 @@
     
     <script type="text/javascript">
     
- /*    function acquista() {
-
-    	
-    } */
     
    	function remove(idProdotto,index) {
-   		console.log(idProdotto);
-   		
-   		var d = document.getElementById("ProdottiNelCarrello");
-			
-		var p = document.getElementById("prodotto"+index);
-		console.log(p);
-		console.log(index);
-		console.log(typeof p)
-		d.removeChild(p);
-   		
-   		var xhttp = new XMLHttpRequest();
-   		
+    				
+	 	var xhttp = new XMLHttpRequest();
+	 	
+
    		// gestire l'invocazione al server
    		xhttp.onreadystatechange = function() {
-   			// codice da eseguire quando arriva una risposta dal server
-   			if (this.readyState == 4 && this.status == 200) {
-   				
-   				var d = document.getElementsByClassName("shopping-cart");
-   				
-   				var p = document.getElementById("prodotto"+index);
-   				
-   				d.removeChild(p);
-   				
-   			}
+   			
+	   		// codice da eseguire quando arriva una risposta dal server
+	   		if (this.readyState == 4 && this.status == 200) {
+	   				
+	   			var d = document.getElementById("ProdottiNelCarrello");
+				
+	   			var p = document.getElementById("prodotto"+index);
+	   					
+	   			d.removeChild(p);
+	   				
+	   		}
    		}
    		xhttp.open("GET", "../../example/carrello/remove?idProdotto=" + idProdotto, true);
    		xhttp.send();
+   		
+ 		
    	}
     
-/*     $('.minus-btn').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.closest('div').find('input');
-        var value = parseInt($input.val());
-     
-        if (value &amp;gt; 1) {
-            value = value - 1;
-        } else {
-            value = 0;
-        }
-     
-      $input.val(value);
-     
-    });
-     
-    $('.plus-btn').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.closest('div').find('input');
-        var value = parseInt($input.val());
-     
-        if (value &amp;lt; 100) {
-            value = value + 1;
-        } else {
-            value =100;
-        }
-     
-        $input.val(value);
-    }); */
+    function piu(index){
+    	console.log(index);
+    	document.getElementById("id"+index).value = document.getElementById("id"+index).value - -1; 
+    }
+
+    function meno(index){
+    	if(document.getElementById("id"+index).value ==1 ) return;
+    	
+    	console.log(index);
+    	document.getElementById("id"+index).value = document.getElementById("id"+index).value -1; 
+    }
     
-    </script>
+   </script>
     
 </head>
 <body>
@@ -135,12 +107,11 @@
   <!-- inserire il calcolo totale -->
   <% } %>
   
- <!--    <div class="buttons">
-      <button class="acquista" type="button" name="button" onclick="acquista()">
-       <img src="../../img/shopping-cart.svg" alt="" />
-    </div>  
-   -->
-  </div>
+  <form action="modalita">
+  	<input type="submit" value="acquista">
+  </form>
+ 
+  </div> 
   
 
   
