@@ -34,6 +34,10 @@ public class ClienteController {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
 	}
+	@RequestMapping("/invioRegistrazione")
+	public ModelAndView invioRegistrazione() {
+		return new ModelAndView("registrazione");
+	}
 
 	@RequestMapping("/loginCliente")
 	public ModelAndView logCliente(String username, String password, HttpSession session) {		
@@ -121,8 +125,5 @@ public class ClienteController {
 		}
 	}
 	
-	@RequestMapping("/invioRegistrazione")
-	public ModelAndView invioRegistrazione() {
-		return new ModelAndView("registrazione");
-	}
+	
 }
