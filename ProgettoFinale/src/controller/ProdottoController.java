@@ -51,13 +51,13 @@ public class ProdottoController {
 	@RequestMapping("/searchPrice")
 	public ModelAndView ricercaProdottiPerPrezzo(double min, double max) {
 		List<Prodotto> prodotti= service.ricercaProdottiPerPrezzoUnitario(min, max);
-		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
 	@RequestMapping("/searchSconto")
 	public ModelAndView ricercaProdottiScontati() {
 		List<Prodotto> prodotti= service.ricercaProdottiScontati();
-		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
 	@RequestMapping("/scheda")
@@ -79,7 +79,7 @@ public class ProdottoController {
 			model.addAttribute("msg", "Prodotto non eliminato");
 			return new ModelAndView("erroreGenerico");
 		}
-		else return new ModelAndView("listaProdotti", "prodotti", prodotti);
+		else return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
 	@RequestMapping("/editProd")

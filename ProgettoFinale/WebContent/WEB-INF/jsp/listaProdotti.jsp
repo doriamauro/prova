@@ -56,29 +56,16 @@
       $('.delete-btn').on('click', function(e) {
     	});
 
-  </script>
-	
-<form>
-	
-	<input type="button" value="Svuota categoria" onclick=""> 
-	
-</form>
-
-<form>
-
- <input type="checkbox"> Prodotti scontati 
+  </script><br><br><br>
  
- <form action="searchPride">
- <input type="number" name="min"> Prezzo minimo<br>
- <input type="number" name="max"> Prezzo massimo<br>
- <input type="submit" value="applica">
+ <form action="searchPrice">
+ <input type="number" name="min"> Prezzo minimo<br><br>
+ <input type="number" name="max"> Prezzo massimo<br><br><br>
+ <input type="submit" value="applica"><br><br><br>
 </form>
 
-	
-<form>
-
-<!-- prezzo minimo, prezzo  massimo nella casella di testo e applica 
-sia checkbox che il range di prezzo-->
+<form action="../home/index">
+	<input type="submit" value="Home">
 </form>
 
 </body>
