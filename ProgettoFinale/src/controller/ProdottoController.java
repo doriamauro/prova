@@ -32,7 +32,7 @@ public class ProdottoController {
 @RequestMapping(value="/list", method = RequestMethod.POST)
 	//@ResponseBody
 	//public @ResponseBody ModelAndView visualizzaProdotti(@PathVariable(value = "idCategoria") int idCategoria) {
-	public @ResponseBody ModelAndView visualizzaProdotti(@RequestParam(value = "menuCategorie") int idCategoria) {
+	public ModelAndView visualizzaProdotti(@RequestParam(value = "menuCategorie") int idCategoria) {
 		List<Prodotto> prodotti= service.getProdotti(idCategoria);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
