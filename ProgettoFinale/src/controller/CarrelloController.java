@@ -53,35 +53,36 @@ public class CarrelloController {
 	// questo metodo sarà lo stesso ad essere invocato quando si annulla il pagamento!
 	@RequestMapping("/all")
 	public ModelAndView getCarrello(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model) {
-		System.out.println(datOrd);
 		System.out.println(datOrd.getProdotti());
 		return new ModelAndView("carrello", "lista", datOrd.getProdotti());
 	}
 
 	@GetMapping("/remove")
 	@ResponseBody
-	public boolean rimuoviProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto) throws ProdottoNonTrovatoException {
-
+	public void rimuoviProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto) throws ProdottoNonTrovatoException {
+	
 		datOrd.removeProdotto(idProdotto);
-		return true;
+		System.out.println(datOrd.getProdotti());
 	}  
 
-	@GetMapping("/modalita")
-	public ModelAndView getModPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model, HttpSession session) {
+	@RequestMapping("/modalita")
+	public ModelAndView getModPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, HttpSession session) {
 		
-		if ((Integer)session.getAttribute("affidabile")==0) {
+		if(session.getAttribute("login")== null) {
 			return new ModelAndView("erroreGenerico", "msg", "Impossibile procedere all'acquisto. Utente non affidabile!");
 		}
 		
-		String username = (String)session.getAttribute("login");
-		datOrd.setUsername(username);
+		
+		
+//		String username = (String)session.getAttribute("login");
+//		datOrd.setUsername(username);
 		return new ModelAndView("informazioniPagamento", "modpagamento", serviceCarrello.getAllModPagamento());
 	}
 	
 	@GetMapping("/scelta")
-	public ModelAndView sceltaPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, int idMod) {
-		
-		datOrd.setModPag(serviceCarrello.getModPagamento(idMod));
+	public ModelAndView sceltaPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, int pag) {
+		System.out.println(pag);
+		datOrd.setModPag(serviceCarrello.getModPagamento(pag));
 		
 		if (datOrd.getModPag().getIdMod()==5) {
 			return new ModelAndView("rateizzazione", "rata", serviceCarrello.getDatiRate());
