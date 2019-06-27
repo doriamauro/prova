@@ -117,7 +117,7 @@ int index = 0;
 	
 
 
-  </script>
+  
 
 </body>
 </html>
