@@ -4,6 +4,13 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript"
+
+
+
+
+></script>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +65,8 @@
 
   </script><br><br><br>
  
- <form action="searchPrice">
+ <form action="searchPrice" method="get" >
+ <input type="hidden" value="<%= request.getParameter("menuCategorie") %>" name="menuCategorie" />
  <input type="number" name="min"> Prezzo minimo<br><br>
  <input type="number" name="max"> Prezzo massimo<br><br><br>
  <input type="submit" value="applica"><br><br><br>
