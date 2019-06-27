@@ -162,7 +162,7 @@ function mettiACarrello(codice, index){
           </div>
 
         <div class="total-price">
-        <span> <%= p.getPrezzoUni()  %></span> <br>
+        <span> <%= p.getPrezzoUni() + " Euro" %></span> <br>
         
         <span> <%= p.getSconto() + "%"%></span>
         </div>

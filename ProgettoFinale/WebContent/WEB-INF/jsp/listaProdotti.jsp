@@ -50,7 +50,7 @@
         </div>
      
         <div class="total-price">
-          <span><%= p.getPrezzoUni() %></span>
+          <span><%= p.getPrezzoUni() + " Euro" %></span>
         </div>
       </div>
 
