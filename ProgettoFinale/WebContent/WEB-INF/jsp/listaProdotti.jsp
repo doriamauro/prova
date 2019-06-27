@@ -68,7 +68,7 @@
   
  <c:set var="val" value='<%=request.getParameter("menuCategorie") %>'/>
  <c:if test="${val!=null}">
- <form action="searchPrice/menuCategorie" method="get" >
+ <form action="searchPrice/menuCategorie" method="post" >
  <input type="hidden" value="<%= request.getParameter("menuCategorie") %>" name="menuCategorie" />
  <input type="number" name="min"> Prezzo minimo<br><br>
  <input type="number" name="max"> Prezzo massimo<br><br><br>
@@ -78,7 +78,7 @@
 
  <c:set var="val2" value='<%=request.getParameter("cerca") %>'/>
  <c:if test="${val2!=null}">
- <form action="searchPrice/cerca" method="get" >
+ <form action="searchPrice/cerca" method="post" >
  <input type="hidden" value="<%= request.getParameter("cerca") %>" name="cerca" />
  <input type="number" name="min"> Prezzo minimo<br><br>
  <input type="number" name="max"> Prezzo massimo<br><br><br>
@@ -88,7 +88,7 @@
 
  <c:set var="val3" value='<%=request.getParameter("marca") %>'/>
  <c:if test="${val3!=null}">
- <form action="searchPrice/marca" method="get" >
+ <form action="searchPrice/marca" method="post" >
  <input type="hidden" value="<%= request.getParameter("marca") %>" name="marca" />
  <input type="number" name="min"> Prezzo minimo<br><br>
  <input type="number" name="max"> Prezzo massimo<br><br><br>
