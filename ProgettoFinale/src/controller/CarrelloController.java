@@ -54,7 +54,7 @@ public class CarrelloController {
 	@RequestMapping("/all")
 	public ModelAndView getCarrello(@ModelAttribute("datiordine") DatiOrdine datOrd, ModelMap model) {
 		System.out.println(datOrd);
-
+		System.out.println(datOrd.getProdotti());
 		return new ModelAndView("carrello", "lista", datOrd.getProdotti());
 	}
 
