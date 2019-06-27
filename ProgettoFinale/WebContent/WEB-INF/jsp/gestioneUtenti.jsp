@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- ver -->
 	Ecco la lista di tutti gli utenti:
 
 	<%

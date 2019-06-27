@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- fr -->
 Scelta della modalità di pagamento:
 
 <form action="scelta">

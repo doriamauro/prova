@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--fr  -->
 	I tuoi ordini sono:
 	<%
 		List<Ordine> lista = (List<Ordine>) request.getAttribute("lista");

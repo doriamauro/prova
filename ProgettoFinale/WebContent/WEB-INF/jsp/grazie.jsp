@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- bet -->
 C O N G R A T U L A Z I O N I 
 L'acquisto si è concluso con successo!
 Torna presto a trovarci :)

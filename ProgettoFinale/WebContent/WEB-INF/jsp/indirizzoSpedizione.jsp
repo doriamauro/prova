@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--  ve-->
 Inserisci i dati dell'indirizzo di spedizione:
 
 <form action="riepilogo">
