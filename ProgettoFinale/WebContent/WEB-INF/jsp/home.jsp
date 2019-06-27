@@ -72,7 +72,7 @@ function mettiACarrello(codice, index){
    
 
 <div class="shopping-cart"> 
-<form action="../prod/list" method="post">
+<form action="../prod/list" method="get">
 <select name="menuCategorie">
 	<c:forEach var="categorie" items="${categorie}">
 		 <option value="${categorie.idCategoria}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
