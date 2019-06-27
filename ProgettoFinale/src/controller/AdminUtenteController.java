@@ -9,8 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Categoria;
 import bean.Cliente;
+import bean.Ordine;
 import service.UtenteService;
-
+// ciao
 @Controller
 @RequestMapping("/admin")
 public class AdminUtenteController {
@@ -79,7 +80,16 @@ public class AdminUtenteController {
 
 
 
-	
+	// nuova fabio e gianluca
+	@RequestMapping("/visualizzaTuttiOrdini")
+	public ModelAndView visualizzaTuttiOrdini() {
+		try {
+			List<Ordine> listaOrdini = service.visualizzaTuttiGliOrdini();
+			return new ModelAndView("listaOrdini", "lista", listaOrdini);
+		} catch (Exception e) {
+			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+		}
+	}
 	
 	
 	

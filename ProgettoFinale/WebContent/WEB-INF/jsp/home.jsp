@@ -21,6 +21,14 @@
 
 <script type="text/javascript">
 
+		/* $(document).ready(function() {
+	tipoMenu("${tipoCliente}");
+}) */
+
+ window.onload = function() { 
+	document.getElementById("primo").style.display = "none";
+	document.getElementById("primo").onclick(); } 
+					
 function piu(index){
 	console.log(index);
 	document.getElementById("id"+index).value = document.getElementById("id"+index).value - -1; 
@@ -59,6 +67,13 @@ function mettiACarrello(codice, index){
 	xhttp.send();
 }
 
+function tipoMenu(chiE) {
+
+	if (chiE==0) { var x = document.getElementById("amministratore"); x.style.display = "none"; }
+	if (chiE==1) { var x = document.getElementById("utente");         x.style.display = "none"; }
+}
+
+
 </script>
 </head>
 <body>
@@ -68,6 +83,8 @@ function mettiACarrello(codice, index){
    List<Prodotto> lista = (List<Prodotto>) request.getAttribute("prodotti"); 
    List<String> marche = (List<String>) request.getAttribute("marche");
    List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
+	 String username = (String) session.getAttribute("login");														
+		int tipoCliente = (Integer) session.getAttribute("admin");													   
    %>
    
 
@@ -116,6 +133,34 @@ function mettiACarrello(codice, index){
 <a href="../../example/cliente/loginCliente"> Login </a>
 
 </div>
+<button id="primo" onclick='tipoMenu("<%=tipoCliente%>")'> Si clicca automaticamente al caricamento della pagina</button>
+
+<div id="utente">
+<%-- Ciao utente <%=username %> <br>
+Ciao utente ${username} <br> --%>
+<ul>
+  <li><form action="../cliente/datiCliente">     <input type="hidden"  name="username" value='<%=username%>'><input type="submit" value="I miei dati">  </form></li>
+  <li><form action="../cliente/visualizzaOrdini"><input type="hidden"  name="username" value='<%=username%>'><input type="submit" value="I miei ordini"></form></li>
+  <li><form action="../cliente/logoutCliente">   <input type="submit"  value="Logout"></form></li>
+</ul>
+</div>
+
+
+
+<div id="amministratore">
+<%-- Ciao amministratore <%=username %> <br>
+Ciao amministratore ${username} <br> --%>
+<ul>
+  <li><form action="../cliente/datiCliente">        <input type="hidden"  name="username" value='<%=username%>'><input type="submit" value="I miei dati">  </form></li>
+  <li><form action="../cat/pageCreaProd">            									  						<input type="submit" value="Aggiungi Prodotto">  </form></li>
+  <li><form action="../cat/pageRate">            									  						    <input type="submit" value="Gestione Rate">  </form></li>
+  <li><form action="../cat/list">        																		<input type="submit" value="Gestione Categorie">  </form></li>
+  <li><form action="../admin/vedi">     																	    <input type="submit" value="Gestione Utenti">  </form></li>
+  <li><form action="../admin/visualizzaTuttiOrdini">															<input type="submit" value="Visualizza ordini"></form></li>
+  <li><form action="../cliente/logoutCliente">      															<input type="submit" value="Logout"></form></li>
+  
+</ul>
+</div>
 <div class="shopping-cart">
 
       <!-- Title -->
@@ -162,7 +207,7 @@ function mettiACarrello(codice, index){
           </div>
 
         <div class="total-price">
-        <span> <%= p.getPrezzoUni() + " Euro" %></span> <br>
+        <span> <%= p.getPrezzoUni()  %></span> <br>
         
         <span> <%= p.getSconto() + "%"%></span>
         </div>
