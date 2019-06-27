@@ -155,14 +155,24 @@ function mettiACarrello(codice, index){
           </div>
 
         <div class="total-price">
-        <span> <%= p.getPrezzoUni() %></span>
-        <span> <%= p.getSconto() %></span>
+        <span> <%= p.getPrezzoUni()  %></span> <br>
+        
+        <span> <%= p.getSconto() + "%"%></span>
         </div>
       </div>
 
     
 <% index++;
 } %>
+
+
+<ul>
+<% for(String s: marche){%>
+<li><a href="../prod/searchMarca?marca=<%= s %>"><%= s %></a> <br></li> 
+<%} %>
+</ul>
+
+
 </div>
 
 </body>

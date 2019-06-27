@@ -40,7 +40,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 
 	@Override
 	public List<Prodotto> ricercaProdottiPerMarca(String marca) {
-		return dao.selectAll(" where marca = " + marca);
+		return dao.selectAll(" where marca = '" + marca + "'");
 	}
 
 	@Override
