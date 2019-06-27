@@ -16,5 +16,6 @@ public interface ProdottoDAO {
 	public Prodotto select(int idProdotto);
 	public List<Prodotto> selectAllProdotti();
 	public List<Prodotto> selectAll(String where);
+	public List<Prodotto> selectSearch(String search);
 
 }

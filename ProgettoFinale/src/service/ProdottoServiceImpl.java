@@ -87,4 +87,9 @@ public class ProdottoServiceImpl implements ProdottoService {
 		}
 		return marche;
 	}
+
+	@Override
+	public List<Prodotto> ricercaSpecificaProdotti(String search) {
+		return dao.selectSearch(search);
+	}
 }

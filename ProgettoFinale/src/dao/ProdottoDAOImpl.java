@@ -63,6 +63,14 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 		if (where == null || where == " ")
 			return this.selectAllProdotti();
 		return ptemplate.query("select * from prodotto " + where, new ProdottoMapper());
+		
+	}
+
+	@Override
+	public List<Prodotto> selectSearch(String search) {
+		if (search == null || search == " ")
+			return this.selectAllProdotti();
+		return ptemplate.query("select * from prodotto where marca like '%"+search+"%' or descrizione like '%"+search+"%';", new ProdottoMapper());
 	}
 
 }
