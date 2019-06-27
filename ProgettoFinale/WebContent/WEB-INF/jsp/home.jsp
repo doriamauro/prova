@@ -47,6 +47,8 @@ function mettiACarrello(codice, index){
 		// codice da eseguire quando arriva una risposta dal server
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("esitoInserimento"+index).innerHTML = "elemento inserito nel carrello";
+			
+			document.getElementById("imgCarr").src = "../../img/basket-full-icon.png";
 		}else{
 			
 		}
