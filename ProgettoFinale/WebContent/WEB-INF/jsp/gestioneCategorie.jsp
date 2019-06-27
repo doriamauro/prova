@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,9 @@
 <body>
 
 <%
+	Boolean b = (Boolean) request.getAttribute("modifica");
+	if(b!=null && b==true) out.println("modifica avvenuta con successo <p>");
+
 		List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
 		for (Categoria c : categorie) {
 %>
@@ -26,14 +30,12 @@
 
     
 
-<form>
+<form action="../cat/rename" method="get">
 
-	
-	<input type="text" name="nomeCategoria" value="<%= c.getNomeCategoria() %>" > <br>
-	<input type="button" value="Rinomina"> 
-	<input type="button" class="delete" value="Rimuovi"> 
+	<input type="hidden" name="idCat" value="<%= c.getIdCategoria() %>">
+	<input type="text" name="nomeCat" value="<%= c.getNomeCategoria() %>" > <br>
+	<input type="submit" value="Rinomina"> 
 </form>
-     
         
 
      <%	}		
@@ -48,12 +50,7 @@
 </form:form>
 
 <br><br>
-	<script type="text/javascript">
-      $('.delete').on('click', function(e) {
 
-    	});
-
-  </script>
 
 </body>
 </html>

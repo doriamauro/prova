@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Categoria;
@@ -26,31 +28,26 @@ public class CategoriaController {
 	
 	
 	@RequestMapping("/new")
-	public String creaCategoria(Categoria c) {
+	public ModelAndView creaCategoria(Categoria c) {
 		service.creaCategoria(c);
-		return "gestioneCategorie";
-		}
-
-	
-	@RequestMapping("/erase")
-	public String eliminaCategoria(int idCategoria, ModelMap model) {
-		boolean b= service.eliminaCategoria(idCategoria);
-		if(b==false) {
-			model.addAttribute("msg", "Eliminazione non riuscita");
-			return "erroreGenerico";
-		}
-		else return "gestioneCategorie";
 		
-	}
+		
+		return visualizzaCategorie();
+		}
 	
 	@RequestMapping("/rename")
-	public String modificaNome(int idCategoria, String nome, ModelMap model) {
-		boolean b=service.modificaNomeCategoria(idCategoria, nome);
-		if(b==false) {
-			model.addAttribute("msg", "Categoria non rinominata");
-			return "erroreGenerico";
+	public ModelAndView modificaNome( int idCat, String nomeCat, ModelMap model) {
+		boolean b=service.modificaNomeCategoria(idCat, nomeCat);
+		if(b==false) 
+			return new ModelAndView("erroreGenerico", "msg", "Categoria non rinominata");
+		else {
+			ModelAndView m = new ModelAndView("gestioneCategorie");
+			m.addObject("categorie", service.getCategorie());
+			m.addObject("modifica", true);
+			return m;
 		}
-		else return "gestioneCategorie";
+			
+		
 	}
 	
 	@RequestMapping("/list")
@@ -98,5 +95,10 @@ public class CategoriaController {
 	@RequestMapping("/pageRate")
 	public String paginaRate() {
 		return "datiRate";
+	}
+	
+	@ModelAttribute("cat")
+	public Categoria start() {
+		return new Categoria();
 	}
 }
