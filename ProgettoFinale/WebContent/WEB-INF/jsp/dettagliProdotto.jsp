@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    
+    <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,11 +77,13 @@ int index = 0;
           <span id="codiceEAN"> Codice EAN: <%= p.getCodiceEAN() %></span><br>
           <span id="prezzoUni"> Prezzo Unitario: <%= p.getPrezzoUni() %></span><br>
           <span id="disponibilita"> Disponibilità: <%= p.getDisponibilita() %></span><br>
-          <span id="linkProduttore"> Link Produttore: <%= p.getLinkProduttore() %></span><br>
+          <span id="linkProduttore"> Link Produttore: <a href="<%= p.getLinkProduttore() %>"><%= p.getLinkProduttore() %></a></span><br>
           <span id="costoSped"> Costo spedizione: <%= p.getCostoSped() %></span><br>
           <span id="tempoConsegna"> Tempo di consegna: <%= p.getTempoConsegna() %></span><br>
-          <span id="immaginePrimaria"> Immagine Principale: <%= p.getImmaginePrimaria() %></span><br>
-          <span id="immagineSec"> Immagine Sencondaria: <%= p.getImmagineSec() %></span><br>
+          <span id="immaginePrimaria"> Immagine Principale: <a href="<%= p.getImmaginePrimaria() %>"><%= p.getImmaginePrimaria() %></a></span><br>
+          <c:if test="${p.getImmagineSec()!=null}">
+          	<span id="immagineSec"> Immagine Sencondaria: <a href="<%= p.getImmagineSec() %>"><%= p.getImmagineSec() %></a></span><br>
+          </c:if>
           <span id="idCategoria"> ID Categoria: <%= p.getIdCategoria() %></span><br>
           <span id="sconto"> Sconto :<%= p.getSconto() %></span><br>
         </div>
@@ -91,7 +93,7 @@ int index = 0;
         
         <div class="quantity">
          
-          <button class="minus-btn" type="button" name="button"onclick="meno(<%= index %>)">
+          <button class="minus-btn" type="button" name="button" onclick="meno(<%= index %>)">
             <img src="../../img/minus.svg" alt="" />
           </button>   
           <input type="text" name="name" id='<%= "id"+ index %>'  value="1">
