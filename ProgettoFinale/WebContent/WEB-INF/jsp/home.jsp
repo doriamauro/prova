@@ -7,7 +7,7 @@
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<html>
+<html>   
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
