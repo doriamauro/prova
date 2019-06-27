@@ -47,8 +47,6 @@ function mettiACarrello(codice, index){
 		// codice da eseguire quando arriva una risposta dal server
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("esitoInserimento"+index).innerHTML = "elemento inserito nel carrello";
-			
-			document.getElementById("imgCarr").src = "../../img/basket-full-icon.png";
 		}else{
 			
 		}
@@ -78,11 +76,14 @@ function mettiACarrello(codice, index){
 		 <option value="${categorie.idCategoria}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
  	</c:forEach>
  	 
- 	</select> 
+ 	
+</select> 
 <input type="submit" value="Vai"> 
 
 </form>
-            
+
+                 
+
 <%-- <% for(int i=0; i < categorie.size(); i++){%>
  --%>
 
@@ -101,8 +102,7 @@ function mettiACarrello(codice, index){
 <!-- </select> -->
 
 <%-- <%} %> --%>
-
-<form action="../prod/search" method="post">
+<form action="/prod/search">
 <input type="text" placeholder="Cerca..." name="cerca">
 <input type="submit" value="cerca"> <i class="fa fa-search"></i>
 </form>
