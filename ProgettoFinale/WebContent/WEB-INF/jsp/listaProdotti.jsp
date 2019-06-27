@@ -2,9 +2,13 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html>
 <script type="text/javascript"
+
+
+
 
 ></script>
 
@@ -61,19 +65,36 @@
     	});
 
   </script><br><br><br>
- 
-<<<<<<< HEAD
- <form action="searchPrice">
- <input type="number" name="min" value="0"> Prezzo minimo<br><br>
- <input type="number" name="max" value="50"> Prezzo massimo<br><br><br>
-=======
- <form action="searchPrice" method="get" >
+  
+ <c:set var="val" value='<%=request.getParameter("menuCategorie") %>'/>
+ <c:if test="${val!=null}">
+ <form action="searchPrice/menuCategorie" method="get" >
  <input type="hidden" value="<%= request.getParameter("menuCategorie") %>" name="menuCategorie" />
  <input type="number" name="min"> Prezzo minimo<br><br>
  <input type="number" name="max"> Prezzo massimo<br><br><br>
->>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
  <input type="submit" value="applica"><br><br><br>
 </form>
+</c:if>
+
+ <c:set var="val2" value='<%=request.getParameter("cerca") %>'/>
+ <c:if test="${val2!=null}">
+ <form action="searchPrice/cerca" method="get" >
+ <input type="hidden" value="<%= request.getParameter("cerca") %>" name="cerca" />
+ <input type="number" name="min"> Prezzo minimo<br><br>
+ <input type="number" name="max"> Prezzo massimo<br><br><br>
+ <input type="submit" value="applica"><br><br><br>
+</form>
+</c:if>
+
+ <c:set var="val3" value='<%=request.getParameter("marca") %>'/>
+ <c:if test="${val3!=null}">
+ <form action="searchPrice/marca" method="get" >
+ <input type="hidden" value="<%= request.getParameter("marca") %>" name="marca" />
+ <input type="number" name="min"> Prezzo minimo<br><br>
+ <input type="number" name="max"> Prezzo massimo<br><br><br>
+ <input type="submit" value="applica"><br><br><br>
+</form>
+</c:if>
 
 <form action="../home/index">
 	<input type="submit" value="Home">
