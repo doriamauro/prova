@@ -11,7 +11,7 @@
 
 Dati modificabili dell'utente:
 <%
- Cliente c = (Cliente) request.getAttribute("c");
+ Cliente c = (Cliente) request.getAttribute("cliente");
 %>
 <form method="get" action="modifica">
   <input type="text" name="nome" value="<%=c.getNome() %>">Nome<br>
