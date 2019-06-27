@@ -240,7 +240,7 @@ Ciao amministratore ${username} <br> --%>
 
 
 
-<% /* DatiOrdine d = (DatiOrdine) session.getAttribute("datiordine"); */
+<% DatiOrdine d = (DatiOrdine) session.getAttribute("datiordine");
    List<Prodotto> lista = (List<Prodotto>) request.getAttribute("prodotti"); 
    List<String> marche = (List<String>) request.getAttribute("marche");
    List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
@@ -285,11 +285,11 @@ Ciao amministratore ${username} <br> --%>
 <input type="submit" value="cerca"> <i class="fa fa-search"></i>
 </form>
 
-<%-- <% if(d==null || d.getProdotti().size()==0){ %>
+ <% if(d==null || d.getProdotti().size()==0){ %>
      <a href = "../../example/carrello/all"><img id="imgCarr" src="../../img/basket-empty-icon.png" alt="Carrello"></a>
 <%} else { %>
      <a href = "../../example/carrello/all"><img id="imgCarr"src="../../img/basket-full-icon.png" alt="Carrello"></a>
-<%}%> --%>
+<%}%>
 
 <a href="../../example/cliente/loginCliente"> Login </a>
 
