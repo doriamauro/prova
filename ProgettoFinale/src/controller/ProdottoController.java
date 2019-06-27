@@ -37,7 +37,7 @@ public class ProdottoController {
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	//
-	@RequestMapping(value="/search", method = RequestMethod.POST)
+	@RequestMapping(value="/search", method = RequestMethod.GET)
 	public ModelAndView ricercaProdotti(@RequestParam(value="cerca") String ricerca) {
 		List<Prodotto> prodotti= service.ricercaSpecificaProdotti(ricerca);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
@@ -48,13 +48,33 @@ public class ProdottoController {
 		List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
-	@RequestMapping("/searchPrice")
-	public ModelAndView ricercaProdottiPerPrezzo(double min, double max, @RequestParam(value="menuCategorie") int menuCategorie) {
+	@RequestMapping("/searchPrice/menuCategorie")
+	public ModelAndView ricercaProdottiPerPrezzo_Categorie(double min, double max, @RequestParam(value="menuCategorie") int menuCategorie) {
 		List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 		List<Prodotto> prodotti3= service.ricercaProdotti("");
 		prodotti3.removeAll(prodotti1);
 		List<Prodotto> prodotti= service.getProdotti(menuCategorie);
 		prodotti.removeAll(prodotti3);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
+	}
+	
+	@RequestMapping("/searchPrice/cerca")
+	public ModelAndView ricercaProdottiPerPrezzo_cerca(double min, double max, @RequestParam(value="cerca") String cerca) {
+List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+	List<Prodotto> prodotti3= service.ricercaProdotti("");
+	prodotti3.removeAll(prodotti1);
+	List<Prodotto> prodotti= service.ricercaSpecificaProdotti(cerca);
+	prodotti.removeAll(prodotti3);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
+	}
+	
+	@RequestMapping("/searchPrice/marca")
+	public ModelAndView ricercaProdottiPerPrezzo_Marca(double min, double max, @RequestParam(value="marca") String marca) {
+List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+	List<Prodotto> prodotti3= service.ricercaProdotti("");
+	prodotti3.removeAll(prodotti1);
+	List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
+	prodotti.removeAll(prodotti3);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
