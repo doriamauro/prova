@@ -36,7 +36,7 @@ public class ProdottoController {
 		List<Prodotto> prodotti= service.getProdotti(idCategoria);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
-	
+	//
 	@RequestMapping(value="/search", method = RequestMethod.POST)
 	public ModelAndView ricercaProdotti(@RequestParam(value="cerca") String ricerca) {
 		List<Prodotto> prodotti= service.ricercaSpecificaProdotti(ricerca);
