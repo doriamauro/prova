@@ -133,11 +133,18 @@ function mettiACarrello(codice, index){
         </div> 
 
 
-        <div class="description">
+       <%--  <div class="description">
           <span><%=p.getMarca() %></span>
           <span><%=p.getDescrizione() %></span>
           </div>
-
+ --%>
+ 
+ <div class="description">
+          <a href="../prod/scheda?idProdotto=<%=p.getIdProdotto()%>"><span><%=p.getDescrizione()  %></span></a>
+          <span><%=p.getMarca()%></span>
+          </div>
+          
+          
         <div class="quantity">
          
           <button class="minus-btn" type="button" name="button"onclick="meno(<%= index %>)">
