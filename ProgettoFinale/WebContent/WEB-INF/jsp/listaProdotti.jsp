@@ -96,7 +96,7 @@
 </form>
 </c:if>
 
-<form action="../home/index">
+<form action="../../home/index">
 	<input type="submit" value="Home">
 </form>
 
