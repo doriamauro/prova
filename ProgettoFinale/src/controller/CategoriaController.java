@@ -25,6 +25,7 @@ public class CategoriaController {
 	
 	@Autowired
 	private CatalogoService service;
+	  
 	
 	
 	@RequestMapping("/new")
