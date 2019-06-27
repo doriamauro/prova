@@ -10,7 +10,7 @@
 Intestatario della carta
 <input type = "text" name ="nome">Nome
 <input type = "text" name ="cognome">Cognome
-
+<!-- 4b5y -->
 <form action="posta">
 <input type ="text" name ="numCarta">Inserire il numero della carta di credito<br>
 <input type ="submit" value="conferma">
