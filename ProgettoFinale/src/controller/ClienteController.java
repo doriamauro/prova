@@ -13,15 +13,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Admin;
 import bean.Attivo;
+import bean.Categoria;
 import bean.Cliente;
 import bean.Ordine;
+import bean.Prodotto;
 import exception.ClienteException;
 import service.ClienteService;
+import service.ProdottoService;
 
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
 
+	@Autowired
+	private ProdottoService serviceP; 	
+	
 	@Autowired
 	private ClienteService service;
 
@@ -49,14 +55,29 @@ public class ClienteController {
 					session.setAttribute("admin", c.getAdmin().ordinal());
 					session.setAttribute("affidabile",c.getAffidabile().ordinal());
 					session.setMaxInactiveInterval(0);
-					return new ModelAndView("home");
+					
+					List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
+					List<String> marche= serviceP.getMarche();
+					List<Categoria> categorie = serviceP.getCategorie();
+					ModelAndView mav= new ModelAndView("home");
+					mav.addObject("prodotti", prodotti);
+					mav.addObject("marche", marche);
+					mav.addObject("categorie", categorie);
+					return mav;
 				}
 				else if (c.getAttivo().equals(Attivo.SI) && c.getAdmin().equals(Admin.SI)){
 					session.setAttribute("login", username);
 					session.setAttribute("admin", c.getAdmin().ordinal());
 					session.setAttribute("affidabile",c.getAffidabile().ordinal());
 					session.setMaxInactiveInterval(0);
-					return new ModelAndView("home");
+					List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
+					List<String> marche= serviceP.getMarche();
+					List<Categoria> categorie = serviceP.getCategorie();
+					ModelAndView mav= new ModelAndView("home");
+					mav.addObject("prodotti", prodotti);
+					mav.addObject("marche", marche);
+					mav.addObject("categorie", categorie);
+					return mav;
 				}
 					else
 					return new ModelAndView("riabilitati");
