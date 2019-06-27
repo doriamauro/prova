@@ -48,7 +48,9 @@ public class ProdottoController {
 		List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
-	@RequestMapping("/searchPrice/menuCategorie")
+	
+	
+	@RequestMapping(value ="/searchPrice/menuCategorie",method = RequestMethod.POST)
 	public ModelAndView ricercaProdottiPerPrezzo_Categorie(double min, double max, @RequestParam(value="menuCategorie") int menuCategorie) {
 		List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 		List<Prodotto> prodotti3= service.ricercaProdotti("");
@@ -58,8 +60,28 @@ public class ProdottoController {
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
-	@RequestMapping("/searchPrice/cerca")
+	
+	@RequestMapping(value ="/searchPrice/*/menuCategorie",method = RequestMethod.POST)
+	public ModelAndView ricercaProdottiPerPrezzo_Categorie2(double min, double max, @RequestParam(value="menuCategorie") int menuCategorie) {
+		List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+		List<Prodotto> prodotti3= service.ricercaProdotti("");
+		prodotti3.removeAll(prodotti1);
+		List<Prodotto> prodotti= service.getProdotti(menuCategorie);
+		prodotti.removeAll(prodotti3);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
+	}
+	
+	@RequestMapping(value ="/searchPrice/*/cerca",method = RequestMethod.POST)
 	public ModelAndView ricercaProdottiPerPrezzo_cerca(double min, double max, @RequestParam(value="cerca") String cerca) {
+List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+	List<Prodotto> prodotti3= service.ricercaProdotti("");
+	prodotti3.removeAll(prodotti1);
+	List<Prodotto> prodotti= service.ricercaSpecificaProdotti(cerca);
+	prodotti.removeAll(prodotti3);
+		return new ModelAndView("listaProdotti", "lista", prodotti);}
+	
+	@RequestMapping(value ="/searchPrice/cerca",method = RequestMethod.POST)
+	public ModelAndView ricercaProdottiPerPrezzo_cerca2(double min, double max, @RequestParam(value="cerca") String cerca) {
 List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 	List<Prodotto> prodotti3= service.ricercaProdotti("");
 	prodotti3.removeAll(prodotti1);
@@ -68,7 +90,7 @@ List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
-	@RequestMapping("/searchPrice/marca")
+	@RequestMapping(value="/searchPrice/marca", method = RequestMethod.POST)
 	public ModelAndView ricercaProdottiPerPrezzo_Marca(double min, double max, @RequestParam(value="marca") String marca) {
 List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 	List<Prodotto> prodotti3= service.ricercaProdotti("");
@@ -77,6 +99,17 @@ List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 	prodotti.removeAll(prodotti3);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
+	
+	@RequestMapping(value="/searchPrice/*/marca", method = RequestMethod.POST)
+	public ModelAndView ricercaProdottiPerPrezzo_Marca2(double min, double max, @RequestParam(value="marca") String marca) {
+List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+	List<Prodotto> prodotti3= service.ricercaProdotti("");
+	prodotti3.removeAll(prodotti1);
+	List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
+	prodotti.removeAll(prodotti3);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
+	}
+	
 	
 	@RequestMapping("/searchSconto")
 	public ModelAndView ricercaProdottiScontati() {
