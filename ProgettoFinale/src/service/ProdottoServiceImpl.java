@@ -31,7 +31,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public List<Prodotto> getProdotti(int idCat) {
 		return dao.selectAll(" where categoria = " + idCat);
-	}
+	}//
 
 	@Override
 	public List<Prodotto> ricercaProdotti(String ricerca) {
