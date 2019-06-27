@@ -29,7 +29,7 @@ public class ProdottoController {
 	private ProdottoService service;
 	
 	//@RequestMapping(value="/list/{idCategoria}", method = RequestMethod.GET)// params = "categorie= {idCategoria}")
-@RequestMapping(value="/list", method = RequestMethod.POST)
+@RequestMapping(value="/list", method = RequestMethod.GET)
 	//@ResponseBody
 	//public @ResponseBody ModelAndView visualizzaProdotti(@PathVariable(value = "idCategoria") int idCategoria) {
 	public ModelAndView visualizzaProdotti(@RequestParam(value = "menuCategorie") int idCategoria) {
@@ -49,8 +49,12 @@ public class ProdottoController {
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	@RequestMapping("/searchPrice")
-	public ModelAndView ricercaProdottiPerPrezzo(double min, double max) {
-		List<Prodotto> prodotti= service.ricercaProdottiPerPrezzoUnitario(min, max);
+	public ModelAndView ricercaProdottiPerPrezzo(double min, double max, @RequestParam(value="menuCategorie") int menuCategorie) {
+		List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
+		List<Prodotto> prodotti3= service.ricercaProdotti("");
+		prodotti3.removeAll(prodotti1);
+		List<Prodotto> prodotti= service.getProdotti(menuCategorie);
+		prodotti.removeAll(prodotti3);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
