@@ -63,7 +63,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public Cliente select(String username) {
 // Nel main non ritorna null. org.springframework.dao.EmptyResultDataAccessException
 		List<Cliente> c = template.query("select * from cliente where username = ?", new ClienteMapper(), username);
-		//System.out.println(c);
+//		System.out.println(c);
 		if(c.size()==0)
 			return null;
 		return c.get(0);

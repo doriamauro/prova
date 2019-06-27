@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	I tuoi dati:
+	<%-- I tuoi dati:
 	<ul>
 		<li>${cliente.username}</li>
 		<li>${cliente.nome}</li>
@@ -23,6 +23,8 @@
 		<li>${cliente.comune}</li>
 		<li>${cliente.provincia}</li>
 		<li>${cliente.nazione}</li>
-	</ul>
+	</ul> --%>
+	
+	ecco i tuoi dati
 </body>
 </html>

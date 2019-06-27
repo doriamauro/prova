@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shopping Cart</title>
@@ -14,9 +13,6 @@
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <meta name="robots" content="noindex,follow" />
   </head>
-
-
-
 <!--METTERE FUNZIONE  -->
 <body>
 
@@ -48,7 +44,6 @@
             <span><%= p.getDisponibilita() %></span>
         </div>
      
-
         <div class="total-price">
           <span><%= p.getPrezzoUni() %></span>
         </div>
@@ -59,8 +54,6 @@
 
     <script type="text/javascript">
       $('.delete-btn').on('click', function(e) {
-    		
-
     	});
 
   </script>
@@ -73,15 +66,19 @@
 
 <form>
 
-	<input type="checkbox"> Prodotti scontati 
-
+ <input type="checkbox"> Prodotti scontati 
+ 
+ <form action="searchPride">
+ <input type="number" name="min"> Prezzo minimo<br>
+ <input type="number" name="max"> Prezzo massimo<br>
+ <input type="submit" value="applica">
 </form>
 
 	
 <form>
 
-		
-
+<!-- prezzo minimo, prezzo  massimo nella casella di testo e applica 
+sia checkbox che il range di prezzo-->
 </form>
 
 </body>

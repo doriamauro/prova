@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- ev -->
+
 <form action="loginCliente">
- <input type="text" value="username">Username<br>
- <input type="text" value="password">Password<br>
- <input type="submit" value="login"><br>
+ <input type="text" name="username"> Username<br><br>
+ <input type="password" name="password"> Password<br><br>
+ <input type="submit" value="login"><br><br><br><br>
 </form>
 
 <form action="invioRegistrazione">
- <input type="submit" value="registrati"><br>
+ <input type="submit" value="registrati"><br><br><br>
 </form>
 
 </body>
