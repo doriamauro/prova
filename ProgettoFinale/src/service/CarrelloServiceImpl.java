@@ -43,77 +43,74 @@ public class CarrelloServiceImpl implements CarrelloService {
 	private DatiRateDAO daoRateDef;
 	@Autowired
 	private ModPagamentoDAO daoModPag;
-	
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void finalizzaAcquisto(DatiOrdine d) {
-		
+
 		//inserisce in indirizzoOrdine l'indirizzo
 		IndirizzoOrdine indOrd = d.getIndOrd();
 		indOrd.setIdIndOrdine(daoIndOrd.getProxID());
 		daoIndOrd.insert(indOrd);
-		
-		
+
+
 		//Calcolo il costo totale comprensivo di spese di spedizione
 		double costo = 0;
 		double speseSped = 0;
+		double costoTot = 0;
 		for (Prodotto p: d.getProdotti()) {
-			costo += p.getPrezzoUni()*p.getDisponibilita();
+			costo = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100));
+			costoTot += costo*p.getDisponibilita();
 			speseSped += p.getCostoSped();
 		}
-		 
-		double costoTot = costo;
-		
-		if (d.getModPag().getIdMod()!=1) {
-			if (costo<20){
-				costoTot += speseSped;
-			} else if (costo>=20 && costo<100) {
-				costoTot += 10;
-			}
+
+		if (costoTot<20){
+			costoTot += speseSped;
+		} else if (costoTot>=20 && costoTot<100) {
+			costoTot += 10;
 		}
-		
-		
+
 		//inserisco l'ordine nella tabella ordini
 		Ordine ordine = new Ordine(daoOrd.contaNumOrdini()+1,
-				 				   d.getUsername(),
-				 				   new Date(new java.util.Date().getTime()),
-				 				   costoTot,
-				 				   d.getIndOrd().getIdIndOrdine(),
-				 				   d.getModPag().getIdMod());
+				d.getUsername(),
+				new Date(new java.util.Date().getTime()),
+				costoTot,
+				d.getIndOrd().getIdIndOrdine(),
+				d.getModPag().getIdMod());
 		daoOrd.insert(ordine);
-		
-		
+
+
 		//inserimento nella tabella composizioneOrdini
 		for (Prodotto p: d.getProdotti()) {
 			ComposizioneOrdini compOrd = new ComposizioneOrdini(p.getDisponibilita(), p.getIdProdotto(), ordine.getCodOrdine());
 			daoComp.insert(compOrd);
 		}
-		
+
 		//inserimento nella tabella datiRateOrdini
 		if (d.getModPag().getIdMod()==5) {
 			DatiRateOrdine datiRatOrd = new DatiRateOrdine(ordine.getCodOrdine(),
-														   daoRateDef.selectRate().getTan(),
-														   daoRateDef.selectRate().getMaxTaeg(),
-														   daoRateDef.selectRate().getnRate());
+					daoRateDef.selectRate().getTan(),
+					daoRateDef.selectRate().getMaxTaeg(),
+					daoRateDef.selectRate().getnRate());
 			daoRateOrd.insert(datiRatOrd);}
 	}
-		
-		@Override
-		public List<ModPagamento> getAllModPagamento() {
-			return daoModPag.selectAllModalita();
-		}
-		
-		
-		
-		@Override
-		public DatiRate getDatiRate() {
-			return daoRateDef.selectRate();
-		}
 
-		@Override
-		public ModPagamento getModPagamento(int idMod) {
-			return daoModPag.select(idMod);
-		}
+	@Override
+	public List<ModPagamento> getAllModPagamento() {
+		return daoModPag.selectAllModalita();
+	}
+
+
+
+	@Override
+	public DatiRate getDatiRate() {
+		return daoRateDef.selectRate();
+	}
+
+	@Override
+	public ModPagamento getModPagamento(int idMod) {
+		return daoModPag.select(idMod);
+	}
 
 
 }

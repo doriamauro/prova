@@ -17,12 +17,13 @@ Riepilogo dei dati:
 
 
 <% 
-DatiOrdine datiFinali = (DatiOrdine)session.getAttribute("dati");
-String numero = (String)session.getAttribute("numCarta");
+DatiOrdine datiFinali = (DatiOrdine)session.getAttribute("datiordine");
 
-out.println("L'utente " + datiFinali.getUsername() + 
-		" paga con " + datiFinali.getModPag().getModalita() +  " con il numero: " 
-		+ numero);
+out.println("L'utente " + session.getAttribute("login"));
+
+if(datiFinali.getModPag().getIdMod()==3) {
+	out.println("paga con carta di credito numero: "+ datiFinali.getNumCarta());
+}
 out.println("I prodotti acquistati sono:\n");
 for (Prodotto p : datiFinali.getProdotti()) {
 	out.println("<ul>");
@@ -33,11 +34,12 @@ for (Prodotto p : datiFinali.getProdotti()) {
 	out.println("</ul>");
 }
 
+if(datiFinali.getModPag().getIdMod()!=1) {
 out.println( "L'indirizzo per la spedizione è :\n" + "via " +
 datiFinali.getIndOrd().getVia() + "\n" + "Comune di " + datiFinali.getIndOrd().getComune() + "\n"+
 		"Cap " + datiFinali.getIndOrd().getCap() + "\n" +"Provincia di " +datiFinali.getIndOrd().getProvincia() + 
 		"\n" + "Nazione " + datiFinali.getIndOrd().getProvincia());
-
+}
 %>
 
 <form action="finalizza">

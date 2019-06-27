@@ -15,17 +15,39 @@ public class DatiOrdine {
 	private String username;
 	private ModPagamento modPag;
 	private IndirizzoOrdine indOrd;
+	private String numCarta;
 	
 	public DatiOrdine() {}
 
-	public DatiOrdine(ArrayList<Prodotto> prodotti, String username, ModPagamento modPag, IndirizzoOrdine indOrd) {
+	
+
+	
+	public DatiOrdine(ArrayList<Prodotto> prodotti, String username, ModPagamento modPag, IndirizzoOrdine indOrd,
+			String numCarta) {
 		this.prodotti = prodotti;
 		this.username = username;
 		this.modPag = modPag;
 		this.indOrd = indOrd;
+		this.numCarta = numCarta;
 	}
 
-	
+
+
+
+	public String getNumCarta() {
+		return numCarta;
+	}
+
+
+
+
+	public void setNumCarta(String numCarta) {
+		this.numCarta = numCarta;
+	}
+
+
+
+
 	public ArrayList<Prodotto> getProdotti() {
 		return prodotti;
 	}
@@ -97,11 +119,16 @@ public class DatiOrdine {
 		}
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "DatiOrdine [prodotti=" + prodotti + ", username=" + username + ", modPag=" + modPag + ", indOrd="
-				+ indOrd + "]";
+				+ indOrd + ", numCarta=" + numCarta + "]";
 	}
+
+	
 
 
 

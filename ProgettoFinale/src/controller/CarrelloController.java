@@ -36,7 +36,6 @@ public class CarrelloController {
 	public void inserisciProdotto(@ModelAttribute("datiordine") DatiOrdine datOrd, int idProdotto, int quantita) throws ProdottoNonTrovatoException {
 
 		Prodotto p = serviceProdotto.getSchedaProdotto(idProdotto);
-
 		p.setDisponibilita(quantita);
 		datOrd.addProdotto(p);		
 	}
@@ -73,23 +72,17 @@ public class CarrelloController {
 		}
 		
 		
-		
-//		String username = (String)session.getAttribute("login");
-//		datOrd.setUsername(username);
 		return new ModelAndView("informazioniPagamento", "modpagamento", serviceCarrello.getAllModPagamento());
 	}
 	
 	@GetMapping("/scelta")
 	public ModelAndView sceltaPagamento(@ModelAttribute("datiordine") DatiOrdine datOrd, int pag) {
-		System.out.println(pag);
 		datOrd.setModPag(serviceCarrello.getModPagamento(pag));
 		
 		if (datOrd.getModPag().getIdMod()==5) {
 			return new ModelAndView("rateizzazione", "rata", serviceCarrello.getDatiRate());
 		} else if (datOrd.getModPag().getIdMod()==3) {
 			return new ModelAndView("cartaDiCredito");	
-		} else if (datOrd.getModPag().getIdMod()==1) {
-			return new ModelAndView("riepilogo", "recap", datOrd);
 		} else {
 			return new ModelAndView("indirizzoSpedizione");
 		}
@@ -98,16 +91,17 @@ public class CarrelloController {
 	
 	// metodo che parte dopo che ho inserito i dati della carta 
 	@GetMapping("/posta")
-	public ModelAndView getCarta(HttpSession session, String numCarta) {
+	public ModelAndView getCarta(@ModelAttribute("datiordine") DatiOrdine datOrd, String numCarta) {
 		
-		session.setAttribute("numCarta", numCarta);
+		datOrd.setNumCarta(numCarta);
 		return new ModelAndView("indirizzoSpedizione");
 	} 
 	
 	@GetMapping("/riepilogo")
-	public ModelAndView getRiepilogo(@ModelAttribute("datiordine") DatiOrdine datOrd,
+	public ModelAndView getRiepilogo(@ModelAttribute("datiordine") DatiOrdine datOrd, HttpSession session,
 			String via, String comune, String cap, String provincia, String nazione) {
-		
+		String login = (String)session.getAttribute("login");
+		datOrd.setUsername(login);
 		IndirizzoOrdine indirizzo = new IndirizzoOrdine(0, via, comune, cap, provincia, nazione);
 		datOrd.setIndOrd(indirizzo);
 		return new ModelAndView("riepilogo", "dati", datOrd);
@@ -116,6 +110,7 @@ public class CarrelloController {
 
 	@GetMapping("finalizza")
 	public ModelAndView acquista(@ModelAttribute("datiordine") DatiOrdine datOrd) {
+	
 		serviceCarrello.finalizzaAcquisto(datOrd);
 		return new ModelAndView("grazie");
 				
