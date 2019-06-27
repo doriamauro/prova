@@ -60,8 +60,8 @@ public class ProdottoController {
 		return new ModelAndView("listaProdotti", "prodotti", prodotti);
 	}
 	
-	@RequestMapping("/scheda")
-	public ModelAndView schedaProdotto(int idProdotto) {
+	@RequestMapping(value="/scheda",method = RequestMethod.GET)
+	public ModelAndView schedaProdotto(@RequestParam(value="idProdotto") int idProdotto) {
 		Prodotto p;
 		try {
 			p = service.getSchedaProdotto(idProdotto);
@@ -70,7 +70,10 @@ public class ProdottoController {
 			return new ModelAndView("erroreGenerico", "msg", e);
 		}
 	}
-	
+//	@RequestMapping("/dettagliProdotto")
+//	public ModelAndView getDettagliProdotto(int idProdotto) {
+//		return new ModelAndView("dettagliProdotto");
+//	}
 	@RequestMapping("/eraseProd")
 	public ModelAndView eliminaProdotto(int idProdotto, ModelMap model) {
 		List<Prodotto> prodotti= service.ricercaProdottiScontati();
