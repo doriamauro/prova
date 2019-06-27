@@ -5,12 +5,10 @@
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript"
+<script type="text/javascript">
 
 
-
-
-></script>
+</script>
 
 <head>
     <meta charset="utf-8">
@@ -23,7 +21,7 @@
   </head>
 <!--METTERE FUNZIONE  -->
 <body>
-
+<!--  -->
 <div class="shopping-cart">
       <!-- Title -->
       <div class="title">

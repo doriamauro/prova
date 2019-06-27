@@ -35,7 +35,7 @@ public class ProdottoController {
 	public ModelAndView visualizzaProdotti(@RequestParam(value = "menuCategorie") int idCategoria) {
 		List<Prodotto> prodotti= service.getProdotti(idCategoria);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
-	}
+	}//
 	//
 	@RequestMapping(value="/search", method = RequestMethod.GET)
 	public ModelAndView ricercaProdotti(@RequestParam(value="cerca") String ricerca) {
