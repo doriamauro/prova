@@ -78,14 +78,11 @@ function mettiACarrello(codice, index){
 		 <option value="${categorie.idCategoria}"><!-- <a href="listaProdotti"> -->${categorie.nomeCategoria}<!-- </a> --></option>
  	</c:forEach>
  	 
- 	
-</select> 
+ 	</select> 
 <input type="submit" value="Vai"> 
 
 </form>
-
-                 
-
+            
 <%-- <% for(int i=0; i < categorie.size(); i++){%>
  --%>
 
@@ -104,7 +101,8 @@ function mettiACarrello(codice, index){
 <!-- </select> -->
 
 <%-- <%} %> --%>
-<form action="/prod/search">
+
+<form action="../prod/search" method="post">
 <input type="text" placeholder="Cerca..." name="cerca">
 <input type="submit" value="cerca"> <i class="fa fa-search"></i>
 </form>
