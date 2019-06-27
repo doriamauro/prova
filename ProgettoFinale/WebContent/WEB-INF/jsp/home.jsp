@@ -102,7 +102,7 @@ function mettiACarrello(codice, index){
 
 <%-- <%} %> --%>
 
-<form action="../prod/search" method="post">
+<form action="../prod/search" method="get">
 <input type="text" placeholder="Cerca..." name="cerca">
 <input type="submit" value="cerca"> <i class="fa fa-search"></i>
 </form>

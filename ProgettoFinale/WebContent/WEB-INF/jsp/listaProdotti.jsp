@@ -46,9 +46,8 @@
         </div>
 
         <div class="description">
-          <span><%= p.getMarca() %></span>
-          <span><%= p.getDescrizione() %></span>
-          <span><%= p.getCodiceEAN() %></span>
+        <a href="../prod/scheda?idProdotto=<%=p.getIdProdotto()%>"><span><%=p.getDescrizione()  %></span></a>
+        <span><%= p.getMarca() %></span>
             <span><%= p.getDisponibilita() %></span>
         </div>
      
