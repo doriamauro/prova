@@ -13,7 +13,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shopping Cart</title>
-
+<!-- we -->
     <link rel="stylesheet" href="../../css/style.css" media="screen" title="no title" charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <meta name="robots" content="noindex,follow" />
@@ -155,14 +155,24 @@ function mettiACarrello(codice, index){
           </div>
 
         <div class="total-price">
-        <span> <%= p.getPrezzoUni() %></span>
-        <span> <%= p.getSconto() %></span>
+        <span> <%= p.getPrezzoUni()  %></span> <br>
+        
+        <span> <%= p.getSconto() + "%"%></span>
         </div>
       </div>
 
     
 <% index++;
 } %>
+
+
+<ul>
+<% for(String s: marche){%>
+<li><a href="../prod/searchMarca?marca=<%= s %>"><%= s %></a> <br></li> 
+<%} %>
+</ul>
+
+
 </div>
 
 </body>

@@ -36,19 +36,18 @@ public class ProdottoController {
 		List<Prodotto> prodotti= service.getProdotti(idCategoria);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
-	
+	//
 	@RequestMapping(value="/search", method = RequestMethod.POST)
 	public ModelAndView ricercaProdotti(@RequestParam(value="cerca") String ricerca) {
 		List<Prodotto> prodotti= service.ricercaSpecificaProdotti(ricerca);
 		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
-	@RequestMapping("/searchMarca")
-	public ModelAndView ricercaProdottiPerMarca(String marca) {
+	@RequestMapping(value = "/searchMarca", method = RequestMethod.GET)
+	public ModelAndView ricercaProdottiPerMarca(@RequestParam(value = "marca") String marca) {
 		List<Prodotto> prodotti= service.ricercaProdottiPerMarca(marca);
-		return new ModelAndView("listaProdotti", "prodotti", prodotti);
+		return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
-	
 	@RequestMapping("/searchPrice")
 	public ModelAndView ricercaProdottiPerPrezzo(double min, double max) {
 		List<Prodotto> prodotti= service.ricercaProdottiPerPrezzoUnitario(min, max);
