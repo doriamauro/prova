@@ -67,29 +67,36 @@ METTERE I METODI SU FUNCTION
 Dettagli del prodotto:
 
 <% Prodotto p= (Prodotto) request.getAttribute("prodotto");
-int index = 0;
+	Boolean b = (Boolean) request.getAttribute("modifica");
+	if(b!=null && b==true) out.println("modifica avvenuta con successo <p>");
+	int index = 0;
 %>
 
 	 <div class="dettagliProdotto">
-	   	  <span id="id" > ID: <%= p.getIdProdotto() %></span><br>
-	 	  <span id="descrizione"> Descrizione: <%= p.getDescrizione() %></span><br>
-          <span id="marca"> Marca: <%= p.getMarca() %></span><br>
-          <span id="codiceEAN"> Codice EAN: <%= p.getCodiceEAN() %></span><br>
-          <span id="prezzoUni"> Prezzo Unitario: <%= p.getPrezzoUni() %></span><br>
-          <span id="disponibilita"> Disponibilità: <%= p.getDisponibilita() %></span><br>
-          <span id="linkProduttore"> Link Produttore: <a href="<%= p.getLinkProduttore() %>"><%= p.getLinkProduttore() %></a></span><br>
-          <span id="costoSped"> Costo spedizione: <%= p.getCostoSped() %></span><br>
-          <span id="tempoConsegna"> Tempo di consegna: <%= p.getTempoConsegna() %></span><br>
-          <span id="immaginePrimaria"> Immagine Principale: <a href="<%= p.getImmaginePrimaria() %>"><%= p.getImmaginePrimaria() %></a></span><br>
+	 <form action="editProd">
+	   	  <span id="id"> ID: <%= p.getIdProdotto() %></span><br>
+	 	  <input type="text" name="descrizione" value="<%= p.getDescrizione() %>"> Descrizione<br>
+          <input type="text" name="marca" value="<%= p.getMarca() %>"> Marca<br>
+          <input type="text" name="codiceEAN" value="<%= p.getCodiceEAN() %>"> Codice EAN<br>
+          <input type="text" name="prezzoUni" value="<%= p.getPrezzoUni() %>"> Prezzo unitario<br>
+          <input type="text" name="disponibilita" value="<%= p.getDisponibilita() %>"> Disponibilità<br>
+          <input type="text" name="linkProduttore" value="<%= p.getLinkProduttore() %>"> Link Produttore<br>
+          <input type="text" name="costoSped" value="<%= p.getCostoSped() %>"> Costo Spedizione<br>
+          <input type="text" name="tempoConsegna" value="<%= p.getTempoConsegna() %>"> Tempi di consegna<br>
+          <input type="text" name="immaginePrimaria" value="<%= p.getImmaginePrimaria() %>"> Immagine primaria<br>
           <c:if test="${p.getImmagineSec()!=null}">
-          	<span id="immagineSec"> Immagine Sencondaria: <a href="<%= p.getImmagineSec() %>"><%= p.getImmagineSec() %></a></span><br>
+          	<input type="text" name="immagineSec" value="<%= p.getImmagineSec() %>"> Immagine secondaria<br>
           </c:if>
-          <span id="idCategoria"> ID Categoria: <%= p.getIdCategoria() %></span><br>
-          <span id="sconto"> Sconto :<%= p.getSconto() %></span><br>
+          <input type="text" name="idCategoria" value="<%= p.getIdCategoria() %>"> Id categoria<br>
+          <input type="text" name="sconto" value="<%= p.getSconto() %>"> Sconto<br>
+
+
+			<input type="submit" class="modifica" value="Modifica prodotto">
+</form>	
         </div>
         
-        
-        
+        <br>
+        Aggiungi al carrello:
         
         <div class="quantity">
          
@@ -106,16 +113,7 @@ int index = 0;
           </button>
           <div id="esitoInserimento<%=index %>"></div>
           </div>
-          
-        
 	
-
-<form>
-<input type="button" class="modifica" value="Modifica prodotto">
-</form>	
-<form>
-<input type="button" class="crea" value="Crea nuovo prodotto">
-</form>	
 	
 
 

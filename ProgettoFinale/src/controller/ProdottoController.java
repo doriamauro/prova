@@ -142,6 +142,8 @@ List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 		else return new ModelAndView("listaProdotti", "lista", prodotti);
 	}
 	
+	
+//	metodo di modifica prodotto solo per admin
 	@RequestMapping("/editProd")
 	public ModelAndView modificaProd(Prodotto p, ModelMap model) {
 		boolean b= service.modificaSchedaProdotto(p);
@@ -149,7 +151,18 @@ List<Prodotto> prodotti1= service.ricercaProdottiPerPrezzoUnitario(min, max);
 			model.addAttribute("msg", "Prodotto non modificato");
 			return new ModelAndView("erroreGenerico");
 		}
-		else return new ModelAndView("dettagliProdotto", "prodotto", p);
+		else {
+			ModelAndView m = new ModelAndView("dettagliProdotto");
+			try {
+				m.addObject("prodotto", service.getSchedaProdotto(p.getIdProdotto()));
+				m.addObject("modifica", true);
+				return m;
+			} catch (ProdottoNonTrovatoException e) {
+				model.addAttribute("msg", "Prodotto non trovato");
+				return new ModelAndView("erroreGenerico");
+			}
+			
+		}
 	}
 	
 }
