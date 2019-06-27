@@ -22,7 +22,7 @@ public class AdminUtenteController {
 	@RequestMapping("/vedi")
 	public String visualizzaClienti() {
 		service.visualizzaClienti();
-		return "gestioneClienti";
+		return "gestioneUtenti";
 		}
 	
 	@RequestMapping("/view")

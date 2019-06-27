@@ -136,7 +136,7 @@ function tipoMenu(chiE) {
      <a href = "../../example/carrello/all"><img id="imgCarr"src="../../img/basket-full-icon.png" alt="Carrello"></a>
 <%}%>
 
-<a href="../../example/cliente/loginCliente"> Login </a>
+<!-- <a href="../../example/cliente/loginCliente"> Login </a> -->
 
 </div>
 <button id="primo" onclick='tipoMenu("<%=tipoCliente%>")'> Si clicca automaticamente al caricamento della pagina</button>

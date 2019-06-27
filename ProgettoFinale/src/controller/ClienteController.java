@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Admin;
@@ -25,6 +27,8 @@ import service.ProdottoService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
+
+	
 	@Autowired
 	private ProdottoService serviceP; 	
 	
@@ -90,8 +94,8 @@ public class ClienteController {
 		}
 	}
 
-	@RequestMapping("/datiCliente")
-	public ModelAndView visualizzaDati(String username) {
+	@RequestMapping(value="/datiCliente", method = RequestMethod.GET)
+	public ModelAndView visualizzaDati(@RequestParam(value="username") String username) {
 		Cliente c = service.getCliente(username);
 		return new ModelAndView("datiUtente", "cliente", c);
 	}
@@ -130,7 +134,17 @@ public class ClienteController {
 
 		//		if(session.getAttribute("login") != null) {
 		session.invalidate();
-		return new ModelAndView("home");
+//		session.removeAttribute("login");
+//		session.removeAttribute("admin");
+//		session.removeAttribute("affidabile");
+		List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
+		List<String> marche= serviceP.getMarche();
+		List<Categoria> categorie = serviceP.getCategorie();
+		ModelAndView mav= new ModelAndView("home");
+		mav.addObject("prodotti", prodotti);
+		mav.addObject("marche", marche);
+		mav.addObject("categorie", categorie);
+		return mav;
 		//		}
 
 	}
