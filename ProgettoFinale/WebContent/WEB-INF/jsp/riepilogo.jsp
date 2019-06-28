@@ -33,6 +33,7 @@ for (Prodotto p : datiFinali.getProdotti()) {
 	
 	out.println("</ul>");
 }
+out.println("Il totale dovuto è: " + datiFinali.calcolaTotale());
 
 if(datiFinali.getModPag().getIdMod()!=1) {
 out.println( "L'indirizzo per la spedizione è :\n" + "via " +
