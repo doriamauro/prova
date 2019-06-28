@@ -22,6 +22,7 @@ import bean.Prodotto;
 import exception.ClienteException;
 import service.ClienteService;
 import service.ProdottoService;
+import service.UtenteService;
 
 @Controller
 @RequestMapping("/cliente")
@@ -34,6 +35,11 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteService service;
+	
+	@Autowired
+	private UtenteService serviceA;
+	
+
 
 	@RequestMapping("/registrazioneCliente")
 	public ModelAndView registraCliente(Cliente c) {
@@ -97,8 +103,18 @@ public class ClienteController {
 	@RequestMapping(value="/datiCliente", method = RequestMethod.GET)
 	public ModelAndView visualizzaDati(@RequestParam(value="username") String username) {
 		Cliente c = service.getCliente(username);
-		return new ModelAndView("datiUtente", "cliente", c);
+		return new ModelAndView("datiUtente", "c", c);
 	}
+	
+//	@RequestMapping("/modificaD")
+//	public ModelAndView modifica(Cliente c) {
+//		try {
+//			service.modificaDatiCliente(c);
+//			return new ModelAndView("datiUtente", "c",c);
+//		} catch (Exception e) {
+//			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+//		}
+//	}
 
 	@RequestMapping("/disabilitaCliente")
 	public ModelAndView disabilitaCliente(String username, HttpSession session) {
@@ -159,7 +175,7 @@ public class ClienteController {
 		}
 	}
 	
-	@RequestMapping("/modificaDati")
+	@RequestMapping("/modificaD")
 	public ModelAndView modificaDati(Cliente c) {
 		try {
 			service.updateCliente(c);
