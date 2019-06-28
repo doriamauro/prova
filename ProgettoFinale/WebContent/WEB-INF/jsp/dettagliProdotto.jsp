@@ -74,7 +74,8 @@ Dettagli del prodotto:
 
 	 <div class="dettagliProdotto">
 	 <form action="editProd">
-	   	  <span id="id"> ID: <%= p.getIdProdotto() %></span><br>
+	   	  <%-- <input id="id"> ID: <%= p.getIdProdotto() %></span><br> --%>
+	   	   <input type="text" name="id" value="<%= p.getIdProdotto() %>">id<br>
 	 	  <input type="text" name="descrizione" value="<%= p.getDescrizione() %>"> Descrizione<br>
           <input type="text" name="marca" value="<%= p.getMarca() %>"> Marca<br>
           <input type="text" name="codiceEAN" value="<%= p.getCodiceEAN() %>"> Codice EAN<br>

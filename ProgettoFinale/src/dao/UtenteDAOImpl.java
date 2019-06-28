@@ -47,7 +47,6 @@ public class UtenteDAOImpl implements UtenteDAO {
 				new ClienteMapper(), username);
 		if(c.size()==0)
 		return null;
-		
 		return c.get(0);
 	}
 
@@ -73,8 +72,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 	@Override
 	public void update(Cliente c) {
 		template.update("update cliente set nome=?, cognome=?, tipologia=?, partitaIva=?, codiceFiscale=?, cellulare=?, telefonoFisso=?, email=?, password=?, attivo=?, affidabile=?, via=?, cap=?, comune=?, provincia=?, nazione=? where username=?",
-		c.getNome(), c.getCognome(), c.getTipologia(), c.getPartitaIva(), c.getCodiceFiscale(), c.getCellulare(), c.getTelefonoFisso(),
-				c.getEmail(), c.getPassword(), c.getAttivo(), c.getAffidabile(), c.getVia(), c.getCap(),
+		c.getNome(), c.getCognome(), c.getTipologia().ordinal(), c.getPartitaIva(), c.getCodiceFiscale(), c.getCellulare(), c.getTelefonoFisso(),
+				c.getEmail(), c.getPassword(), c.getAttivo().ordinal(), c.getAffidabile().ordinal(), c.getVia(), c.getCap(),
 				c.getComune(), c.getProvincia(),  c.getNazione(),c.getUsername());
 	}
 	

@@ -156,8 +156,18 @@ public class ClienteController {
 			return new ModelAndView("datiAdmin", "modificaCliente", service.updateCliente(c));
 		} catch (ClienteException e) {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
-
 		}
+	}
+	
+	@RequestMapping("/modificaDati")
+	public ModelAndView modificaDati(Cliente c) {
+		try {
+			service.updateCliente(c);
+			return new ModelAndView("datiUtente2", "c" ,c);
+		} catch (ClienteException e) {
+			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
+		}
+		
 	}
 	
 	

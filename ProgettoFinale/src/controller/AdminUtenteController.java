@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Categoria;
@@ -55,7 +57,7 @@ public class AdminUtenteController {
 		}
 	}
 	
-	@RequestMapping("/modifica")
+	@RequestMapping("/modificaD")
 	public ModelAndView modifica(Cliente c) {
 		try {
 			service.modificaDatiCliente(c);
@@ -67,8 +69,8 @@ public class AdminUtenteController {
 	
 	//	metodo che restituisce tutti gli ordini
 
-	@RequestMapping("/visDatiCliente")
-	public ModelAndView modificaDati(String username) {
+	@RequestMapping(value="/modifica", method = RequestMethod.GET)
+	public ModelAndView modificaDati(@RequestParam(value="username") String username) {
 		try {
 			Cliente c = service.visualizzaDatiCliente(username);
 			return new ModelAndView("datiUtente", "c", c);
@@ -77,8 +79,6 @@ public class AdminUtenteController {
 			return new ModelAndView("erroreGenerico", "msg", e.getMessage());
 		}
 	}
-
-
 
 	// nuova fabio e gianluca
 	@RequestMapping("/visualizzaTuttiOrdini")

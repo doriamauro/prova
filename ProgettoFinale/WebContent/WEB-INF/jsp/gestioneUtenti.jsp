@@ -17,8 +17,14 @@
 	System.out.println(c);
 	out.println("<ol>");
 	for (Cliente cl : c) {
-		out.println("<li><a href='visDatiCliente?username=" + cl.getUsername() + "'>" + " - "
-				+ cl.getCognome() + " " + cl.getNome() + "(" + cl.getEmail() + ")" + "</li><br>");
+		out.println(
+				/* "<li><a href='visDatiCliente?username=" + cl.getUsername() + "'>" + */ 
+	cl.getUsername() + " - "
+				+ cl.getNome() + "(" + cl.getEmail() + ")" + "</li><br>");
+		out.println("<form action='modifica'>");
+		out.println("<input type='hidden' name='username' value='" + cl.getUsername() + "'>");
+		out.println("<input type='submit' value='" + cl.getUsername() + "'>");
+		out.println("</form>");
 	}
 	out.println("</ol>");
 %>
@@ -34,6 +40,10 @@
 <form action="view">
 <input type="submit" value="visualizza tutti i clienti"><br><br><br>
 </form>
+
+<!-- <form action="login">
+	<input type="submit" value="indietro"><br>
+</form -->> 
 
 </body>
 </html>
