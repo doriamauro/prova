@@ -213,9 +213,9 @@ Ciao amministratore ${username} <br> --%>
           </div>
 
         <div class="total-price">
-        <span> <%= p.getPrezzoUni()  %></span> <br>
+        <span> <%= p.getPrezzoUni() + "POCHIEURI" %></span> <br>
         
-        <span> <%= p.getSconto() + "%"%></span>
+        <span> <%= p.getSconto() + "% SCONTO"%></span>
         </div>
       </div>
 
