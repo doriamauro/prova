@@ -38,7 +38,7 @@ Dati modificabili dell'utente:
 	<input type="submit" value="torna alla home"><br>
 </form> -->
 
-<a href="../home/login?username=<%=c.getUsername()%>"> Home </a>
+<a href="../home/index"> Home </a>
 
 </body>
 </html>

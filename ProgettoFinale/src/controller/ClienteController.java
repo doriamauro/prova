@@ -124,7 +124,7 @@ public class ClienteController {
 	@RequestMapping("/visualizzaOrdini")
 	public ModelAndView visualizzaOrdini(String username) {
 		List<Ordine> lista = service.getOrdini(username);
-		return new ModelAndView("visualizzaOrdini", "lista", lista);
+		return new ModelAndView("listaOrdini", "lista", lista);
 	}
 
 	@RequestMapping("/logoutCliente")
