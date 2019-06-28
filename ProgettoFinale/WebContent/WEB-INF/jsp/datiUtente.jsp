@@ -31,12 +31,14 @@ Dati modificabili dell'utente:
   <input type="text" name="provincia" value="<%=c.getProvincia() %>">Provincia<br><br>
   <input type="text" name="nazione" value="<%=c.getNazione() %>">Nazione<br><br>
 
-  <input type="submit" value="modifica"><br>  
+  <input type="submit" value="modifica"><br><br><br>  
 </form>
 
-<form action="view">
-	<input type="submit" value="torna alla lista dei clienti"><br>
-</form>
+<!-- <form action="view">
+	<input type="submit" value="torna alla home"><br>
+</form> -->
+
+<a href="../home/login?username=<%=c.getUsername()%>"> Home </a>
 
 </body>
 </html>

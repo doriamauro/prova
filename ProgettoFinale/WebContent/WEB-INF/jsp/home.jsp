@@ -161,7 +161,7 @@ Ciao amministratore ${username} <br> --%>
   <li><form action="../cat/pageCreaProd">            									  						<input type="submit" value="Aggiungi Prodotto">  </form></li>
   <li><form action="../cat/pageRate">            									  						    <input type="submit" value="Gestione Rate">  </form></li>
   <li><form action="../cat/list">        																		<input type="submit" value="Gestione Categorie">  </form></li>
-  <li><form action="../admin/vedi">     																	    <input type="submit" value="Gestione Utenti">  </form></li>
+  <li><form action="../admin/view">     																	    <input type="submit" value="Gestione Utenti">  </form></li>
   <li><form action="../admin/visualizzaTuttiOrdini">															<input type="submit" value="Visualizza ordini"></form></li>
   <li><form action="../cliente/logoutCliente">      															<input type="submit" value="Logout"></form></li>
   

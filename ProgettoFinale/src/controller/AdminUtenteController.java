@@ -19,11 +19,11 @@ public class AdminUtenteController {
 	@Autowired
 	private UtenteService service;
 	
-	@RequestMapping("/vedi")
-	public String visualizzaClienti() {
-		service.visualizzaClienti();
-		return "gestioneUtenti";
-		}
+//	@RequestMapping("/vedi")
+//	public String visualizzaClienti() {
+//		service.visualizzaClienti();
+//		return "gestioneUtenti";
+//		}
 	
 	@RequestMapping("/view")
 	public ModelAndView visualizzaLista() {

@@ -24,15 +24,15 @@
 %>
 
 <form action="affidabili">
-<input type="submit" value="visualizza clienti affidabili"><br>
+<input type="submit" value="visualizza clienti affidabili"><br><br><br>
 </form>
 
 <form action="inaffidabili">
-<input type="submit" value="visualizza clienti inaffidabili"><br>
+<input type="submit" value="visualizza clienti inaffidabili"><br><br><br>
 </form>
 
 <form action="view">
-<input type="submit" value="visualizza tutti i clienti"><br>
+<input type="submit" value="visualizza tutti i clienti"><br><br><br>
 </form>
 
 </body>
