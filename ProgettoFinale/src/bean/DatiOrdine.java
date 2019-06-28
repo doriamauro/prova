@@ -102,7 +102,7 @@ public class DatiOrdine {
 
 		for (Prodotto p: prodotti) {
 
-			costoSing = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100));
+			costoSing = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100.0));
 			costoTot += costoSing*p.getDisponibilita();
 		}
 		return costoTot;
