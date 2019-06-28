@@ -65,39 +65,40 @@ METTERE I METODI SU FUNCTION
   
   
 Dettagli del prodotto:
-
-<% Prodotto p= (Prodotto) request.getAttribute("prodotto");
+<br><br>
+<%-- <% Prodotto p= (Prodotto) request.getAttribute("prodotto");
 	Boolean b = (Boolean) request.getAttribute("modifica");
 	if(b!=null && b==true) out.println("modifica avvenuta con successo <p>");
 	int index = 0;
-%>
+%> --%>
 
 	 <div class="dettagliProdotto">
-	 <form action="editProd">
+	 <form action="addProd">
 	   	  <%-- <input id="id"> ID: <%= p.getIdProdotto() %></span><br> --%>
-	   	   <input type="text" name="id" value="<%= p.getIdProdotto() %>">id<br>
-	 	  <input type="text" name="descrizione" value="<%= p.getDescrizione() %>"> Descrizione<br>
-          <input type="text" name="marca" value="<%= p.getMarca() %>"> Marca<br>
-          <input type="text" name="codiceEAN" value="<%= p.getCodiceEAN() %>"> Codice EAN<br>
-          <input type="text" name="prezzoUni" value="<%= p.getPrezzoUni() %>"> Prezzo unitario<br>
-          <input type="text" name="disponibilita" value="<%= p.getDisponibilita() %>"> Disponibilità<br>
-          <input type="text" name="linkProduttore" value="<%= p.getLinkProduttore() %>"> Link Produttore<br>
-          <input type="text" name="costoSped" value="<%= p.getCostoSped() %>"> Costo Spedizione<br>
-          <input type="text" name="tempoConsegna" value="<%= p.getTempoConsegna() %>"> Tempi di consegna<br>
-          <input type="text" name="immaginePrimaria" value="<%= p.getImmaginePrimaria() %>"> Immagine primaria<br>
-          <c:if test="${p.getImmagineSec()!=null}">
-          	<input type="text" name="immagineSec" value="<%= p.getImmagineSec() %>"> Immagine secondaria<br>
-          </c:if>
-          <input type="text" name="idCategoria" value="<%= p.getIdCategoria() %>"> Id categoria<br>
-          <input type="text" name="sconto" value="<%= p.getSconto() %>"> Sconto<br>
+	   	  <input type="text" name="id"> Id<br>
+	 	  <input type="text" name="descrizione" > Descrizione<br>
+          <input type="text" name="marca"> Marca<br>
+          <input type="text" name="codiceEAN"> Codice EAN<br>
+          <input type="text" name="prezzoUni"> Prezzo unitario<br>
+          <input type="text" name="disponibilita"> Disponibilità<br>
+          <input type="text" name="linkProduttore"> Link Produttore<br>
+          <input type="text" name="costoSped"> Costo Spedizione<br>
+          <input type="text" name="tempoConsegna"> Tempi di consegna<br>
+          <input type="text" name="immaginePrimaria"> Immagine primaria<br>
+          <input type="text" name="immagineSec"> Immagine secondaria<br>
+          <input type="text" name="idCategoria"> Id categoria<br>
+          <input type="text" name="sconto"> Sconto<br><br><br><br>
 
 
-			<input type="submit" class="modifica" value="Modifica prodotto">
+			<input type="submit" class="modifica" value="Aggiungi prodotto">
 </form>	
         </div>
+<!-- <form action="">
+	<input type="submit" value="indietro"><br>
+</form>  -->
         
         <br>
-        Aggiungi al carrello:
+     <%--    Aggiungi al carrello:
         
         <div class="quantity">
          
@@ -113,7 +114,7 @@ Dettagli del prodotto:
             <img src="../../img/add.png" alt="" />
           </button>
           <div id="esitoInserimento<%=index %>"></div>
-          </div>
+          </div> --%>
 	
 	
 
