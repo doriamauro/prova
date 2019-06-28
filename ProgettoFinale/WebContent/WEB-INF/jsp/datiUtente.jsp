@@ -70,6 +70,10 @@ Dati modificabili dell'utente:
 	<input type="submit" value="indietro"><br>
 </form> 
 
+<<<<<<< HEAD
+=======
+<a href="../home/index"> Home </a>
+>>>>>>> branch 'master' of https://github.com/doriamauro/prova.git
 
 </body>
 </html>

@@ -99,15 +99,28 @@ public class DatiOrdine {
 	public double calcolaTotale() {
 		double costoSing = 0;
 		double costoTot = 0;
+		double speseSped = 0;
 
 		for (Prodotto p: prodotti) {
 
-			costoSing = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100));
+			costoSing = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100.0));
 			costoTot += costoSing*p.getDisponibilita();
+			speseSped += p.getCostoSped();
+		}
+		if (costoTot<20){
+			costoTot += speseSped;
+		} else if (costoTot>=20 && costoTot<100) {
+			costoTot += 10;
 		}
 		return costoTot;
 	}
- 
+	
+	public double calcoloPrezzoSingolo(Prodotto p) {
+		double costoSing = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100.0));
+		double costoTot = costoSing*p.getDisponibilita();
+		return costoTot;
+	}
+	
 	public void variaQuantita(int idProdotto, int quantita) {
 		int index = this.prodotti.indexOf(new Prodotto(idProdotto));
 		if (index != -1) {

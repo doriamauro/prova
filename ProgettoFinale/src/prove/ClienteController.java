@@ -9,29 +9,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Admin;
 import bean.Attivo;
-import bean.Categoria;
 import bean.Cliente;
 import bean.Ordine;
-import bean.Prodotto;
 import exception.ClienteException;
 import service.ClienteService;
-import service.ProdottoService;
 
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
 
-
-	
-	@Autowired
-	private ProdottoService serviceP; 	
-	
 	@Autowired
 	private ClienteService service;
 
@@ -59,29 +49,14 @@ public class ClienteController {
 					session.setAttribute("admin", c.getAdmin().ordinal());
 					session.setAttribute("affidabile",c.getAffidabile().ordinal());
 					session.setMaxInactiveInterval(0);
-					
-					List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
-					List<String> marche= serviceP.getMarche();
-					List<Categoria> categorie = serviceP.getCategorie();
-					ModelAndView mav= new ModelAndView("home");
-					mav.addObject("prodotti", prodotti);
-					mav.addObject("marche", marche);
-					mav.addObject("categorie", categorie);
-					return mav;
+					return new ModelAndView("datiUtente2", "c", c);
 				}
 				else if (c.getAttivo().equals(Attivo.SI) && c.getAdmin().equals(Admin.SI)){
 					session.setAttribute("login", username);
 					session.setAttribute("admin", c.getAdmin().ordinal());
 					session.setAttribute("affidabile",c.getAffidabile().ordinal());
 					session.setMaxInactiveInterval(0);
-					List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
-					List<String> marche= serviceP.getMarche();
-					List<Categoria> categorie = serviceP.getCategorie();
-					ModelAndView mav= new ModelAndView("home");
-					mav.addObject("prodotti", prodotti);
-					mav.addObject("marche", marche);
-					mav.addObject("categorie", categorie);
-					return mav;
+					return new ModelAndView("datiUtente2", "c", c);
 				}
 					else
 					return new ModelAndView("riabilitati");
@@ -94,8 +69,8 @@ public class ClienteController {
 		}
 	}
 
-	@RequestMapping(value="/datiCliente", method = RequestMethod.GET)
-	public ModelAndView visualizzaDati(@RequestParam(value="username") String username) {
+	@RequestMapping("/datiCliente")
+	public ModelAndView visualizzaDati(String username) {
 		Cliente c = service.getCliente(username);
 		return new ModelAndView("datiUtente", "cliente", c);
 	}
@@ -124,7 +99,7 @@ public class ClienteController {
 	@RequestMapping("/visualizzaOrdini")
 	public ModelAndView visualizzaOrdini(String username) {
 		List<Ordine> lista = service.getOrdini(username);
-		return new ModelAndView("listaOrdini", "lista", lista);
+		return new ModelAndView("visualizzaOrdini", "lista", lista);
 	}
 
 	@RequestMapping("/logoutCliente")
@@ -134,17 +109,7 @@ public class ClienteController {
 
 		//		if(session.getAttribute("login") != null) {
 		session.invalidate();
-//		session.removeAttribute("login");
-//		session.removeAttribute("admin");
-//		session.removeAttribute("affidabile");
-		List<Prodotto> prodotti= serviceP.ricercaProdottiScontati();
-		List<String> marche= serviceP.getMarche();
-		List<Categoria> categorie = serviceP.getCategorie();
-		ModelAndView mav= new ModelAndView("home");
-		mav.addObject("prodotti", prodotti);
-		mav.addObject("marche", marche);
-		mav.addObject("categorie", categorie);
-		return mav;
+		return new ModelAndView("home");
 		//		}
 
 	}
@@ -169,6 +134,5 @@ public class ClienteController {
 		}
 		
 	}
-	
 	
 }

@@ -28,11 +28,12 @@ out.println("I prodotti acquistati sono:\n");
 for (Prodotto p : datiFinali.getProdotti()) {
 	out.println("<ul>");
 	
-	out.println("<li>" + p.getDescrizione() + "</li>");
-	out.println("<li>" + p.getPrezzoUni() + "</li>");
+	out.println("<li> Prodotto: " + p.getDescrizione() + "</li>");
+	out.println("<li> Prezzo scontato: " + (datiFinali.calcoloPrezzoSingolo(p))  + "</li>");
 	
 	out.println("</ul>");
 }
+out.println("Il totale dovuto è: " + datiFinali.calcolaTotale() + " (comprensivo di spese di spedizione.)");
 
 if(datiFinali.getModPag().getIdMod()!=1) {
 out.println( "L'indirizzo per la spedizione è :\n" + "via " +
