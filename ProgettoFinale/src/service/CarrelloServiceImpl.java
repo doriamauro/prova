@@ -63,11 +63,6 @@ public class CarrelloServiceImpl implements CarrelloService {
 			
 			costo = p.getPrezzoUni() - (p.getPrezzoUni()*p.getSconto()/100.0);
 			
-			System.out.println(p.getPrezzoUni()*p.getSconto()/100);
-			System.out.println(p.getPrezzoUni());
-			System.out.println(p.getSconto());
-			System.out.println(costo);
-			
 			costoTot += costo*p.getDisponibilita();
 			
 			speseSped += p.getCostoSped();
@@ -75,10 +70,10 @@ public class CarrelloServiceImpl implements CarrelloService {
 		
 		System.out.println(costoTot);
 		
-		if (costo<20){
-			costo += speseSped;
-		} else if (costo>=20 && costo<100) {
-			costo += 10;
+		if (costoTot<20){
+			costoTot += speseSped;
+		} else if (costoTot>=20 && costoTot<100) {
+			costoTot += 10;
 		}
 		
 		//inserisco l'ordine nella tabella ordini
