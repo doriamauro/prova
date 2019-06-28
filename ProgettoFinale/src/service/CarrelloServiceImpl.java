@@ -58,18 +58,29 @@ public class CarrelloServiceImpl implements CarrelloService {
 		double costo = 0;
 		double speseSped = 0;
 		double costoTot = 0;
+		
 		for (Prodotto p: d.getProdotti()) {
-			costo = p.getPrezzoUni() - (p.getPrezzoUni()*(p.getSconto()/100));
+			
+			costo = p.getPrezzoUni() - (p.getPrezzoUni()*p.getSconto()/100.0);
+			
+			System.out.println(p.getPrezzoUni()*p.getSconto()/100);
+			System.out.println(p.getPrezzoUni());
+			System.out.println(p.getSconto());
+			System.out.println(costo);
+			
 			costoTot += costo*p.getDisponibilita();
+			
 			speseSped += p.getCostoSped();
 		}
-
-		if (costoTot<20){
-			costoTot += speseSped;
-		} else if (costoTot>=20 && costoTot<100) {
-			costoTot += 10;
+		
+		System.out.println(costoTot);
+		
+		if (costo<20){
+			costo += speseSped;
+		} else if (costo>=20 && costo<100) {
+			costo += 10;
 		}
-
+		
 		//inserisco l'ordine nella tabella ordini
 		Ordine ordine = new Ordine(daoOrd.contaNumOrdini()+1,
 				d.getUsername(),
@@ -78,7 +89,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 				d.getIndOrd().getIdIndOrdine(),
 				d.getModPag().getIdMod());
 		daoOrd.insert(ordine);
-
+		System.out.println(ordine);
 
 		//inserimento nella tabella composizioneOrdini
 		for (Prodotto p: d.getProdotti()) {
